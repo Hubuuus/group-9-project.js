@@ -1,14 +1,7 @@
 @import './common';
-@import './header-home';
-@import './main';
-@import './modal-details';
-@import './footer';
-@import './modal-footer';
+@import '../components/header-home';
+@import '../components/main';
+@import '../components/modal-details';
+@import '../components/footer';
+@import '../components/modal-footer';
 
-@use '../utils/resets';
-
-@use '../components/header-home';
-@use '../components/main';
-@use '../components/modal-details';
-@use '../components/footer';
-@use '../components/footer-modal';
