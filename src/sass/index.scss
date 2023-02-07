@@ -1,7 +1,17 @@
-@import './common';
-@import '../components/header-home';
-@import '../components/main';
-@import '../components/modal-details';
-@import '../components/footer';
-@import '../components/modal-footer';
+/*
+ * Główny plik dla stylów.
+ * Wszystkie components oraz utils podłączamy tutaj.
+ */
+
+// Style dla pliku z przykładem HTML fragmentu
+
+@use '../utils/common';
+
+@use '../utils/resets';
+
+@use '../components/footer';
+@use '../components/header-home';
+@use '../components/main';
+@use '../components/modal-details';
+@use '../components/modal-footer';
 
