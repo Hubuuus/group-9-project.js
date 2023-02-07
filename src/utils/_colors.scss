@@ -1,0 +1,31 @@
+$colors: (
+  // BACKGROUND
+  'bg-main': #e5e5e5,
+  'bg-footer': #f7f7f7,
+
+  // TEXT
+  'tx-basic': #ffffff,
+  'tx-primary': #000000,
+  'tx-secondary': #8c8c8c,
+  'tx-alternative': #545454,
+  'tx-accent': #ff6b01,
+  'tx-error': #ff001b,
+
+  // BUTTONS
+  'btn-basic': #ffffff,
+  'btn-accent': #ff6b01,
+  'btn-hover': #ca5100,
+
+  // ICON
+  'ic-basic': #ffffff,
+  'ic-primary': #000000,
+  'ic-secondary': #818181
+);
+
+@function getColor($key) {
+  @return map-get($map: $colors, $key: $key);
+}
+
+body {
+  background-color: getColor(bg-main);
+}
