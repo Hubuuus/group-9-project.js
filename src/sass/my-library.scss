@@ -1,9 +1,7 @@
-@import './common';
 @import '../components/header-home';
 @import '../components/main';
 @import '../components/modal-details';
 @import '../components/footer';
 @import '../components/modal-footer';
 
-// @use '../utils/resets';
-
+@import '../utils/foward';
