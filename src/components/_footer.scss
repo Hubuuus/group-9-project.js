@@ -1,3 +1,7 @@
 @use '../utils/forward' as *;
 
 //Edytować poniżej
+
+.test {
+  background-color: color-get('btn-accent');
+}
