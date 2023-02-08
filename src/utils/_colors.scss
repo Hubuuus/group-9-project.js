@@ -11,7 +11,7 @@ $colors: (
   'tx-accent': #ff6b01,
   'tx-error': #ff001b,
 
-  // BUTTONS
+  // BUTTON
   'btn-basic': #ffffff,
   'btn-accent': #ff6b01,
   'btn-hover': #ca5100,
@@ -25,6 +25,6 @@ $colors: (
   'shdw-button': rgba(255, 107, 1, 0.6)
 );
 
-@function getColor($key) {
-  @return map-get($map: $colors, $key: $key);
+@function get($key) {
+  @return map-get($colors, $key);
 }

@@ -1,0 +1,6 @@
+@use '../utils/foward' as *;
+
+// test
+footer {
+  background-color: color-get('bg-footer');
+}
