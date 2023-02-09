@@ -1,0 +1,28 @@
+//Podstawowe resety
+//NIE USUWAĆ
+//NIE EDYTOWAĆ
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

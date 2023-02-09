@@ -1,2 +1,15 @@
-@import './common';
-@import './example';
+/*
+ * Główny plik dla stylów.
+ * Wszystkie components oraz utils podłączamy tutaj.
+ */
+
+// Style dla pliku z przykładem HTML fragmentu
+
+
+
+@use '../components/footer';
+@use '../components/header-home';
+@use '../components/main';
+@use '../components/modal-details';
+@use '../components/modal-footer';
+
