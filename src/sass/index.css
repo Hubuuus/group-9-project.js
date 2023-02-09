@@ -46,7 +46,7 @@ body {
 
 .Modal {
   min-width: 250px;
-  background-color: white;
+  background-color: #ffffff;
   position: fixed;
   max-height: 90%;
   overflow-y: auto;
@@ -105,7 +105,7 @@ body {
   margin-top: 20px;
 }
 .Modal__Properties {
-  color: #8C8C8C;
+  color: #8c8c8c;
 }
 .Modal__Property {
   margin-top: 10px;
@@ -115,17 +115,17 @@ body {
   line-height: 14px;
 }
 .Modal__Votes {
-  color: #8C8C8C;
+  color: #8c8c8c;
 }
 .Modal__OneVote {
-  background: #FF6B01;
-  color: white;
+  background-color: #ff6b01;
+  color: #ffffff;
   border-radius: 7px;
   padding: 5px 10px;
 }
 .Modal__AllVotes {
   background: #F7F7F7;
-  color: black;
+  color: #000000;
   border-radius: 7px;
   padding: 5px 10px;
 }
@@ -152,16 +152,24 @@ body {
   font-size: 12px;
   border-radius: 5px;
   line-height: 16px;
+  transition: 0.3s ease;
 }
 .Modal__Button--Watched {
-  color: white;
+  color: #ffffff;
   border: none;
-  background-color: #FF6B01;
+  background-color: #ff6b01;
+}
+.Modal__Button--Watched:hover {
+  background-color: #ca5100;
 }
 .Modal__Button--Queue {
-  background-color: white;
-  border: 1px solid black;
-  color: black;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
+}
+.Modal__Button--Queue:hover {
+  background-color: #ff6b01;
+  color: #ffffff;
 }
 
 @keyframes zoom {

@@ -26,7 +26,7 @@ body {
 
 .Modal {
     min-width: 250px;
-    background-color: white;
+    background-color: color-get('tx-basic');
     position: fixed;
     max-height: 90%;
     overflow-y: auto;
@@ -85,7 +85,7 @@ body {
         margin-top: 20px;
     }
     &__Properties {
-        color: #8C8C8C;
+        color: color-get('tx-secondary')
     }
     &__Property {
         margin-top: 10px;
@@ -95,17 +95,17 @@ body {
         line-height: 14px;
     }
     &__Votes {
-        color: #8C8C8C;
+        color: color-get('tx-secondary')
     }
     &__OneVote {
-        background: #FF6B01;
-        color: white;
+        background-color: color-get('btn-accent');
+        color: color-get('tx-basic');
         border-radius: 7px;
         padding: 5px 10px;
     }
     &__AllVotes {
         background: #F7F7F7;
-        color: black;
+        color: color-get('tx-primary');
         border-radius: 7px;
         padding: 5px 10px;
     }
@@ -133,17 +133,25 @@ body {
         font-size: 12px;
         border-radius: 5px;
         line-height: 16px;
+        transition: 0.3s ease;
 
         &--Watched {
-            color: white;
+            color: color-get('tx-basic');
             border: none;
-            background-color: #FF6B01;
+            background-color: color-get('btn-accent');
+            &:hover {
+                background-color: color-get('btn-hover');
+            }
         }
 
         &--Queue {
-            background-color: white;
-            border: 1px solid black;
-            color: black;
+            background-color: color-get('btn-basic');
+            border: 1px solid color-get('tx-primary');
+            color: color-get('tx-primary');
+            &:hover {
+                background-color: color-get('tx-accent');
+                color: color-get('btn-basic');
+            }
         }
     }
 }
