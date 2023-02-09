@@ -1,3 +1,39 @@
 @use '../utils/forward' as *;
 
 //Edytować poniżej
+a {
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  color: black;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+}
+
+.footer {
+  width: 100%;
+  color: #545454;
+  text-align: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  background-color: #f7f7f7;
+  padding: 42px 36px 42px 44px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    width: 768px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .footer {
+    width: 1024px;
+  }
+}
