@@ -1,0 +1,242 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import '~node_modules/modern-normalize/modern-normalize.css';
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.open {
+  width: 100px;
+  height: 50px;
+  background-color: #333;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #eee;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5%;
+  box-shadow: 0 2px 1px 1px #222;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 25px;
+}
+
+.Modal {
+  min-width: 250px;
+  background-color: #ffffff;
+  position: fixed;
+  max-height: 90%;
+  overflow-y: auto;
+  width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: zoom 0.5s ease;
+}
+.Modal__Close {
+  position: absolute;
+  top: 6px;
+  right: 12px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  line-height: 25px;
+  cursor: pointer;
+}
+.Modal__Close-x {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 27px;
+}
+.Modal__Image {
+  min-height: 115vw;
+  height: 1024px;
+  width: 100%;
+  background: url(../images/imageMovieMobile.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 100%;
+  margin: 40px auto 0;
+}
+.Modal__Text {
+  width: 90%;
+  margin: 20px auto 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+.Modal__MovieTitle {
+  font-size: 20px;
+  margin: 0 auto;
+  line-height: 23px;
+}
+.Modal__Info {
+  display: flex;
+  margin-top: 20px;
+}
+.Modal__Properties {
+  color: #8c8c8c;
+}
+.Modal__Property {
+  margin-top: 10px;
+}
+.Modal__Values {
+  margin-left: 40px;
+  line-height: 14px;
+}
+.Modal__Votes {
+  color: #8c8c8c;
+}
+.Modal__OneVote {
+  background-color: #ff6b01;
+  color: #ffffff;
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+.Modal__AllVotes {
+  background: #F7F7F7;
+  color: #000000;
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+.Modal__About {
+  margin-top: 20px;
+  font-size: 12px;
+}
+.Modal__Review {
+  margin-top: 10px;
+  line-height: 20px;
+}
+.Modal__Buttons {
+  margin: 21px 0 41px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  min-width: 260px;
+}
+.Modal__Button {
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  width: 120px;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  line-height: 16px;
+  transition: 0.3s ease;
+}
+.Modal__Button--Watched {
+  color: #ffffff;
+  border: none;
+  background-color: #ff6b01;
+}
+.Modal__Button--Watched:hover {
+  background-color: #ca5100;
+}
+.Modal__Button--Queue {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
+}
+.Modal__Button--Queue:hover {
+  background-color: #ff6b01;
+  color: #ffffff;
+}
+
+@keyframes zoom {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.hidden {
+  display: none;
+}
+
+.blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #aaa;
+  filter: blur(8px);
+}
+
+@media (min-width: 768px) {
+  .Modal {
+    flex-direction: row;
+    align-items: start;
+    height: 60%;
+    max-width: 80%;
+  }
+  .Modal__Image {
+    min-height: 80%;
+    height: 50vw;
+    width: 45%;
+    background-position: top;
+    margin: 0 auto 40px;
+    position: relative;
+    top: 50px;
+  }
+  .Modal__Text {
+    width: 45%;
+    margin: 0 auto;
+    position: relative;
+    top: 50px;
+  }
+}
+@media (min-width: 1024px) {
+  .Modal {
+    height: 50vw;
+    max-height: 827px;
+    width: 80%;
+    max-width: 1320px;
+  }
+  .Modal__Image {
+    height: 40vw;
+    max-height: 650px;
+    background: url(../images/imageMovie.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: top right;
+    margin: 0 0 40px 0;
+  }
+  .Modal__MovieTitle {
+    font-size: 30px;
+    line-height: 35px;
+  }
+}
+/*
+ * Główny plik dla stylów.
+ * Wszystkie components oraz utils podłączamy tutaj.
+ *//*# sourceMappingURL=index.css.map */
