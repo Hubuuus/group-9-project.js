@@ -1,57 +1,45 @@
-
-
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./sass/index.scss" />
-  </head>
-      <button class="open">Klik</button>
-      <div class="blur hidden"></div>
-      <div class="modal hidden">
-        <button class="close"><span class="close-x">x</span></button>
-        <div class="image"></div>
-        <div class="text">
-          <h1 class="MovieTitle">A FISTFUL OF LEAD</h1>
-          <div class="MovieTitle__info">
-            <div class="MovieTitle__names">
-              <p>Vote / Votes</p>
-              <p>Popularity</p>
-              <p>Original Title</p>
-              <p>Genre</p>
-            </div>
-            <div class="MovieTitle__values">
-              <p class="colorV">
-                <span class="colorVote">7.3</span> /
-                <span class="colorVotes">1260</span>
-              </p>
-              <p>100.2</p>
-              <p>A FISTFUL OF LEAD</p>
-              <p>Western</p>
-            </div>
-          </div>
-          <h2>ABOUT</h2>
-          <p class="AboutMovie">
-            Four of the West’s most infamous outlaws assemble to steal a huge
-            stash of gold from the most corrupt settlement of the gold rush
-            towns. But not all goes to plan one is killed and the other three
-            escapes with bags of gold hide out in the abandoned gold mine where
-            they happen across another gang of three – who themselves were
-            planning to hit the very same bank! As tensions rise, things go from
-            bad to worse as they realise the bags of gold are filled with
-            lead... they’ve been double crossed – but by who and how?
+<body>
+  <button class="open">Klik</button>
+  <div class="blur hidden"></div>
+  <div class="Modal hidden">
+    <button class="Modal__Close"><span class="Modal__Close-x">x</span></button>
+    <div class="Modal__Image"></div>
+    <div class="Modal__Text">
+      <h1 class="Modal__MovieTitle">A FISTFUL OF LEAD</h1>
+      <div class="Modal__Info">
+        <div class="Modal__Properties">
+          <p>Vote / Votes</p>
+          <p class="Modal__Property">Popularity</p>
+          <p class="Modal__Property">Original Title</p>
+          <p class="Modal__Property">Genre</p>
+        </div>
+        <div class="Modal__Values">
+          <p class="Modal__Votes">
+            <span class="Modal__OneVote">7.3</span> /
+            <span class="Modal__AllVotes">1260</span>
           </p>
-          <div class="buttonsWQ">
-            <button class="watched">ADD TO WATCHED</button>
-            <button class="queue">ADD TO QUEUE</button>
-          </div>
+          <p class="Modal__Property">100.2</p>
+          <p class="Modal__Property">A FISTFUL OF LEAD</p>
+          <p class="Modal__Property">Western</p>
         </div>
       </div>
-    </body>
-    <script src="./index.js" type="module"></script>
-    </html>
+      <h2 class="Modal__About">ABOUT</h2>
+      <p class="Modal__Review">
+        Four of the West’s most infamous outlaws assemble to steal a huge stash
+        of gold from the most corrupt settlement of the gold rush towns. But not
+        all goes to plan one is killed and the other three escapes with bags of
+        gold hide out in the abandoned gold mine where they happen across
+        another gang of three – who themselves were planning to hit the very
+        same bank! As tensions rise, things go from bad to worse as they realise
+        the bags of gold are filled with lead... they’ve been double crossed –
+        but by who and how?
+      </p>
+      <div class="Modal__Buttons">
+        <button class="Modal__Button Modal__Button--Watched">
+          ADD TO WATCHED
+        </button>
+        <button class="Modal__Button Modal__Button--Queue">ADD TO QUEUE</button>
+      </div>
+    </div>
+  </div>
+</body>
