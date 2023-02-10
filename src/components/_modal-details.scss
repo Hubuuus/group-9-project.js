@@ -24,30 +24,9 @@ body {
     font-size: 25px;
 }
 
-.close {
-    position: absolute;
-    top: 6px;
-    right: 12px;
-    width: 25px;
-    height: 25px;
-    text-align: center;
-    background-color: transparent;
-    border: none;
-    line-height: 25px;
-    cursor: pointer;
-}
-
-.close-x {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 27px;
-}
-
-.modal {
+.Modal {
     min-width: 250px;
-    background-color: white;
+    background-color: color-get('tx-basic');
     position: fixed;
     max-height: 90%;
     overflow-y: auto;
@@ -59,16 +38,127 @@ body {
     flex-direction: column;
     align-items: center;
     animation: zoom 0.5s ease;
+
+    &__Close {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        background-color: transparent;
+        border: none;
+        line-height: 25px;
+        cursor: pointer;
+    }
+    &__Close-x {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 27px;
+    }
+    &__Image {
+        min-height: 115vw;
+        height: 1024px;
+        width: 100%;
+        background: url(../images/imageMovieMobile.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: 50% 100%;
+        margin: 40px auto 0;
+    }
+    &__Text {
+        width: 90%;
+        margin: 20px auto 0;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+    }
+    &__MovieTitle {
+        font-size: 20px;
+        margin: 0 auto;
+        line-height: 23px;
+    }
+    &__Info {
+        display: flex;
+        margin-top: 20px;
+    }
+    &__Properties {
+        color: color-get('tx-secondary')
+    }
+    &__Property {
+        margin-top: 10px;
+    }
+    &__Values {
+        margin-left: 40px;
+        line-height: 14px;
+    }
+    &__Votes {
+        color: color-get('tx-secondary')
+    }
+    &__OneVote {
+        background-color: color-get('btn-accent');
+        color: color-get('tx-basic');
+        border-radius: 7px;
+        padding: 5px 10px;
+    }
+    &__AllVotes {
+        background: #F7F7F7;
+        color: color-get('tx-primary');
+        border-radius: 7px;
+        padding: 5px 10px;
+    }
+    &__About {
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    &__Review {
+        margin-top: 10px;
+        line-height: 20px;
+    }
+    &__Buttons {
+        margin: 21px 0 41px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        min-width: 260px;
+    }
+    &__Button {
+        font-family: 'Roboto', sans-serif;
+        cursor: pointer;
+        width: 120px;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+        line-height: 16px;
+        transition: 0.3s ease;
+
+        &--Watched {
+            color: color-get('tx-basic');
+            border: none;
+            background-color: color-get('btn-accent');
+            &:hover {
+                background-color: color-get('btn-hover');
+            }
+        }
+
+        &--Queue {
+            background-color: color-get('btn-basic');
+            border: 1px solid color-get('tx-primary');
+            color: color-get('tx-primary');
+            &:hover {
+                background-color: color-get('tx-accent');
+                color: color-get('btn-basic');
+            }
+        }
+    }
 }
 
 @keyframes zoom {
-    from {
-        transform: translate(-50%, -50%) scale(0);
-    }
-
-    to {
-        transform: translate(-50%, -50%) scale(1);
-    }
+    from {transform: translate(-50%, -50%) scale(0);}
+    to {transform: translate(-50%, -50%) scale(1);}
 }
 
 .hidden {
@@ -83,153 +173,50 @@ body {
     filter: blur(8px);
 }
 
-.image {
-    min-height: 115vw;
-    height: 1024px;
-    width: 100%;
-    background: url(../images/imageMovieMobile.jpg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: 50% 100%;
-    margin: 40px auto 0;
-}
-
-.text {
-    width: 90%;
-    margin: 20px auto 0;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-}
-
-.MovieTitle {
-    font-size: 20px;
-    margin: 0 auto;
-    line-height: 23px;
-}
-
-.MovieTitle__info {
-    display: flex;
-    margin-top: 20px;
-}
-
-.MovieTitle__names {
-    color: #8C8C8C;
-}
-
-.MovieTitle__info p:not(:first-child) {
-    margin-top: 10px;
-}
-
-.MovieTitle__values {
-    margin-left: 40px;
-    line-height: 14px;
-}
-
-.MovieTitle__values .colorV {
-    color: #8C8C8C;
-}
-
-.MovieTitle__values .colorVote {
-    background: #FF6B01;
-    color: white;
-    border-radius: 7px;
-    padding: 5px 10px;
-}
-
-.MovieTitle__values .colorVotes {
-    background: #F7F7F7;
-    color: black;
-    border-radius: 7px;
-    padding: 5px 10px;
-}
-
-.text h2 {
-    margin-top: 20px;
-    font-size: 12px;
-}
-
-.AboutMovie {
-    margin-top: 10px;
-    line-height: 20px;
-}
-
-.buttonsWQ {
-    margin: 21px 0 41px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    min-width: 260px;
-}
-
-.buttonsWQ button {
-    font-family: 'Roboto', sans-serif;
-    cursor: pointer;
-    width: 120px;
-    padding: 5px 10px;
-    font-size: 12px;
-    border-radius: 5px;
-    line-height: 16px;
-}
-
-.watched {
-    color: white;
-    border: none;
-    background-color: #FF6B01;
-}
-
-.queue {
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-}
-
 @media (min-width: 768px) {
-    .modal {
+    .Modal {
         flex-direction: row;
         align-items: start;
         height: 60%;
         max-width: 80%;
-    }
 
-    .image {
-        min-height: 80%;
-        height: 50vw;
-        width: 45%;
-        background-position: top;
-        margin: 0 auto 40px;
-        position: relative;
-        top: 50px;
-    }
-
-    .text {
-        width: 45%;
-        margin: 0 auto;
-        position: relative;
-        top: 50px;
+        &__Image {
+            min-height: 80%;
+            height: 50vw;
+            width: 45%;
+            background-position: top;
+            margin: 0 auto 40px;
+            position: relative;
+            top: 50px;
+        }
+        &__Text {
+            width: 45%;
+            margin: 0 auto;
+            position: relative;
+            top: 50px;
+        }
     }
 }
 
 @media (min-width: 1024px) {
-    .modal {
+    .Modal {
         height: 50vw;
         max-height: 827px;
         width: 80%;
         max-width: 1320px;
-    }
 
-    .image {
-        height: 40vw;
-        max-height: 650px;
-        background: url(../images/imageMovie.jpg);
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: top right;
-        margin: 0 0 40px 0
-    }
-
-    .MovieTitle {
-        font-size: 30px;
-        line-height: 35px;
+        &__Image {
+            height: 40vw;
+            max-height: 650px;
+            background: url(../images/imageMovie.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: top right;
+            margin: 0 0 40px 0
+        }
+        &__MovieTitle {
+            font-size: 30px;
+            line-height: 35px;
+        }
     }
 }
