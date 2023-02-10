@@ -8,13 +8,9 @@ a {
   cursor: pointer;
 }
 
-.container {
-  width: 100%;
-  margin: auto;
-}
-
 .footer {
-  width: 100%;
+  // margin: auto;
+  min-width: 100vw;
   color: #545454;
   text-align: center;
   align-items: center;
