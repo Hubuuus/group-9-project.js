@@ -1,7 +1,6 @@
 //Nie ruszać tego pliku
 
-@forward './colors';
+@forward './colors' as color-*;
 @forward './fonts';
 @forward './common';
 @forward './resets';
-
