@@ -3,7 +3,7 @@
 //Edytować poniżej
 
 
-.navbar{
+.Navbar{
     width: 100%;
     height: 230px;
     background-color: rgb(228, 228, 228);
@@ -44,47 +44,51 @@
   }
 }
 
-.navbar-container,
-.navbar-header{
+.NavbarContainer,
+.NavbarHeader{
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: $tx-basic;
 }
 
-.search{
+.Search{
     display: flex;
     justify-content: center;
     padding-top: 41px;
 }
 
-.navbar-right{
+.NavbarRight{
     list-style: none;
     display: flex;
     justify-content: flex-end;
 }
 
-.nav-page-my-library{
+.NavPageMyLibrary{
     padding-left: 20px;
     text-decoration: none;
-    color: $tx-basic;
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0em;
 
     @media screen and (min-width: 320px) {
         padding: 0 20px;
   }
 }
-.nav-page-home{
+.NavPageHome{
     text-decoration: none;
-    color: $bg-main;
 }
 
-.page-main{
+.PageMain{
     
     text-decoration: none;
     color: $bg-main;
 }
 
-.search-button{
+.SearchButton{
     background: none;
 	color: inherit;
 	border: none;
@@ -94,13 +98,13 @@
 	outline: inherit;
 }
 
-.search-input{
+.SearchInput{
     border: none;
     background: transparent;
     width: 100%;
 }
 
-.search-container{
+.SearchContainer{
     border-bottom: solid black 1px;
     display: flex;
     justify-content: space-between;
@@ -114,7 +118,7 @@
 
 }
 
-    .search-alert{
+    .SearchAlert{
         display: flex;
         justify-content: center;
         padding-top: 22px;
