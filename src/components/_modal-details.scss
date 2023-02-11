@@ -40,7 +40,7 @@ body::after {
     min-width: 250px;
     width: 90%;
     max-width: 400px;
-    background-color: color-get('tx-basic');
+    background-color: $tx-basic;
     position: fixed;
     max-height: 90%;
     overflow-y: auto;
@@ -97,7 +97,7 @@ body::after {
         margin-top: 20px;
     }
     &__Properties {
-        color: color-get('tx-secondary')
+        color: $tx-secondary;
     }
     &__Property {
         margin-top: 10px;
@@ -107,17 +107,17 @@ body::after {
         line-height: 14px;
     }
     &__Votes {
-        color: color-get('tx-secondary')
+        color: $tx-secondary;
     }
     &__OneVote {
-        background-color: color-get('btn-accent');
-        color: color-get('tx-basic');
+        background-color: $btn-accent;
+        color: $tx-basic;
         border-radius: 7px;
         padding: 5px 10px;
     }
     &__AllVotes {
-        background: #F7F7F7;
-        color: color-get('tx-primary');
+        background-color: $bg-footer;
+        color: $tx-primary;
         border-radius: 7px;
         padding: 5px 10px;
     }
@@ -148,21 +148,19 @@ body::after {
         transition: 0.3s ease;
 
         &--Watched {
-            color: color-get('tx-basic');
+            color: $tx-basic;
             border: none;
-            background-color: color-get('btn-accent');
+            background-color: $btn-accent;
             &:hover {
-                background-color: color-get('btn-hover');
+                background-color: $btn-hover;
             }
         }
 
         &--Queue {
-            background-color: color-get('btn-basic');
-            border: 1px solid color-get('tx-primary');
-            color: color-get('tx-primary');
+            background-color: $btn-basic;
+            border: 1px solid $tx-primary;
             &:hover {
-                background-color: color-get('tx-accent');
-                color: color-get('btn-basic');
+                background-color: $bg-footer;
             }
         }
     }
