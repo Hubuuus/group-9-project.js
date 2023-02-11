@@ -1,46 +1,51 @@
-
 <header class="HeaderMain">
-    <nav class="Navbar">
-        <div class="NavbarContainer">
-            <!-- start navbar left side -->
-            <div class="NavbarHeader">
-            <a class="NavbarBrand PageMain" href="">    
-                <svg class="NavbarBrandIcon" width="44" height="44" viewBox="0 0 1 1">
-                    <use href="../icons/icons.svg#icon-film"></use>
-                </svg>
-            </a>
-                <a class="NavbarBrand PageMain" href="">Filmoteka</a>
-            </div>
-            <!-- end navbar left side -->
-            
-            <!-- start navbar right side -->
-            <div class="Collapse NavbarCollapse">
-                <ul class="Nav NavbarRight">
-                    <li class="">
-                        <a id="active-nav" class="NavPageHome" href="">Home</a>
-                    </li>
-                    <li class="">
-                        <a class="NavPageMyLibrary" href="">My Library</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- end navbar right side -->
+  <nav class="Navbar">
+    <div class="NavbarContainer">
+      <!-- start navbar left side -->
+      <div class="NavbarHeader">
+        <a class="NavbarBrand PageMain" href="">
+          <svg class="NavbarBrandIcon" width="44" height="44" viewBox="0 0 1 1">
+            <use href="../icons/icons.svg#icon-film"></use>
+          </svg>
+        </a>
+        <a class="NavbarBrand PageMain" href="./index.html">Filmoteka</a>
+      </div>
+      <!-- end navbar left side -->
 
-        </div>
-        <!-- start search -->
-        <div class="Search">
-            <form class="SearchContainer" action="">
-              <input class="SearchInput" type="text" placeholder="Search..." name="search">
-                <button class="SearchButton" type="submit">
-                 <span class="Search__Svg">
-                     <svg width='24' height="24">
-                    <use href="../icons/icons.svg#icon-search"></use>
-                     </svg>
-                 </span>
-                </button>
-            </form>
-        </div>
-        <span class="SearchAlert">Search result not successful. Enter the correct movie name and </span>
-        <!-- end search -->
-    </nav>
+      <!-- start navbar right side -->
+      <div class="Collapse NavbarCollapse">
+        <ul class="Nav NavbarRight">
+          <li class="">
+            <a id="active-nav" class="NavPageHome" href="./index.html">Home</a>
+          </li>
+          <li class="">
+            <a class="NavPageMyLibrary" href="./my-library.html">My Library</a>
+          </li>
+        </ul>
+      </div>
+      <!-- end navbar right side -->
+    </div>
+    <!-- start search -->
+    <div class="Search">
+      <form class="SearchContainer" action="">
+        <input
+          class="SearchInput"
+          type="text"
+          placeholder="Search..."
+          name="search"
+        />
+        <button class="SearchButton" type="submit">
+          <span class="Search__Svg">
+            <svg width="24" height="24">
+              <use href="../icons/icons.svg#icon-search"></use>
+            </svg>
+          </span>
+        </button>
+      </form>
+    </div>
+    <span class="SearchAlert"
+      >Search result not successful. Enter the correct movie name and
+    </span>
+    <!-- end search -->
+  </nav>
 </header>
