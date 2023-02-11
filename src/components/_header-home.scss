@@ -49,7 +49,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    color: get(tx-basic);
+    color: $tx-basic;
 }
 
 .search{
@@ -67,6 +67,7 @@
 .nav-page-my-library{
     padding-left: 20px;
     text-decoration: none;
+    color: $tx-basic;
 
     @media screen and (min-width: 320px) {
         padding: 0 20px;
@@ -74,11 +75,13 @@
 }
 .nav-page-home{
     text-decoration: none;
+    color: $bg-main;
 }
 
 .page-main{
     
     text-decoration: none;
+    color: $bg-main;
 }
 
 .search-button{
@@ -115,7 +118,7 @@
         display: flex;
         justify-content: center;
         padding-top: 22px;
-        color:get(tx-error);
+        color:$tx-error;
         
         @media screen and (min-width: 320px) {
                 padding-left: 20px;
@@ -129,7 +132,7 @@
     display: block;
     width: 45px;
     height: 4px;
-    background-color: #2196f3;
+    background-color: $btn-accent;
     content: "";
   }
 
