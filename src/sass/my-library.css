@@ -1,9 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import '~node_modules/modern-normalize/modern-normalize.css';
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 img {
@@ -20,6 +25,147 @@ a {
   color: inherit;
 }
 
+a {
+  text-decoration: none;
+  border-bottom: 1px solid black;
+  color: black;
+  cursor: pointer;
+}
+
+.footer {
+  min-width: 100vw;
+  color: #545454;
+  text-align: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  background-color: #f7f7f7;
+  padding: 42px 36px 42px 44px;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    width: 768px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .footer {
+    width: 1024px;
+  }
+}
+.container {
+  min-width: 320px;
+  font-family: "Roboto", sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.gallery {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  list-style: none;
+  display: grid;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.movie-card {
+  width: 280px;
+  height: 443px;
+  justify-content: center;
+  box-sizing: content-box;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.movie-card:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: 300ms;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+img {
+  height: 402px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.movie-card__info {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+  align-items: left;
+  text-align: left;
+  vertical-align: top;
+  width: 100%;
+  height: 31px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.16em;
+  color: #FF6B08;
+}
+
+.movie-card__title {
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 1.16em;
+}
+.movie-card__title::after {
+  content: "\a";
+  white-space: pre;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+  .gallery {
+    margin-top: 60px;
+    margin-bottom: 50px;
+    list-style: none;
+    display: grid;
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .movie-card {
+    width: 294px;
+    height: 440px;
+  }
+  img {
+    height: 398px;
+  }
+  .movie-card__info {
+    height: 32px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    padding-left: 71px;
+    padding-right: 71px;
+  }
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .movie-card {
+    width: 274px;
+    height: 440px;
+  }
+  img {
+    height: 398px;
+  }
+}
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -43,22 +189,7 @@ body {
   font-size: 25px;
 }
 
-.Modal {
-  min-width: 250px;
-  background-color: #ffffff;
-  position: fixed;
-  max-height: 90%;
-  overflow-y: auto;
-  width: 90%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: zoom 0.5s ease;
-}
-.Modal__Close {
+.close {
   position: absolute;
   top: 6px;
   right: 12px;
@@ -70,105 +201,29 @@ body {
   line-height: 25px;
   cursor: pointer;
 }
-.Modal__Close-x {
+
+.close-x {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 27px;
 }
-.Modal__Image {
-  min-height: 115vw;
-  height: 1024px;
-  width: 100%;
-  background: url(../images/imageMovieMobile.jpg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 50% 100%;
-  margin: 40px auto 0;
-}
-.Modal__Text {
+
+.modal {
+  min-width: 250px;
+  background-color: white;
+  position: fixed;
+  max-height: 90%;
+  overflow-y: auto;
   width: 90%;
-  margin: 20px auto 0;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-}
-.Modal__MovieTitle {
-  font-size: 20px;
-  margin: 0 auto;
-  line-height: 23px;
-}
-.Modal__Info {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  margin-top: 20px;
-}
-.Modal__Properties {
-  color: #8c8c8c;
-}
-.Modal__Property {
-  margin-top: 10px;
-}
-.Modal__Values {
-  margin-left: 40px;
-  line-height: 14px;
-}
-.Modal__Votes {
-  color: #8c8c8c;
-}
-.Modal__OneVote {
-  background-color: #ff6b01;
-  color: #ffffff;
-  border-radius: 7px;
-  padding: 5px 10px;
-}
-.Modal__AllVotes {
-  background: #F7F7F7;
-  color: #000000;
-  border-radius: 7px;
-  padding: 5px 10px;
-}
-.Modal__About {
-  margin-top: 20px;
-  font-size: 12px;
-}
-.Modal__Review {
-  margin-top: 10px;
-  line-height: 20px;
-}
-.Modal__Buttons {
-  margin: 21px 0 41px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  min-width: 260px;
-}
-.Modal__Button {
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
-  width: 120px;
-  padding: 5px 10px;
-  font-size: 12px;
-  border-radius: 5px;
-  line-height: 16px;
-  transition: 0.3s ease;
-}
-.Modal__Button--Watched {
-  color: #ffffff;
-  border: none;
-  background-color: #ff6b01;
-}
-.Modal__Button--Watched:hover {
-  background-color: #ca5100;
-}
-.Modal__Button--Queue {
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  color: #000000;
-}
-.Modal__Button--Queue:hover {
-  background-color: #ff6b01;
-  color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  animation: zoom 0.5s ease;
 }
 
 @keyframes zoom {
@@ -191,14 +246,115 @@ body {
   filter: blur(8px);
 }
 
+.image {
+  min-height: 115vw;
+  height: 1024px;
+  width: 100%;
+  background: url(../images/imageMovieMobile.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 100%;
+  margin: 40px auto 0;
+}
+
+.text {
+  width: 90%;
+  margin: 20px auto 0;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.MovieTitle {
+  font-size: 20px;
+  margin: 0 auto;
+  line-height: 23px;
+}
+
+.MovieTitle__info {
+  display: flex;
+  margin-top: 20px;
+}
+
+.MovieTitle__names {
+  color: #8C8C8C;
+}
+
+.MovieTitle__info p:not(:first-child) {
+  margin-top: 10px;
+}
+
+.MovieTitle__values {
+  margin-left: 40px;
+  line-height: 14px;
+}
+
+.MovieTitle__values .colorV {
+  color: #8C8C8C;
+}
+
+.MovieTitle__values .colorVote {
+  background: #FF6B01;
+  color: white;
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+
+.MovieTitle__values .colorVotes {
+  background: #F7F7F7;
+  color: black;
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+
+.text h2 {
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.AboutMovie {
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+.buttonsWQ {
+  margin: 21px 0 41px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  min-width: 260px;
+}
+
+.buttonsWQ button {
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  width: 120px;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  line-height: 16px;
+}
+
+.watched {
+  color: white;
+  border: none;
+  background-color: #FF6B01;
+}
+
+.queue {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
 @media (min-width: 768px) {
-  .Modal {
+  .modal {
     flex-direction: row;
     align-items: start;
     height: 60%;
     max-width: 80%;
   }
-  .Modal__Image {
+  .image {
     min-height: 80%;
     height: 50vw;
     width: 45%;
@@ -207,7 +363,7 @@ body {
     position: relative;
     top: 50px;
   }
-  .Modal__Text {
+  .text {
     width: 45%;
     margin: 0 auto;
     position: relative;
@@ -215,13 +371,13 @@ body {
   }
 }
 @media (min-width: 1024px) {
-  .Modal {
+  .modal {
     height: 50vw;
     max-height: 827px;
     width: 80%;
     max-width: 1320px;
   }
-  .Modal__Image {
+  .image {
     height: 40vw;
     max-height: 650px;
     background: url(../images/imageMovie.jpg);
@@ -230,7 +386,7 @@ body {
     background-position: top right;
     margin: 0 0 40px 0;
   }
-  .Modal__MovieTitle {
+  .MovieTitle {
     font-size: 30px;
     line-height: 35px;
   }
