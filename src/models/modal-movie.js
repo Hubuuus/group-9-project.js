@@ -1,14 +1,16 @@
-const openBtn = document.querySelector('.open');
 const closeBtn = document.querySelector('.Modal__Close');
 const modal = document.querySelector('.Modal');
 const blur = document.querySelector('.blur');
+const movieCard = document.querySelectorAll('.movie-card');
 
 const toggleHidden = () => {
   [blur, modal].map(el => el.classList.toggle('hidden'));
 };
 
-[openBtn, closeBtn, blur].map(el => el.addEventListener('click', toggleHidden));
+[closeBtn, blur, ...movieCard].map(el => el.addEventListener('click', toggleHidden));
 
-document.addEventListener('keyup', e => {
+const escModal = e => {
   if (e.key === 'Escape') [blur, modal].map(el => el.classList.add('hidden'));
-});
+};
+
+document.addEventListener('keyup', escModal);

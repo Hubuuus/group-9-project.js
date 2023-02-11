@@ -9,25 +9,6 @@ body::after {
     filter:blur(8px);
 }
 
-.open {
-    width: 100px;
-    height: 50px;
-    background-color: #ff6b01;
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    color: #eee;
-    text-align: center;
-    line-height: 50px;
-    border: none;
-    border-radius: 5%;
-    box-shadow: 0 2px 12px 2px black;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 20px;
-}
-
 .blur {
     position: fixed;
     width: 100%;
