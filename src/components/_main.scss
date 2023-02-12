@@ -17,13 +17,12 @@
 .container{
   min-width: 320px;
   font-family: 'Roboto', sans-serif;
-  // background-color: color-get(bg-main);
-  background-color: #ffffff;
+  background-color: $bg-main;
   display:flex;
   align-items: center;
   justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .gallery{
@@ -44,9 +43,14 @@
     
     &:hover{
         cursor: pointer;
+        border-radius: 5px;
         transform: scale(1.05);
         transition: 300ms;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+        p,
+        span{
+          text-align:center;
+        }
     }
 }
 
@@ -71,14 +75,12 @@ img {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16em;
-  // color: color-get(tx-accent);
-  color: #FF6B08;  
+  color: $tx-accent;  
 }
 
 .movie-card__title{
     text-transform: uppercase;
-    // color: color-get(tx-primary);
-    color: #000000; 
+    color: $tx-primary; 
     line-height: 1.16em;
     
     &::after{
