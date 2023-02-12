@@ -1,2 +1,0 @@
-const e=document.querySelector(".Modal__Close"),d=document.querySelector(".Modal"),t=document.querySelector(".blur"),c=document.querySelectorAll(".movie-card"),o=()=>{[t,d].map((e=>e.classList.toggle("hidden")))};[e,t,...c].map((e=>e.addEventListener("click",o)));document.addEventListener("keyup",(e=>{"Escape"===e.key&&[t,d].map((e=>e.classList.add("hidden")))}));
-//# sourceMappingURL=index.c323c5a5.js.map
