@@ -50,12 +50,13 @@ body {
     }
     &__Image {
         width: 90%;
-        padding-bottom: 126%;
-        background: url(../images/imageMovieMobile.jpg);
+        padding-bottom: 136%;
+        background-image: url(../images/imageMovieMobile.jpg);
         background-repeat: no-repeat;
         background-size: contain;
         background-position: 50% 100%;
         margin: 40px auto 0;
+        border: 1px solid black;
     }
     &__Text {
         width: 90%;
@@ -75,12 +76,16 @@ body {
     }
     &__Properties {
         color: $tx-secondary;
+        width: 100px;
+        margin-right: 20px;
     }
     &__Property {
         margin-top: 10px;
     }
+    &__Value {
+        margin-top: 12px;
+    }
     &__Values {
-        margin-left: 40px;
         line-height: 14px;
     }
     &__Votes {
@@ -162,8 +167,8 @@ body {
         max-width: 757px;
 
         &__Image {
-            max-height: 10%;
-            width: 45%;
+            max-height: 20%;
+            width: 42%;
             background-position: top;
             margin: 0 auto 40px;
             position: relative;
@@ -186,20 +191,19 @@ body {
         max-width: 882px;
 
         &__Image {
+            width: 35%;
             height: 40vw;
             max-height: 450px;
-            background: url(../images/imageMovie.jpg);
-            background-repeat: no-repeat;
-            background-size: contain;
+            background-image: url(../images/imageMovie.jpg);
             background-position: top right;
-            margin: 0 40px 40px 40px;
+            margin: 0 20px 40px 40px;
         }
         &__MovieTitle {
             font-size: 30px;
             line-height: 35px;
         }
         &__Text {
-            margin-right: 40px;
+            margin-right: 0 40px 0 0;
         }
     }
 }
