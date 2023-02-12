@@ -1,37 +1,14 @@
 import axios from 'axios';
 
-//  --------------------------------------- Modal run
-
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
-const closeBtn = document.querySelector('[data-modal="close"]');
 const movieCard = document.querySelectorAll('.movie-card');
-
-console.log(modalOpen);
 
 const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
-  console.log("Otwarcie / zamknięcie modala");
 };
 
-[closeBtn, blur, ...movieCard].map(el => el.addEventListener('click', toggleHidden));
-
-const escModal = e => {
-  if (e.key === 'Escape') [modalOpen, blur].map(el => el.classList.add('hidden'));
-};
-
-document.addEventListener('keyup', escModal);
-
-// --------------------------------------- API
-
-const modalMovieImg = document.querySelector('.Modal__Image');
-const movieTitle = document.querySelector('[data-title]');
-const voteAv = document.querySelector('[data-vote="average"]');
-const voteAll = document.querySelector('[data-vote="count"]');
-const popularity = document.querySelector(`[data-popularity]`);
-const originalTitle = document.querySelector('[data-title-original]');
-const property = document.querySelector('[data-genres]');
-const review = document.querySelector('[data-review]');
+movieCard.forEach(el => el.addEventListener('click', toggleHidden));
 
 const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
 const orientation = "horizontal";
@@ -65,45 +42,58 @@ async function fetchItems() {
 };
 
 function renderItems(items) {
-  console.log('API działa')
-  console.log(items);
-  console.log(items.file_path);
 
   let genre = [];
   for (const key of items.genres) {
     genre.push(key.name);
   }
 
-  console.log(genre);
-  modalMovieImg.style.backgroundImage = `url('https://image.tmdb.org/t/p/w200${items.poster_path}')`;
-  movieTitle.textContent = `${items.title}`;
-  voteAv.textContent = `${items.vote_average}`;
-  voteAll.textContent = `${items.vote_count}`;
-  popularity.textContent = `${items.popularity}`;
-  originalTitle.textContent = `${items.original_title}`;
-  property.textContent = `${genre.join(", ")}`;
-  review.textContent = `${items.overview}`;
-}
+  const genres = genre.join(", ");
 
-// function renderItems(items) {
-//     maxPictures += 40;
-//     if (items.hits.length === 0) return Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
-//     const markup = items.hits
-//         .map(({largeImageURL, webformatURL, tags, likes, views, comments, downloads}) => {
-//             return ``;
-//         }).join("");
+  const markup = `
+  <div class="Modal__Close" data-modal="close">
+      <svg class="Modal__Close-x">
+        <use href="../icons/icons.svg#icon-close"></use>
+      </svg>
+    </div>
+    <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w200${items.poster_path}')"></div>
+    <div class="Modal__Text">
+      <h1 class="Modal__MovieTitle">${items.title}</h1>
+      <div class="Modal__Info">
+        <div class="Modal__Properties">
+          <p>Vote / Votes</p>
+          <p class="Modal__Property">Popularity</p>
+          <p class="Modal__Property">Original Title</p>
+          <p class="Modal__Property">Genre</p>
+        </div>
+        <div class="Modal__Values">
+          <p class="Modal__Votes">
+            <span class="Modal__OneVote">${items.vote_average}</span> /
+            <span class="Modal__AllVotes">${items.vote_count}</span>
+          </p>
+          <p class="Modal__Value">${items.popularity}</p>
+          <p class="Modal__Value">${items.original_title}</p>
+          <p class="Modal__Value">${genres}</p>
+        </div>
+      </div>
+      <h2 class="Modal__About">ABOUT</h2>
+      <p class="Modal__Review">${items.overview}</p>
+      <div class="Modal__Buttons">
+        <button class="Modal__Button Modal__Button--Watched">
+          ADD TO WATCHED
+        </button>
+        <button class="Modal__Button Modal__Button--Queue">ADD TO QUEUE</button>
+      </div>`;
   
-//     galleryContainer.insertAdjacentHTML("beforeend", markup);
-//     lightbox.refresh();
-//     loadMoreButton.classList.remove("hidden");
-//     if (page > 1) {
-//         const { height: cardHeight = 350 } = document
-//         .querySelector(".gallery")
-//         .firstElementChild.getBoundingClientRect();
+  modalOpen.innerHTML = markup;
+  
+  const closeBtn = document.querySelector('[data-modal="close"]');
 
-//         window.scrollBy({
-//             top: cardHeight * 2,
-//             behavior: "smooth",
-//         });
-//     }
-// };
+  [blur, closeBtn].map(el => el.addEventListener('click', toggleHidden));
+
+  const escModal = e => {
+   if (e.key === 'Escape') [modalOpen, blur].map(el => el.classList.add('hidden'));
+  };
+
+  document.addEventListener('keyup', escModal);
+};
