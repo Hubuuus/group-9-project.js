@@ -52,7 +52,8 @@
 }
 
 .NavbarBrandIcon {
-  fill: $ic-secondary;
+  stroke: $ic-secondary;
+  // fill: $ic-secondary;
 }
 
 .Search {
@@ -60,7 +61,7 @@
   justify-content: center;
   padding-top: 41px;
   &__Svg {
-    fill: $ic-basic;
+    stroke: $ic-basic;
   }
 }
 
