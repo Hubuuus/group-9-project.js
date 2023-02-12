@@ -5,10 +5,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-body::after {
-    filter:blur(8px);
-}
-
 .blur {
     position: fixed;
     width: 100%;
@@ -21,7 +17,7 @@ body::after {
     min-width: 250px;
     width: 90%;
     max-width: 400px;
-    background-color: $tx-basic;
+    background-color: $bg-main;
     position: fixed;
     max-height: 90%;
     overflow-y: auto;
