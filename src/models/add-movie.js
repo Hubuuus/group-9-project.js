@@ -13,5 +13,5 @@ function addMovieToWatched() {
   localStorage.setItem('testDiv', createdDiv.outerHTML);
   console.log('div added to local storage');
 }
-btnWatch.addEventListener('click', addMovieToWatched);
+// btnWatch.addEventListener('click', addMovieToWatched);
 // // localStorage.clear();
