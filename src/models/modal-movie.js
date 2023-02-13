@@ -6,14 +6,29 @@ const movieCard = document.querySelectorAll('.movie-card');
 
 const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
+  if (modalOpen.innerHTML !== "") modalOpen.innerHTML = "";
 };
 
 movieCard.forEach(el => el.addEventListener('click', toggleHidden));
 
+let mouseX;
+let mouseY;
+
+document.addEventListener('mousemove', e => {
+  if (modalOpen.classList.contains('hidden')) {
+    mouseX = `${e.clientX}px`;
+    mouseY = `${e.clientY}px`;
+    modalOpen.style.top = mouseY;
+    modalOpen.style.left = mouseX;
+    modalOpen.style.transform = "translate(-50%, -50%)"
+    console.log(mouseX, mouseY);
+  };
+})
+
 const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
 const orientation = "horizontal";
 const safesearch = true;
-const movieID = 550;
+const movieID = 620;
 
 movieCard.forEach(el => el.addEventListener("click", e => activeFetch(e)));
 
@@ -52,9 +67,7 @@ function renderItems(items) {
 
   const markup = `
   <div class="Modal__Close" data-modal="close">
-      <svg class="Modal__Close-x">
-        <use href="../icons/icons.svg#icon-close"></use>
-      </svg>
+      <div class="Modal__Close-x" height="50" width="50"></div>
     </div>
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w200${items.poster_path}')"></div>
     <div class="Modal__Text">
@@ -92,7 +105,10 @@ function renderItems(items) {
   [blur, closeBtn].map(el => el.addEventListener('click', toggleHidden));
 
   const escModal = e => {
-   if (e.key === 'Escape') [modalOpen, blur].map(el => el.classList.add('hidden'));
+    if (e.key === 'Escape') [modalOpen, blur].map(el => {
+      el.classList.add('hidden');
+      modalOpen.innerHTML = "";
+    });
   };
 
   document.addEventListener('keyup', escModal);

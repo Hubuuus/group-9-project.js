@@ -106,7 +106,7 @@ a {
 }
 
 .NavbarBrandIcon {
-  fill: #818181;
+  stroke: #818181;
 }
 
 .Search {
@@ -115,7 +115,7 @@ a {
   padding-top: 41px;
 }
 .Search__Svg {
-  fill: #ffffff;
+  stroke: #ffffff;
 }
 
 .NavbarRight {
@@ -251,9 +251,14 @@ a {
 }
 .movie-card:hover {
   cursor: pointer;
+  border-radius: 5px;
   transform: scale(1.05);
   transition: 300ms;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+.movie-card:hover p,
+.movie-card:hover span {
+  text-align: center;
 }
 
 img {
@@ -353,13 +358,10 @@ body {
   position: fixed;
   max-height: 90%;
   overflow-y: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: zoom 0.5s ease;
+  animation: zoom 0.5s ease forwards;
   border-radius: 10px;
 }
 .Modal__Close {
@@ -379,6 +381,7 @@ body {
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
+  background-image: url("data:image/svg+xml,%3Cdefs%3E%3Csymbol id='close1' viewBox='0 0 32 32'%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 8.533l14.933 14.933'%3E%3C/path%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 23.467l14.933-14.933'%3E%3C/path%3E%3C/symbol%3E%3C/defs%3E");
 }
 .Modal__Image {
   width: 90%;
@@ -388,7 +391,6 @@ body {
   background-size: contain;
   background-position: 50% 100%;
   margin: 40px auto 0;
-  border: 1px solid black;
 }
 .Modal__Text {
   width: 90%;
@@ -482,6 +484,8 @@ body {
   }
   to {
     transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+    left: 50%;
   }
 }
 .hidden {
@@ -532,7 +536,7 @@ body {
     line-height: 35px;
   }
   .Modal__Text {
-    margin-right: 0 40px 0 0;
+    width: 55%;
   }
 }
 @keyframes changeColor {
