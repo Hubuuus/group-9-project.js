@@ -1,2 +1,0 @@
-!function(){var e=document.querySelector(".Modal__Button--Watched"),t=(document.querySelector(".Modal__Button--Queue"),document.querySelector(".gallery"));e.addEventListener("click",(function(){var e=document.createElement("div");t.appendChild(e),e.innerHTML="created div ",localStorage.setItem("testDiv",e.outerHTML),console.log("div added to local storage")}))}();
-//# sourceMappingURL=index.372888a6.js.map
