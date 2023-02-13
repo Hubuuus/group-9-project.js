@@ -21,13 +21,10 @@ body {
     position: fixed;
     max-height: 90%;
     overflow-y: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    animation: zoom 0.5s ease;
+    animation: zoom 0.5s ease forwards;
     border-radius: 10px;
 
     &__Close {
@@ -47,7 +44,7 @@ body {
         stroke-width: 0;
         stroke: currentColor;
         fill: currentColor;
-    }
+        background-image: url("data:image/svg+xml,%3Cdefs%3E%3Csymbol id='close1' viewBox='0 0 32 32'%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 8.533l14.933 14.933'%3E%3C/path%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 23.467l14.933-14.933'%3E%3C/path%3E%3C/symbol%3E%3C/defs%3E");    }
     &__Image {
         width: 90%;
         padding-bottom: 136%;
@@ -149,7 +146,11 @@ body {
 
 @keyframes zoom {
     from {transform: translate(-50%, -50%) scale(0);}
-    to {transform: translate(-50%, -50%) scale(1);}
+    to {
+        transform: translate(-50%, -50%) scale(1);
+        top: 50%;
+        left: 50%;
+    }
 }
 
 .hidden {
@@ -202,7 +203,7 @@ body {
             line-height: 35px;
         }
         &__Text {
-            margin-right: 0 40px 0 0;
+            width: 55%;
         }
     }
 }
