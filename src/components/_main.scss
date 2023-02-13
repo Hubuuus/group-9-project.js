@@ -2,7 +2,6 @@
 
 //Edytować poniżej
 
-
 //Skopiowałem do .container
 // body {
 //     min-width: 320px;
@@ -14,25 +13,25 @@
 //     justify-content: center;
 //   }
 
-.container{
+.container {
   min-width: 320px;
+  min-height: 300px;
   font-family: 'Roboto', sans-serif;
-  // background-color: color-get(bg-main);
-  background-color: #ffffff;
+  background-color: $bg-main;
   display:flex;
   align-items: center;
   justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.gallery{
-    margin-top: 20px;
-    margin-bottom: 40px;
-    list-style: none;
-    display: grid;
-    flex-direction: column;
-    gap: 20px;
+.gallery {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  list-style: none;
+  display: grid;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .movie-card{
@@ -44,20 +43,25 @@
     
     &:hover{
         cursor: pointer;
+        border-radius: 5px;
         transform: scale(1.05);
         transition: 300ms;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+        p,
+        span{
+          text-align:center;
+        }
     }
 }
 
 img {
-    // width: 280px;
-    height: 402px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .movie-card__info {
+  // width: 280px;
+  height: 402px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.movie-card__info {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
@@ -71,14 +75,12 @@ img {
   font-weight: 500;
   font-size: 12px;
   line-height: 1.16em;
-  // color: color-get(tx-accent);
-  color: #FF6B08;  
+  color: $tx-accent;  
 }
 
 .movie-card__title{
     text-transform: uppercase;
-    // color: color-get(tx-primary);
-    color: #000000; 
+    color: $tx-primary; 
     line-height: 1.16em;
     
     &::after{
@@ -87,14 +89,13 @@ img {
     }
 }
 
-
-@media screen and (min-width: 768px){
-  .container{
+@media screen and (min-width: 768px) {
+  .container {
     padding-left: 75px;
     padding-right: 75px;
   }
-  
-  .gallery{
+
+  .gallery {
     margin-top: 60px;
     margin-bottom: 50px;
     list-style: none;
@@ -105,7 +106,7 @@ img {
     gap: 30px;
   }
 
-  .movie-card{
+  .movie-card {
     width: 294px;
     height: 440px;
   }
@@ -114,13 +115,13 @@ img {
     height: 398px;
   }
 
-  .movie-card__info{
+  .movie-card__info {
     height: 32px;
   }
 }
 
-@media screen and (min-width: 1280px){
-  .container{
+@media screen and (min-width: 1280px) {
+  .container {
     padding-left: 71px;
     padding-right: 71px;
   }
@@ -128,13 +129,13 @@ img {
   .gallery {
     grid-template-columns: repeat(3, 1fr);
   }
-    
-  .movie-card{
+
+  .movie-card {
     width: 274px;
     height: 440px;
   }
 
   img {
-  height: 398px;
+    height: 398px;
   }
 }

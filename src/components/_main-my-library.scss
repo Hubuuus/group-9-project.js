@@ -1,0 +1,10 @@
+.watched:hover{
+    box-shadow: 0px 1px 1px rgba(246, 108, 2, 0.6), 0px 4px 4px rgba(246, 108, 2, 0.3), 1px 4px 6px rgba(246, 108, 2, 0.3);
+  }
+  
+  .in-queue:hover{
+    box-shadow:  0px 1px 1px rgba(0, 128, 0, 0.6), 0px 4px 4px rgba(0, 128, 0, 0.3), 1px 4px 6px rgba(0, 128, 0, 0.3);;
+    p{
+      color: #008000;
+    }
+  }
