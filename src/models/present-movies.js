@@ -1,7 +1,7 @@
 import { fetchPopularMovies } from "./fetch-functions";
 import { getGenres } from "./fetch-functions";
 import { galleryCard } from "./create-movie-card";
-export const gallery = document.querySelector('.gallery');
+import { gallery } from "./fetch-functions";
 
 export function presentMovies(){
 
@@ -32,3 +32,5 @@ export function presentMovies(){
       }, []);
     }
 }
+
+// document.addEventListener('DOMContentLoaded', presentMovies());
