@@ -1,38 +1,32 @@
 import axios from 'axios';
+import { movieId } from './create-movie-card';
+var debounce = require('lodash.debounce');
+
 
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
-const movieCard = document.querySelectorAll('.movie-card');
 
-const toggleHidden = () => {
+export const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
   if (modalOpen.innerHTML !== "") modalOpen.innerHTML = "";
 };
 
-movieCard.forEach(el => el.addEventListener('click', toggleHidden));
-
 let mouseX;
 let mouseY;
 
-document.addEventListener('mousemove', e => {
+document.addEventListener('mousemove', debounce(e => {
   if (modalOpen.classList.contains('hidden')) {
     mouseX = `${e.clientX}px`;
     mouseY = `${e.clientY}px`;
     modalOpen.style.top = mouseY;
     modalOpen.style.left = mouseX;
     modalOpen.style.transform = "translate(-50%, -50%)"
-    console.log(mouseX, mouseY);
   };
-})
+}, 5));
 
 const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
-const orientation = "horizontal";
-const safesearch = true;
-const movieID = 620;
 
-movieCard.forEach(el => el.addEventListener("click", e => activeFetch(e)));
-
-const activeFetch = async e => {
+export const activeFetch = async e => {
   e.preventDefault();
   fetchItems()
     .then(items => renderItems(items))
@@ -48,7 +42,7 @@ async function fetchItems() {
 
     try {
         const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/${movieID}?${params}`
+            `https://api.themoviedb.org/3/movie/${movieId}?${params}`
         );
         return response.data;
     } catch (error) {
@@ -57,6 +51,8 @@ async function fetchItems() {
 };
 
 function renderItems(items) {
+
+  console.log("działa " + movieId);
 
   let genre = [];
   for (const key of items.genres) {
@@ -69,7 +65,7 @@ function renderItems(items) {
   <div class="Modal__Close" data-modal="close">
       <div class="Modal__Close-x" height="50" width="50"></div>
     </div>
-    <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w200${items.poster_path}')"></div>
+    <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">
       <h1 class="Modal__MovieTitle">${items.title}</h1>
       <div class="Modal__Info">
