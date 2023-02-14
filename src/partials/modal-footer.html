@@ -1,42 +1,41 @@
-<span class="backdrop is-hidden" data-modal>
-<div class="modal">
-      <button type="button" class="modal__button" data-modal-close>
-        <svg width="30" height="30" class="modal__close">
-          <use href="../icons/icons.svg#icon-close"></use>
+<section class="ModalFooter IsHidden">
+      <button type="button" class="ModalFooter__Button ModalFooter__ButtonClose">
+        <svg width="30" height="30" class="ModalFooter__Svg">
+          <use href="../icons/iconsOld.svg#icon-close"></use>
         </svg>
       </button>
-      <h1 class="modal__header">★ starring ★</h1>
-      <div class="modal__nextto">
-      <div class="modal__tablet-computer-left">
-      <ul class="modal__list">
-        <li class="modal__item"><span class="modal__title modal__no-margin">mentor</span><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-boy1"></use>
-        </svg>Ivan Sinabdeev</span></li>
-        <li class="modal__item"><span class="modal__title">team leader</span><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-boy3"></use>
-        </svg>Hubert Dulas</span></li>
-        <li class="modal__item"><span class="modal__title">scrum master</span><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-boy3"></use>
-        </svg>Michał Masiulanis</span></li></ul></div>
-        <div class="modal__tablet-computer-rigth">
-        <ul class="modal__list">
-        <li class="modal__item"><span class="modal__title">other developers</span><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-boy4"></use>
-        </svg>Adam Skoczeń</span></li>
-        <li><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-girl1"></use>
-        </svg>Agata Wójcik</span></li>
-        <li><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-boy5"></use>
-        </svg>Łukasz Niewczas</span></li>
-        <li><span class="modal__icon-flex modal__text"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-girl2"></use>
-        </svg>Paulina Stach-Pluskowska</span></li>
-        <li><span class="modal__icon-flex"><svg width="40" height="40" class="modal__avatar">
-          <use href="../icons/icons.svg#icon-girl3"></use>
-        </svg>Agata Żybula</span></li>
+      <h1 class="ModalFooter__Header">★ starring ★</h1>
+      <div class="ModalFooter__Containers">
+      <div class="ModalFooter__LeftSide">
+      <ul class="ModalFooter__List">
+        <li class="ModalFooter__Item"><span class="ModalFooter__Title ModalFooter__NoMargin">mentor</span><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-boy1"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Ivan Sinabdeev</a></span></li>
+        <li class="ModalFooter__Item"><span class="ModalFooter__Title">team leader</span><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-boy3"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Hubert Dulas</a></span></li>
+        <li class="ModalFooter__Item"><span class="ModalFooter__Title">scrum master</span><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-boy3"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Michał Masiulanis</a></span></li></ul></div>
+        <div class="ModalFooter__RightSide">
+        <ul class="ModalFooter__List">
+        <li class="ModalFooter__Item"><span class="ModalFooter__Title">other developers</span><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-boy4"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Adam Skoczeń</a></span></li>
+        <li><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-girl1"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Agata Wójcik</a></span></li>
+        <li><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-boy5"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Łukasz Niewczas</a></span></li>
+        <li><span class="ModalFooter__IconFlex ModalFooter__Text"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-girl2"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Paulina Stach-Pluskowska</a></span></li>
+        <li><span class="ModalFooter__IconFlex"><svg width="40" height="40" class="ModalFooter__Avatar">
+          <use href="../icons/iconsOld.svg#icon-girl3"></use>
+        </svg><a href="#" class="ModalFooter__LinkStyle" target="_blank">Agata Żybula</a></span></li>
       </ul></div>
     </div>
-    </div>
-    </span>
+    </section>
+    <div id="p1" class="OverlayFooter IsHidden"></div>
     <script src="/src/models/modal-footer.js"></script>
