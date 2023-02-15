@@ -1,4 +1,4 @@
-import { gallery } from "./fetch-functions";
+const gallery = document.querySelector('.gallery');
 
 export function galleryCard(movie, genresName) {
   // clearGallery();
@@ -11,7 +11,7 @@ export function galleryCard(movie, genresName) {
           <p class="MovieCardData">
             <span class="MovieCardTitle">${movie.title}
           </span>
-           ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(0,4)}
+           ${genresName} | ${movie.release_date.slice(0,4)}
           </p>
         </div>
       </div>`

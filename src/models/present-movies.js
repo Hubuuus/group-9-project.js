@@ -1,7 +1,7 @@
 import { fetchPopularMovies } from "./fetch-functions";
 import { getGenres } from "./fetch-functions";
 import { galleryCard } from "./create-movie-card";
-import { gallery } from "./fetch-functions";
+export const gallery = document.querySelector('.gallery');
 
 export function presentMovies(){
 
