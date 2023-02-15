@@ -16,67 +16,86 @@ const searchMovie = document.querySelector('.SearchContainer');
 const searchAlert = document.querySelector('.SearchAlert');
 let page = 1;
 
-// inputMovie.addEventListener('input', debounce( async event => {
-//   event.preventDefault();
 
-//   // const title = event.target.value.trim();
-//   const title = inputMovie.value.trim();
+inputMovie.addEventListener('input', debounce( async event => {
+  event.preventDefault();
 
-//   fetchSearchedMovies(title);
-// }, DEBOUNCE_DELAY));
+  // const title = event.target.value.trim();
+  const title = inputMovie.value.trim();
 
-// export const fetchSearchedMovies = async (input, page = 1) => {
+  fetchSearchedMovies(title);
+}, DEBOUNCE_DELAY));
 
-//   const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=${page}`;
+export const fetchSearchedMovies = async (input, page = 1) => {
 
-//   const response = await axios
-//     .get(urlSearchedMovies)
-//     .then((response) => {
-//       galleryOfMovies(response);
+  const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=${page}`;
 
-//       // console.log(response);
-//       return response;
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
+  const response = await axios
+    .get(urlSearchedMovies)
+    .then((response) => {
+      galleryOfMovies(response);
 
-//   console.log('Response', response);
-//   return response;
-// };
+      // console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-// export function clearGallery() {
-//   gallery.innerHTML = '';
-// }
+  console.log('Response', response);
+  return response;
+};
 
-// function galleryOfMovies(response) {
-//   clearGallery();
-//   // console.log('RRRR', response.data.results);
-//   const searched = response.data.results;
-//   getGenres().then(item => {
-//     const genres = item;
-//     createCards(searched, genres);
-//   });
+export function clearGallery() {
+  gallery.innerHTML = '';
+}
 
-//   function createCards(movie, genres) {
-//     movie.map(item => {
-//       const genresName = nameOfGenres(movie, genres);
-//       movieCard(item, genresName);
-//     });
-//   }
+function galleryOfMovies(response) {
+  clearGallery();
+  // console.log('RRRR', response.data.results);
+  const searched = response.data.results;
+  getGenres().then(item => {
+    const genres = item;
+    createCards(searched);
+  });
 
-//   function nameOfGenres(movie, genres) {
-//     return genres.reduce((accumulator, item) => {
-//       if (movie.genre_ids.includes(item.id)) {
-//         accumulator.push(item.name);
-//       }
-//       return accumulator;
-//     }, []);
-//   } 
+  function createCards(movie) {
+    movie.map(item => {
+      // const genresName = nameOfGenres(movie, genres);
+      movieCard(item);
+    });
+  }
 
-// }
+  // function nameOfGenres(movie, genres) {
+  //   return genres.reduce((accumulator, item) => {
+  //     if (movie.genre_ids.includes(item.id)) {
+  //       accumulator.push(item.name);
+  //     }
+  //     return accumulator;
+  //   }, []);
+  // } 
+
+}
 
 
+
+function movieCard(movie) {
+  let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  // let genresName =  nameOfGenres(movie, genres);
+  gallery.insertAdjacentHTML(
+    'beforeend',
+    ` <div class="MovieCard" id="${movie.id}">
+        <img src="${poster}" alt="${movie.title}" loading="lazy" /> 
+        <div class="MovieCardInfo">
+          <p class="MovieCardData">
+            <span class="MovieCardTitle">${movie.title}
+          </span>
+           "//$//{genresName}" | ${movie.release_date.slice(0,4)}
+          </p>
+        </div>
+      </div>`
+  );
+}
 
 // function movieCard(movie, genresName) {
 //   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -95,59 +114,6 @@ let page = 1;
 //       </div>`
 //   );
 // }
-
-
-searchMovie.addEventListener('submit', debounce( async event => {
-  event.preventDefault();
-
-  const title = inputMovie.value.trim();
-  fetchSearchedMovies(title);
-  try {
-    return fetchSearchedMovies(title, page).then(item => {
-      if (item.total_results === 0) {
-        searchAlert.innerHTML = 'Search result not successful. Enter the correct movie name and ';
-        
-        gallery.innerHTML = '';
-      }
-
-      if (item.total_results > 0) {
-        searchAlert.innerHTML = '';
-      
-        galleryOfMovies(item);
-
-        // pagination{
-        //   const nextPage = await fetchSearchedMovies(title, page);
-        }
-      });
-    }
-    catch (error){
-    console.log(error);
-  }}, DEBOUNCE_DELAY));
-
-export const fetchSearchedMovies = async (input, page = 1) => {
-  const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=${page}`;
-
-  const response = await axios
-  .get(urlSearchedMovies)
-  .then(function (response) {
-    return response;
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  console.log('Response', response);
-return response;
-};
-
-function galleryOfMovies(response) {
-  gallery.innerHTML = '';
-  const searched = response.data.results;
-  getGenres().then(item => {
-    const genres = item;
-    createCards(searched, genres);
-  });
-}
-
 
 export const fetchPopularMovies = async () => {
   const urlPopularMovies = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=1`;
