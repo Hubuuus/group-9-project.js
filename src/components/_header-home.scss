@@ -32,7 +32,7 @@
       background-image: url(../images/header-tablet-2@.jpg);
     }
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1024px) {
     max-width: 1600px;
     height: 230px;
     margin: 0 auto;
@@ -60,12 +60,13 @@
     margin: auto;
     @media screen and (min-width: 768px) {
       max-width: 618px;}
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: 1024px) {
       max-width: 882px;}
   }
 
 .NavbarBrandIcon {
   stroke: $ic-secondary;
+  fill: transparent;
   // fill: $ic-secondary;
 
 }
@@ -82,6 +83,11 @@
   &__Svg {
     stroke: $ic-basic;
   }
+}
+
+.Search__Svg{
+  
+  fill: transparent;
 }
 
 .NavbarRight {
@@ -143,6 +149,7 @@
   border: none;
   background: transparent;
   width: 100%;
+  color: white;
   &::placeholder {
     color: $tx-basic;
   }
@@ -171,7 +178,7 @@
   margin: auto;
   @media screen and (min-width: 768px) {
     max-width: 618px;}
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1024px) {
     max-width: 882px;}
 }
 
@@ -187,8 +194,12 @@
 
 .NavbarBrandTxt{
   padding-left: 12px;
-  @media screen and (min-width: 320px) {
   display:none;
+  @media screen and (min-width: 768px) {
+  display: flex;
+  }
+  @media screen and (min-width: 1024px) {
+  display: flex;
   }
 }
 
