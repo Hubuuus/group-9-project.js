@@ -8,7 +8,7 @@ const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 export const gallery = document.querySelector('.gallery');
-const inputMovie = document.querySelector('.search-input');
+const inputMovie = document.querySelector('.SearchInput');
 
 let page = 1;
 
