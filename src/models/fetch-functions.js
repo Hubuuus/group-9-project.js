@@ -5,7 +5,8 @@ const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-let input = document.querySelector('.search-input');
+export const gallery = document.querySelector('.gallery');
+const inputMovie = document.querySelector('.SearchInput');
 
 export const fetchSearchedMovies = async () => {
   const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=1`;

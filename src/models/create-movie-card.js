@@ -1,4 +1,8 @@
+import { activeFetch, toggleHidden } from "./modal-movie";
+
 const gallery = document.querySelector('.gallery');
+
+export let movieId;
 
 export function galleryCard(movie, genresName) {
   // clearGallery();
@@ -16,4 +20,13 @@ export function galleryCard(movie, genresName) {
         </div>
       </div>`
   );
+    const movieCards = document.querySelectorAll('.movie-card');
+    for (let movieCard of movieCards) {
+      movieCard.addEventListener('click', function () {
+        movieId = this.id;
+        console.log("ID: " + movieId);
+      });
+    };
+    movieCards.forEach(el => el.addEventListener('click', toggleHidden));
+    movieCards.forEach(el => el.addEventListener('click', e => activeFetch(e)));
 }
