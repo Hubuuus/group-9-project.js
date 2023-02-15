@@ -1,4 +1,4 @@
-const gallery = document.querySelector('.gallery');
+import { gallery } from "./fetch-functions";
 
 export function galleryCard(movie, genresName) {
   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -10,7 +10,7 @@ export function galleryCard(movie, genresName) {
           <p class="movie-card__data">
             <span class="movie-card__title">${movie.title}
           </span>
-           ${genresName} | ${movie.release_date.slice(0,4)}
+           ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(0,4)}
           </p>
         </div>
       </div>`
