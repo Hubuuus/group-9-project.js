@@ -12,28 +12,36 @@ const inputMovie = document.querySelector('.SearchInput');
 
 let page = 1;
 
-inputMovie.addEventListener('input', debounce( async event => {
-  event.preventDefault();
+inputMovie.addEventListener(
+  'input',
+  debounce(async event => {
+    event.preventDefault();
 
-  // const title = event.target.value.trim();
-  const title = inputMovie.value.trim();
+    // const title = event.target.value.trim();
+    const title = inputMovie.value.trim();
 
-  fetchSearchedMovies(title);
-}, DEBOUNCE_DELAY));
+    fetchSearchedMovies(title);
+  }, DEBOUNCE_DELAY)
+);
 
-export const fetchSearchedMovies = async (input, page = 1) => {
-
-  const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=${page}`;
+export const fetchSearchedMovies = async (input, page) => {
+  // const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=${page}`;
 
   const response = await axios
-    .get(urlSearchedMovies)
-    .then((response) => {
+    .get('https://api.themoviedb.org/3/search/movie', {
+      params: {
+        api_key: API_KEY,
+        query: input,
+        page: page,
+      },
+    })
+    .then(response => {
       galleryOfMovies(response);
 
       // console.log(response);
       return response;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     });
 
@@ -68,11 +76,8 @@ function galleryOfMovies(response) {
   //     }
   //     return accumulator;
   //   }, []);
-  // } 
-
+  // }
 }
-
-
 
 function movieCard(movie) {
   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
@@ -85,7 +90,7 @@ function movieCard(movie) {
           <p class="MovieCardData">
             <span class="MovieCardTitle">${movie.title}
           </span>
-           "//$//{genresName}" | ${movie.release_date.slice(0,4)}
+           "//$//{genresName}" | ${movie.release_date.slice(0, 4)}
           </p>
         </div>
       </div>`
@@ -109,7 +114,7 @@ export const fetchPopularMovies = async () => {
 
 export const getGenres = async () => {
   const urlGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
- 
+
   const response = await axios
     .get(urlGenres)
     .then(function (response) {
