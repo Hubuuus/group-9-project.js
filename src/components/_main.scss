@@ -13,7 +13,7 @@
 //     justify-content: center;
 //   }
 
-.container {
+.Container {
   min-width: 320px;
   min-height: 300px;
   font-family: 'Roboto', sans-serif;
@@ -25,7 +25,7 @@
   padding-right: 20px;
 }
 
-.gallery {
+.Gallery {
   margin-top: 20px;
   margin-bottom: 40px;
   list-style: none;
@@ -34,12 +34,13 @@
   gap: 20px;
 }
 
-.movie-card{
+.MovieCard{
     width: 280px;
     height: 443px;
     justify-content: center;
     box-sizing: content-box;
     transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    // position: absolute;
     
     &:hover{
         cursor: pointer;
@@ -47,9 +48,12 @@
         transform: scale(1.05);
         transition: 300ms;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+        padding-bottom: 10px;
+        // justify-content: center;
         p,
         span{
           text-align:center;
+          align-items: center;
         }
     }
 }
@@ -61,13 +65,13 @@ img {
   border-radius: 5px;
 }
 
-.movie-card__info {
+.MovieCardInfo {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
   align-items: left;
   text-align: left;
-  vertical-align: top;
+  vertical-align: center;
   width: 100%;
   height: 31px;
   font-family: 'Roboto';
@@ -78,7 +82,7 @@ img {
   color: $tx-accent;  
 }
 
-.movie-card__title{
+.MovieCardTitle{
     text-transform: uppercase;
     color: $tx-primary; 
     line-height: 1.16em;
@@ -90,12 +94,12 @@ img {
 }
 
 @media screen and (min-width: 768px) {
-  .container {
+  .Container {
     padding-left: 75px;
     padding-right: 75px;
   }
 
-  .gallery {
+  .Gallery {
     margin-top: 60px;
     margin-bottom: 50px;
     list-style: none;
@@ -106,7 +110,7 @@ img {
     gap: 30px;
   }
 
-  .movie-card {
+  .MovieCard {
     width: 294px;
     height: 440px;
   }
@@ -115,22 +119,22 @@ img {
     height: 398px;
   }
 
-  .movie-card__info {
+  .MovieCardInfo {
     height: 32px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .container {
+  .Container {
     padding-left: 71px;
     padding-right: 71px;
   }
 
-  .gallery {
+  .Gallery {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .movie-card {
+  .MovieCard {
     width: 274px;
     height: 440px;
   }
