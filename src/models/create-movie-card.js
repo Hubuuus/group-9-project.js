@@ -1,7 +1,6 @@
 import { activeFetch, toggleHidden } from './modal-movie';
 
 const gallery = document.querySelector('.Gallery');
-console.log('🚀 ~ gallery', gallery);
 
 export let movieId;
 
