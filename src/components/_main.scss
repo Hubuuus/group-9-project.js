@@ -2,7 +2,7 @@
 
 //Edytować poniżej
 
-//Skopiowałem do .Container
+//Skopiowałem do .container
 // body {
 //     min-width: 320px;
 //     font-family: 'Roboto', sans-serif;
@@ -13,7 +13,7 @@
 //     justify-content: center;
 //   }
 
-.Container {
+.container {
   min-width: 320px;
   min-height: 300px;
   font-family: 'Roboto', sans-serif;
@@ -25,7 +25,7 @@
   padding-right: 20px;
 }
 
-.Gallery {
+.gallery {
   margin-top: 20px;
   margin-bottom: 40px;
   list-style: none;
@@ -34,7 +34,7 @@
   gap: 20px;
 }
 
-.MovieCard{
+.movie-card{
     width: 280px;
     height: 443px;
     justify-content: center;
@@ -67,7 +67,7 @@ img {
   border-radius: 5px;
 }
 
-.MovieCardInfo {
+.movie-card__info {
   display: flex;
   flex-direction: column;
   padding-top: 10px;
@@ -86,7 +86,7 @@ img {
   
 }
 
-.MovieCardTitle{
+.movie-card__title{
     text-transform: uppercase;
     color: $tx-primary; 
     line-height: 1.16em;
@@ -98,12 +98,12 @@ img {
 }
 
 @media screen and (min-width: 768px) {
-  .Container {
+  .container {
     padding-left: 75px;
     padding-right: 75px;
   }
 
-  .Gallery {
+  .gallery {
     margin-top: 60px;
     margin-bottom: 50px;
     list-style: none;
@@ -114,7 +114,7 @@ img {
     gap: 30px;
   }
 
-  .MovieCard {
+  .movie-card {
     width: 294px;
     height: 440px;
   }
@@ -123,22 +123,22 @@ img {
     height: 398px;
   }
 
-  .MovieCardInfo {
+  .movie-card__info {
     height: 32px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .Container {
+  .container {
     padding-left: 71px;
     padding-right: 71px;
   }
 
-  .Gallery {
+  .gallery {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .MovieCard {
+  .movie-card {
     width: 274px;
     height: 440px;
   }
