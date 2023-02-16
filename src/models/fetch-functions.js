@@ -7,7 +7,7 @@ const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-export const gallery = document.querySelector('.gallery');
+export const gallery = document.querySelector('.Gallery');
 const inputMovie = document.querySelector('.SearchInput');
 
 let page = 1;
@@ -79,11 +79,11 @@ function movieCard(movie) {
   // let genresName =  nameOfGenres(movie, genres);
   gallery.insertAdjacentHTML(
     'beforeend',
-    ` <div class="movie-card" id="${movie.id}">
+    ` <div class="MovieCard" id="${movie.id}">
         <img src="${poster}" alt="${movie.title}" loading="lazy" /> 
-        <div class="movie-card__info">
-          <p class="movie-card__data">
-            <span class="movie-card__title">${movie.title}
+        <div class="MovieCardInfo">
+          <p class="MovieCardData">
+            <span class="MovieCardTitle">${movie.title}
           </span>
            "//$//{genresName}" | ${movie.release_date.slice(0,4)}
           </p>
