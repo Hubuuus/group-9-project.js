@@ -1,15 +1,29 @@
 import axios from 'axios';
-import { movieId } from './create-movie-card';
+// import { movieId } from './create-movie-card';
 var debounce = require('lodash.debounce');
 
-
-const blur = document.querySelector('[data-modal="blur"]');
-const modalOpen = document.querySelector('[data-modal="open"]');
-
-export const toggleHidden = () => {
+const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
   if (modalOpen.innerHTML !== "") modalOpen.innerHTML = "";
 };
+
+const gallery = document.querySelector('.Gallery');
+
+let movieId = 500;
+
+gallery.addEventListener('click', e => {
+  const img = e.target.closest('div[id] img');
+  console.log(e.target);
+  if (img) {
+    movieId = img.parentNode.getAttribute('id');
+    console.log('Kliknięto obrazek o id:', movieId);
+    e.target.addEventListener('click', toggleHidden);
+    e.target.addEventListener('click', e => activeFetch(e));
+  }
+});
+
+const blur = document.querySelector('[data-modal="blur"]');
+const modalOpen = document.querySelector('[data-modal="open"]');
 
 let mouseX;
 let mouseY;
