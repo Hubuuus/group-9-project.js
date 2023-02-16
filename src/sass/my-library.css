@@ -56,83 +56,65 @@ a {
     width: 1024px;
   }
 }
-.HeaderMain {
-  background-color: black;
-}
-
 .Navbar {
   width: 100%;
   height: 230px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(228, 228, 228);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/header-mobile-library-1@.jpg);
-  padding-top: 41px;
+  background-image: url(../images/header-mobile-1@.jpg);
+  padding-top: 5vh;
 }
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .Navbar {
-    background-image: url(../images/header-mobile-library-2@.jpg);
+    background-image: url(../images/header-mobile-2@.jpg);
   }
 }
 @media screen and (min-width: 768px) {
   .Navbar {
-    height: 230px;
-    background-size: cover;
-    background-image: url(../images/header-tablet-library-1@.jpg);
+    height: 219px;
+    background-image: url(../images/header-tablet-1@.jpg);
   }
 }
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
   .Navbar {
-    background-image: url(../images/header-tablet-library-2@.jpg);
+    background-image: url(../images/header-tablet-2@.jpg);
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
   .Navbar {
     max-width: 1600px;
-    height: 230px;
+    height: 216px;
     margin: 0 auto;
-    background-size: auto;
-    background-image: url(../images/header-computer-library-1@.jpg);
+    background-image: url(../images/header-computer-1@.jpg);
   }
 }
-@media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2), screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1024px) and (min-resolution: 192dpi), screen and (min-width: 1024px) and (min-resolution: 2dppx) {
+@media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and (min-width: 1280px) and (min-resolution: 2dppx) {
   .Navbar {
-    background-image: url(../images/header-computer-library-2@.jpg);
+    background-image: url(../images/header-computer-2@.jpg);
   }
 }
 
 .NavbarContainer,
 .NavbarHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   color: #ffffff;
 }
 
-.NavbarContainer {
-  max-width: 280px;
-  margin: auto;
-}
-@media screen and (min-width: 768px) {
-  .NavbarContainer {
-    max-width: 618px;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .NavbarContainer {
-    max-width: 882px;
-  }
-}
-
 .NavbarBrandIcon {
-  stroke: #818181;
-  fill: transparent;
+  fill: #818181;
 }
 
-.NavbarBrand {
-  text-decoration: none;
-  border-bottom: none;
+.Search {
+  display: flex;
+  justify-content: center;
+  padding-top: 41px;
+}
+.Search__Svg {
+  fill: #ffffff;
 }
 
 .NavbarRight {
@@ -141,6 +123,7 @@ a {
 }
 
 .NavPageMyLibrary {
+  text-decoration: none;
   text-transform: uppercase;
   font-family: Roboto;
   font-size: 12px;
@@ -148,8 +131,6 @@ a {
   line-height: 14px;
   letter-spacing: 0em;
   color: #ffffff;
-  border-bottom: none;
-  text-decoration: none;
 }
 @media screen and (min-width: 320px) {
   .NavPageMyLibrary {
@@ -158,7 +139,6 @@ a {
 }
 
 .NavPageHome {
-  border-bottom: none;
   text-decoration: none;
   text-transform: uppercase;
   font-family: Roboto;
@@ -180,62 +160,64 @@ a {
   color: #ffffff;
 }
 
+.SearchButton {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.SearchInput {
+  border: none;
+  background: transparent;
+  width: 100%;
+}
+.SearchInput::-moz-placeholder {
+  color: #ffffff;
+}
+.SearchInput::placeholder {
+  color: #ffffff;
+}
+
+.SearchContainer {
+  border-bottom: solid #ffffff 0.5px;
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (min-width: 320px) {
+  .SearchContainer {
+    width: 280px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .SearchContainer {
+    width: 336px;
+  }
+}
+
+.SearchAlert {
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
+  color: #ff001b;
+}
+@media screen and (min-width: 320px) {
+  .SearchAlert {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 #active-nav::after {
   position: relative;
   display: block;
-  width: 55px;
+  width: 35px;
   height: 3px;
   background-color: #ff6b01;
   content: "";
-}
-
-.NavbarBrandTxt {
-  padding-left: 12px;
-  display: none;
-}
-@media screen and (min-width: 768px) {
-  .NavbarBrandTxt {
-    display: flex;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .NavbarBrandTxt {
-    display: flex;
-  }
-}
-
-.Header__Buttons {
-  margin: 45px 0 41px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  min-width: 260px;
-}
-.Header__Button {
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
-  width: 136px;
-  padding: 14px 38px 12px;
-  font-size: 12px;
-  border-radius: 5px;
-  line-height: 16px;
-  font-weight: 500;
-  color: #ffffff;
-  transition: 0.3s ease;
-  background-color: transparent;
-  border: 1px solid #ffffff;
-}
-.Header__Button:hover {
-  background-color: #f7f7f7;
-  color: #ff6b08;
-}
-.Header--Active {
-  color: #ffffff;
-  border: none;
-  background-color: #ff6b01;
-}
-.Header--Active:hover {
-  background-color: #ca5100;
 }
 
 .container {
@@ -559,43 +541,75 @@ body {
     width: 55%;
   }
 }
-@keyframes blurOverlay {
+@keyframes changeColor {
   0% {
+    color: #ff6b08;
+    transform: scale(1.3);
+  }
+  50% {
+    color: #ff6b08;
+    transform: scale(1.3);
+  }
+  100% {
+    color: #ff6b08;
+    transform: scale(1.3);
+  }
+}
+@keyframes OpacityOverlay {
+  0% {
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0.7;
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+  }
+  50% {
     background-color: rgba(0, 0, 0, 0.6);
-    -webkit-backdrop-filter: blur(0px);
-            backdrop-filter: blur(0px);
+    opacity: 1;
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
   }
   100% {
     background-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
     -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
   }
 }
-@keyframes openModal {
+@keyframes OpacityModalFooter {
   0% {
-    transform: translate(-50%, -50%) scale(0);
+    background-color: rgba(255, 255, 255, 0.2);
+    opacity: 0.7;
+    transform: scale(0.1);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    transform: scale(1);
   }
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    background-color: rgb(255, 255, 255);
+    opacity: 1;
+    transform: scale(1);
   }
 }
 .ModalFooter {
   min-width: 250px;
-  max-width: 400px;
   width: 90%;
-  max-height: 90%;
-  padding: 25px;
+  max-width: 400px;
   background-color: #ffffff;
-  overflow-y: auto;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-height: 90%;
+  overflow-y: auto;
+  top: 20%;
   display: flex;
+  align-self: center;
   flex-direction: column;
   border-radius: 10px;
+  padding: 25px;
   z-index: 2;
-  animation: openModal 0.5s forwards;
+  animation-name: OpacityModalFooter;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
 }
 .ModalFooter__Header {
   display: flex;
@@ -661,20 +675,10 @@ body {
   display: flex;
   align-items: center;
   font-size: 14px;
-  transition-property: scale;
-  transition-duration: 300ms;
-}
-.ModalFooter__IconFlex:hover, .ModalFooter__IconFlex:focus {
-  scale: 1.3;
 }
 .ModalFooter__LinkStyle {
   text-decoration: none;
   border-bottom: none;
-  transition-property: color;
-  transition-duration: 300ms;
-}
-.ModalFooter__LinkStyle:hover, .ModalFooter__LinkStyle:focus {
-  color: #ff6b08;
 }
 .ModalFooter__Text {
   display: flex;
@@ -684,13 +688,24 @@ body {
   text-align: center;
   padding: 0px;
 }
+.ModalFooter__IconFlex:hover, .ModalFooter__IconFlex:focus {
+  animation-name: changeColor;
+  animation-duration: 500ms;
+  animation-fill-mode: forwards;
+}
 
 .OverlayFooter {
   position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  animation: blurOverlay 0.5s ease forwards;
+  animation-name: OpacityOverlay;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
 }
 
 .IsHidden {

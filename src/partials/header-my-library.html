@@ -3,15 +3,14 @@
     <div class="NavbarContainer">
       <!-- start navbar left side -->
       <div class="NavbarHeader">
-        <a class="NavbarBrand PageMain" href="./index.html">
-          <svg class="NavbarBrandIcon" width="24" height="24" viewBox="0 0 1 1">
+        <a class="NavbarBrand PageMain" href="">
+          <svg class="NavbarBrandIcon" width="44" height="44" viewBox="0 0 1 1">
             <use href="../icons/icons.svg#icon-film"></use>
           </svg>
         </a>
-        <a class="NavbarBrand PageMain NavbarBrandTxt" href="./index.html">Filmoteka</a>
+        <a class="NavbarBrand PageMain" href="./index.html">Filmoteka</a>
       </div>
       <!-- end navbar left side -->
-
 
       <!-- start navbar right side -->
       <div class="Collapse NavbarCollapse">
@@ -20,22 +19,35 @@
             <a class="NavPageHome" href="./index.html">Home</a>
           </li>
           <li class="">
-            <a id="active-nav" class="NavPageMyLibrary" href="./my-library.html">My Library</a>
+            <a id="active-nav" class="NavPageMyLibrary" href="./my-library.html"
+              >My Library</a
+            >
           </li>
         </ul>
       </div>
       <!-- end navbar right side -->
     </div>
-    <!-- start buttons -->
-    <div class="Header__Buttons">
-      <button class="Header__Button Header__Button--Active">
-        <!-- <span></span> -->
-        WATCHED
-      </button>
-      <button class="Header__Button">
-        QUEUE
-      </button>
+    <!-- start search -->
+    <div class="Search">
+      <form class="SearchContainer" action="">
+        <input
+          class="SearchInput"
+          type="text"
+          placeholder="Search..."
+          name="search"
+        />
+        <button class="SearchButton" type="submit">
+          <span class="Search__Svg">
+            <svg width="24" height="24">
+              <use href="../icons/icons.svg#icon-search"></use>
+            </svg>
+          </span>
+        </button>
+      </form>
     </div>
-    <!-- end buttons -->
+    <span class="SearchAlert"
+      >Search result not successful. Enter the correct movie name and
+    </span>
+    <!-- end search -->
   </nav>
 </header>
