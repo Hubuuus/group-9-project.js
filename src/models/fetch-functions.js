@@ -21,13 +21,18 @@ inputMovie.addEventListener('input', debounce( async event => {
   fetchSearchedMovies(title);
 }, DEBOUNCE_DELAY));
 
-export const fetchSearchedMovies = async (input, page = 1) => {
-
-  const urlSearchedMovies = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${input}&page=${page}`;
+export const fetchSearchedMovies = async (input, page) => {
+  const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
 
   const response = await axios
-    .get(urlSearchedMovies)
-    .then((response) => {
+    .get(urlSearchedMovies, {
+      params: {
+        api_key: API_KEY,
+        query: input,
+        page: page,
+      },
+    })
+    .then(response => {
       galleryOfMovies(response);
 
       // console.log(response);
@@ -93,11 +98,18 @@ function movieCard(movie) {
 }
 
 export const fetchPopularMovies = async () => {
-  const urlPopularMovies = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=1`;
+  const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
 
   const response = await axios
-    .get(urlPopularMovies)
+    .get(urlPopularMovies, {
+      params: {
+        api_key: API_KEY,
+        // page: page,
+      },
+    })
     .then(function (response) {
+      console.log('response', response);
+      console.log('results', response.data.results);
       return response;
     })
     .catch(function (error) {
@@ -108,10 +120,15 @@ export const fetchPopularMovies = async () => {
 };
 
 export const getGenres = async () => {
-  const urlGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
- 
+  const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list';
+  // const urlGenres = "https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
+
   const response = await axios
-    .get(urlGenres)
+    .get(urlGenres, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
     .then(function (response) {
       return response.data.genres;
     })
