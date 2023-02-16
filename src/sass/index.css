@@ -88,7 +88,7 @@ a {
     background-image: url(../images/header-tablet-2@.jpg);
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1024px) {
   .Navbar {
     max-width: 1600px;
     height: 230px;
@@ -97,7 +97,7 @@ a {
     background-image: url(../images/header-computer-1@.jpg);
   }
 }
-@media screen and (min-width: 1280px) and (min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1280px) and (min-resolution: 192dpi), screen and (min-width: 1280px) and (min-resolution: 2dppx) {
+@media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2), screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1024px) and (min-resolution: 192dpi), screen and (min-width: 1024px) and (min-resolution: 2dppx) {
   .Navbar {
     background-image: url(../images/header-computer-2@.jpg);
   }
@@ -111,8 +111,24 @@ a {
   color: #ffffff;
 }
 
+.NavbarContainer {
+  max-width: 280px;
+  margin: auto;
+}
+@media screen and (min-width: 768px) {
+  .NavbarContainer {
+    max-width: 618px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .NavbarContainer {
+    max-width: 882px;
+  }
+}
+
 .NavbarBrandIcon {
   stroke: #818181;
+  fill: transparent;
 }
 
 .NavbarBrand {
@@ -127,6 +143,10 @@ a {
 }
 .Search__Svg {
   stroke: #ffffff;
+}
+
+.Search__Svg {
+  fill: transparent;
 }
 
 .NavbarRight {
@@ -188,6 +208,7 @@ a {
   border: none;
   background: transparent;
   width: 100%;
+  color: #ffffff;
 }
 .SearchInput::-moz-placeholder {
   color: #ffffff;
@@ -212,20 +233,22 @@ a {
   }
 }
 
-.SearchAlertContainer {
-  width: 280px;
-}
-
 .SearchAlert {
   display: flex;
   justify-content: center;
   padding-top: 22px;
   color: #ff001b;
+  max-width: 280px;
+  margin: auto;
 }
-@media screen and (min-width: 320px) {
+@media screen and (min-width: 768px) {
   .SearchAlert {
-    padding-left: 20px;
-    padding-right: 20px;
+    max-width: 618px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .SearchAlert {
+    max-width: 882px;
   }
 }
 
@@ -240,10 +263,16 @@ a {
 
 .NavbarBrandTxt {
   padding-left: 12px;
+  display: none;
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 768px) {
   .NavbarBrandTxt {
-    color: green;
+    display: flex;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .NavbarBrandTxt {
+    display: flex;
   }
 }
 
@@ -568,75 +597,43 @@ body {
     width: 55%;
   }
 }
-@keyframes changeColor {
+@keyframes blurOverlay {
   0% {
-    color: #ff6b08;
-    transform: scale(1.3);
-  }
-  50% {
-    color: #ff6b08;
-    transform: scale(1.3);
-  }
-  100% {
-    color: #ff6b08;
-    transform: scale(1.3);
-  }
-}
-@keyframes OpacityOverlay {
-  0% {
-    background-color: rgba(0, 0, 0, 0.1);
-    opacity: 0.7;
-    -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-  }
-  50% {
     background-color: rgba(0, 0, 0, 0.6);
-    opacity: 1;
-    -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(0px);
+            backdrop-filter: blur(0px);
   }
   100% {
     background-color: rgba(0, 0, 0, 0.6);
-    opacity: 1;
     -webkit-backdrop-filter: blur(5px);
             backdrop-filter: blur(5px);
   }
 }
-@keyframes OpacityModalFooter {
+@keyframes openModal {
   0% {
-    background-color: rgba(255, 255, 255, 0.2);
-    opacity: 0.7;
-    transform: scale(0.1);
-  }
-  50% {
-    background-color: rgba(255, 255, 255, 0.3);
-    opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(0);
   }
   100% {
-    background-color: rgb(255, 255, 255);
-    opacity: 1;
-    transform: scale(1);
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 .ModalFooter {
   min-width: 250px;
-  width: 90%;
   max-width: 400px;
-  background-color: #ffffff;
-  position: fixed;
+  width: 90%;
   max-height: 90%;
+  padding: 25px;
+  background-color: #ffffff;
   overflow-y: auto;
-  top: 20%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-self: center;
   flex-direction: column;
   border-radius: 10px;
-  padding: 25px;
   z-index: 2;
-  animation-name: OpacityModalFooter;
-  animation-duration: 200ms;
-  animation-fill-mode: forwards;
+  animation: openModal 0.5s forwards;
 }
 .ModalFooter__Header {
   display: flex;
@@ -702,10 +699,20 @@ body {
   display: flex;
   align-items: center;
   font-size: 14px;
+  transition-property: scale;
+  transition-duration: 300ms;
+}
+.ModalFooter__IconFlex:hover, .ModalFooter__IconFlex:focus {
+  scale: 1.3;
 }
 .ModalFooter__LinkStyle {
   text-decoration: none;
   border-bottom: none;
+  transition-property: color;
+  transition-duration: 300ms;
+}
+.ModalFooter__LinkStyle:hover, .ModalFooter__LinkStyle:focus {
+  color: #ff6b08;
 }
 .ModalFooter__Text {
   display: flex;
@@ -715,24 +722,13 @@ body {
   text-align: center;
   padding: 0px;
 }
-.ModalFooter__IconFlex:hover, .ModalFooter__IconFlex:focus {
-  animation-name: changeColor;
-  animation-duration: 500ms;
-  animation-fill-mode: forwards;
-}
 
 .OverlayFooter {
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   width: 100%;
   height: 100%;
   z-index: 1;
-  animation-name: OpacityOverlay;
-  animation-duration: 200ms;
-  animation-fill-mode: forwards;
+  animation: blurOverlay 0.5s ease forwards;
 }
 
 .IsHidden {
