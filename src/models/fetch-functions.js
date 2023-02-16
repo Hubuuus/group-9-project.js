@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { presentMovies } from './present-movies';
-import debounce from 'lodash';
+import debounce from 'lodash.debounce';
 
 const DEBOUNCE_DELAY = 500;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
