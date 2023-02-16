@@ -1,48 +1,44 @@
 @use '../utils/forward' as *;
 
 //Edytować poniżej
-.HeaderMain{
-  background-color: black;
-}
+
 .Navbar {
   width: 100%;
   height: 230px;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(228, 228, 228);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(../images/header-mobile-library-1@.jpg);
-  padding-top: 41px;
+  background-image: url(../images/header-mobile-1@.jpg);
+  padding-top: 5vh;
 
   @media (min-device-pixel-ratio: 2),
     (-webkit-min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(../images/header-mobile-library-2@.jpg);
+    background-image: url(../images/header-mobile-2@.jpg);
   }
   @media screen and (min-width: 768px) {
-    height: 230px;
-    background-size: cover;
-    background-image: url(../images/header-tablet-library-1@.jpg);
+    height: 219px;
+    background-image: url(../images/header-tablet-1@.jpg);
 
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/header-tablet-library-2@.jpg);
+      background-image: url(../images/header-tablet-2@.jpg);
     }
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     max-width: 1600px;
-    height: 230px;
+    height: 216px;
     margin: 0 auto;
-    background-size: auto;
-    background-image: url(../images/header-computer-library-1@.jpg);
+    background-image: url(../images/header-computer-1@.jpg);
     @media (min-device-pixel-ratio: 2),
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(../images/header-computer-library-2@.jpg);
+      background-image: url(../images/header-computer-2@.jpg);
     }
   }
 }
@@ -50,30 +46,22 @@
 .NavbarContainer,
 .NavbarHeader {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   color: $tx-basic;
-  }
-
-  .NavbarContainer{
-    max-width: 280px;
-    margin: auto;
-    @media screen and (min-width: 768px) {
-      max-width: 618px;}
-    @media screen and (min-width: 1024px) {
-      max-width: 882px;}
-  }
-
-.NavbarBrandIcon {
-  stroke: $ic-secondary;
-  fill: transparent;
-  // fill: $ic-secondary;
-
 }
 
-.NavbarBrand{
-  text-decoration: none;
-  border-bottom: none;
+.NavbarBrandIcon {
+  fill: $ic-secondary;
+}
+
+.Search {
+  display: flex;
+  justify-content: center;
+  padding-top: 41px;
+  &__Svg {
+    fill: $ic-basic;
+  }
 }
 
 .NavbarRight {
@@ -83,6 +71,7 @@
 }
 
 .NavPageMyLibrary {
+  text-decoration: none;
   text-transform: uppercase;
   font-family: Roboto;
   font-size: 12px;
@@ -90,14 +79,12 @@
   line-height: 14px;
   letter-spacing: 0em;
   color: $tx-basic;
-  border-bottom: none;
-  text-decoration: none;
+
   @media screen and (min-width: 320px) {
     margin-left: 39px;
   }
 }
 .NavPageHome {
-  border-bottom: none;
   text-decoration: none;
   text-transform: uppercase;
   font-family: Roboto;
@@ -121,62 +108,80 @@
   color: $bg-main;
 }
 
+.SearchButton {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.SearchInput {
+  border: none;
+  background: transparent;
+  width: 100%;
+  &::placeholder {
+    color: $tx-basic;
+  }
+}
+
+.SearchContainer {
+  border-bottom: solid $btn-basic 0.5px;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (min-width: 320px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
+}
+
+.SearchAlert {
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
+  color: $tx-error;
+
+  @media screen and (min-width: 320px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 #active-nav::after {
   position: relative;
   display: block;
-  width: 55px;
+  width: 35px;
   height: 3px;
   background-color: $btn-accent;
   content: '';
 }
 
+//   @media screen and (min-width: 320px) {
+//     .search-container {
+//        width: 280px;
+//     }
+//     .search-alert{
+//         padding-left: 20px;
+//         padding-right: 20px;
+//     }
+//     .nav-page-my-library{
+//         padding: 0 20px;
+//     }
+//   }
 
-.NavbarBrandTxt{
-  padding-left: 12px;
-  display:none;
-  @media screen and (min-width: 768px) {
-  display: flex;
-  }
-  @media screen and (min-width: 1024px) {
-  display: flex;
-  }
-}
+//   @media screen and (min-width: 768px) {
+//     .search-container {
+//         width: 336px;
+//      }
+//   }
 
-.Header {
-
-&__Buttons {
-  margin: 45px 0 41px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  min-width: 260px;
-}
-&__Button {
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-  width: 136px;
-  padding: 14px 38px 12px;
-  font-size: 12px;
-  border-radius: 5px;
-  line-height: 16px;
-  font-weight: 500;
-  color:$tx-basic;
-  transition: 0.3s ease;
-  background-color: transparent;
-  border: 1px solid $btn-basic;
-  &:hover {
-    background-color: $bg-footer;
-    color: $tx-accent;
-  }
-}
-
-  &--Active {
-    color: $tx-basic;
-    border: none;
-    background-color: $btn-accent;
-    &:hover {
-        background-color: $btn-hover;
-    }
-}
-
-}
+//   @media screen and (min-width: 1024px) {
+//     .search-container {
+//         width: 336;
+//      }
+//   }
