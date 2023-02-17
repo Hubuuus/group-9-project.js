@@ -14,9 +14,9 @@ const gallery = document.querySelector('.Gallery');
 let movieId = 500;
 
 gallery.addEventListener('click', e => {
-  const img = e.target.closest('div[id] img');
-  if (img) {
-    movieId = img.parentNode.getAttribute('id');
+  const divId = e.target.closest('div[id]');
+  if (divId) {
+    movieId = divId.getAttribute('id');
     activeFetch(e);
     toggleHidden(e);
   }
