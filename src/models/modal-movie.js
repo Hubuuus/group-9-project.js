@@ -1,30 +1,44 @@
 import axios from 'axios';
-import { movieId } from './create-movie-card';
 var debounce = require('lodash.debounce');
-
 
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
 
-export const toggleHidden = () => {
+const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
-  if (modalOpen.innerHTML !== "") modalOpen.innerHTML = "";
+  if (modalOpen.innerHTML !== '') modalOpen.innerHTML = '';
 };
+
+const gallery = document.querySelector('.Gallery');
+
+let movieId = 500;
+
+gallery.addEventListener('click', e => {
+  const divId = e.target.closest('div[id]');
+  if (divId) {
+    movieId = divId.getAttribute('id');
+    activeFetch(e);
+    toggleHidden(e);
+  }
+});
 
 let mouseX;
 let mouseY;
 
-document.addEventListener('mousemove', debounce(e => {
-  if (modalOpen.classList.contains('hidden')) {
-    mouseX = `${e.clientX}px`;
-    mouseY = `${e.clientY}px`;
-    modalOpen.style.top = mouseY;
-    modalOpen.style.left = mouseX;
-    modalOpen.style.transform = "translate(-50%, -50%)"
-  };
-}, 5));
+document.addEventListener(
+  'mousemove',
+  debounce(e => {
+    if (modalOpen.classList.contains('hidden')) {
+      mouseX = `${e.clientX}px`;
+      mouseY = `${e.clientY}px`;
+      modalOpen.style.top = mouseY;
+      modalOpen.style.left = mouseX;
+      modalOpen.style.transform = 'translate(-50%, -50%)';
+    }
+  }, 5)
+);
 
-const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
+const apiKey = '28e7de8a02a020e11a900cecedfaedb8';
 
 export const activeFetch = async e => {
   e.preventDefault();
@@ -37,34 +51,33 @@ export const activeFetch = async e => {
 
 async function fetchItems() {
   const params = new URLSearchParams({
-        api_key: apiKey,
-    });
+    api_key: apiKey,
+  });
 
-    try {
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/${movieId}?${params}`
-        );
-        return response.data;
-    } catch (error) {
-        console.log("Error: ", error);
-  };
-};
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movieId}?${params}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log('Error: ', error);
+  }
+}
 
 function renderItems(items) {
-
-  console.log("działa " + movieId);
-
   let genre = [];
   for (const key of items.genres) {
     genre.push(key.name);
   }
 
-  const genres = genre.join(", ");
+  const genres = genre.join(', ');
 
   const markup = `
-  <div class="Modal__Close" data-modal="close">
-      <div class="Modal__Close-x" height="50" width="50"></div>
-    </div>
+    <button class="Modal__Close" data-modal="close">
+        <svg width="30" height="30" class="Modal__Svg">
+          <use href="../icons/icons.svg#icon-close"></use>
+        </svg>
+    </button>
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">
       <h1 class="Modal__MovieTitle">${items.title}</h1>
@@ -93,19 +106,20 @@ function renderItems(items) {
         </button>
         <button class="Modal__Button Modal__Button--Queue">ADD TO QUEUE</button>
       </div>`;
-  
+
   modalOpen.innerHTML = markup;
-  
+
   const closeBtn = document.querySelector('[data-modal="close"]');
 
   [blur, closeBtn].map(el => el.addEventListener('click', toggleHidden));
 
   const escModal = e => {
-    if (e.key === 'Escape') [modalOpen, blur].map(el => {
-      el.classList.add('hidden');
-      modalOpen.innerHTML = "";
-    });
+    if (e.key === 'Escape')
+      [modalOpen, blur].map(el => {
+        el.classList.add('hidden');
+        modalOpen.innerHTML = '';
+      });
   };
 
   document.addEventListener('keyup', escModal);
-};
+}

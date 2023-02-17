@@ -1,5 +1,5 @@
 import { fetchPopularMovies } from './fetch-functions';
-import { getGenres } from './fetch-functions';
+import { getGenres, createCards } from './fetch-functions';
 import { galleryCard } from './create-movie-card';
 import { gallery } from './fetch-functions';
 import { namesGenres } from './genresid-name';
@@ -14,14 +14,14 @@ export function presentMovies() {
     });
   });
 
-  function createCards(movies, genres) {
-    movies.map(movie => {
-      // const genresName = nameOfGenres(movie, genres);
-      const genresName = namesGenres(movie.genre_ids,genres);
-      // console.log('presentMovies:', movie.genre_ids, genresName);
-      galleryCard(movie, genresName);
-    });
-  }
+  // function createCards(movies, genres) {
+  //   movies.map(movie => {
+  //     // const genresName = nameOfGenres(movie, genres);
+  //     const genresName = namesGenres(movie.genre_ids, genres);
+  //     // console.log('presentMovies:', movie.genre_ids, genresName);
+  //     galleryCard(movie, genresName);
+  //   });
+  // }
 
   // function nameOfGenres(movie, genres) {
   //   return genres.reduce((accumulator, item) => {
