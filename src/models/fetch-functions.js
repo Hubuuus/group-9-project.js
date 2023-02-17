@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
+import { namesGenres } from './genresid-name';
 
 const DEBOUNCE_DELAY = 500;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
@@ -20,6 +21,7 @@ inputMovie.addEventListener('input', debounce( async event => {
 
   fetchSearchedMovies(title);
 }, DEBOUNCE_DELAY));
+
 
 export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
@@ -42,7 +44,6 @@ export const fetchSearchedMovies = async (input, page) => {
       console.log(error);
     });
 
-  console.log('Response', response);
   return response;
 };
 
@@ -56,30 +57,24 @@ function galleryOfMovies(response) {
   const searched = response.data.results;
   getGenres().then(item => {
     const genres = item;
-    createCards(searched);
+    createCards(searched, genres);
   });
 
-  function createCards(movie) {
+  function createCards(movie, genres) {
+    console.log('wynik;', movie, genres);
     movie.map(item => {
-      // const genresName = nameOfGenres(movie, genres);
-      movieCard(item);
+      const genresName = namesGenres(movie.genre_ids, genres);
+      console.log('firstGenres:', genresName);
+      // const genresName = mapGenreIdsToName(item.genres_ids, genres);
+      movieCard(item, genresName);
     });
   }
-
-  // function nameOfGenres(movie, genres) {
-  //   return genres.reduce((accumulator, item) => {
-  //     if (movie.genre_ids.includes(item.id)) {
-  //       accumulator.push(item.name);
-  //     }
-  //     return accumulator;
-  //   }, []);
-  // } 
 
 }
 
 
 
-function movieCard(movie) {
+function movieCard(movie, genresName) {
   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   // let genresName =  nameOfGenres(movie, genres);
   gallery.insertAdjacentHTML(
@@ -90,7 +85,7 @@ function movieCard(movie) {
           <p class="MovieCardData">
             <span class="MovieCardTitle">${movie.title}
           </span>
-           "//$//{genresName}" | ${movie.release_date.slice(0,4)}
+           "${genresName}" | ${movie.release_date.slice(0,4)}
           </p>
         </div>
       </div>`
@@ -108,8 +103,8 @@ export const fetchPopularMovies = async () => {
       },
     })
     .then(function (response) {
-      console.log('response', response);
-      console.log('results', response.data.results);
+      // console.log('response', response);
+      // console.log('results', response.data.results);
       return response;
     })
     .catch(function (error) {
