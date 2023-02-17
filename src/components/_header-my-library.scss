@@ -92,9 +92,6 @@
   color: $tx-basic;
   border-bottom: none;
   text-decoration: none;
-  @media screen and (min-width: 320px) {
-    margin-left: 39px;
-  }
 }
 .NavPageHome {
   border-bottom: none;
@@ -106,6 +103,14 @@
   line-height: 14px;
   letter-spacing: 0em;
   color: $tx-basic;
+  @media screen and (min-width: 320px) {
+    margin-right: 39px;
+  }
+
+  &:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+  }
 }
 
 .PageMain {
@@ -122,14 +127,18 @@
 }
 
 #active-nav::after {
-  position: relative;
+  position: absolute;
   display: block;
-  width: 55px;
+  width: 70px;
   height: 3px;
   background-color: $btn-accent;
   content: '';
 }
-
+#active-nav:hover:after {
+  // width: 55px;
+  background:$bg-main;
+  transition:.8s;
+}
 
 .NavbarBrandTxt{
   padding-left: 12px;
@@ -168,8 +177,7 @@
     background-color: $bg-footer;
     color: $tx-accent;
   }
-}
-
+  
   &--Active {
     color: $tx-basic;
     border: none;
@@ -178,5 +186,7 @@
         background-color: $btn-hover;
     }
 }
+}
+
 
 }

@@ -109,6 +109,11 @@
   @media screen and (min-width: 320px) {
     margin-left: 39px;
   }
+  
+  &:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+  }
 }
 .NavPageHome {
   border-bottom: none;
@@ -190,7 +195,10 @@
   background-color: $btn-accent;
   content: '';
 }
-
+#active-nav:hover:after {
+  background:$bg-main;
+  transition:.8s;
+}
 
 .NavbarBrandTxt{
   padding-left: 12px;
