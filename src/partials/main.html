@@ -1,23 +1,24 @@
 <main class="Container">
   <div class="Pagination-Loader">LOADING MOVIES</div>
   <div class="Gallery">
-    <!-- <div class="movie-card"> -->
-      <!-- <img
-        src="./images/movie1.jpg"
-        srcset="./images/movie1@2x.jpg 2x, ./images/movie1@3x.jpg 3x"
-        alt="Monster Hunter"
-        loading="lazy"
-      />
-      <div class="movie-card__info">
-        <p class="movie-card__data">
-          <span class="movie-card__title"> Monster Hunter </span>
-          Drama, Action | 2020
+    <!-- ` <div class="MovieCard" id="${movie.id}">
+      <img src="${poster}" alt="${movie.title}" loading="lazy" /> 
+      <div class="MovieCardInfo">
+        <p class="MovieCardData">
+          <span class="MovieCardTitle">${movie.title}
+        </span>
+         ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(
+    0,
+    4
+  )}
         </p>
       </div>
-    <div class ="gallery"> -->
+    </div>` -->
   </div>
+
   <div id="Pagination-Container" class="">
-    <label for="Pagination">Select Page</label>
-    <select id="Pagination"></select>
+    <div></div>
+    <label for="Pagination-Select">Select Page</label>
+    <select id="Pagination-Select"></select>
   </div>
 </main>
