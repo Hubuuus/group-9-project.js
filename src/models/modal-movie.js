@@ -35,9 +35,7 @@ document.addEventListener('mousemove', debounce(e => {
   };
 }, 5));
 
-const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
-
-export const activeFetch = async e => {
+const activeFetch = async e => {
   e.preventDefault();
   fetchItems()
     .then(items => renderItems(items))
@@ -45,6 +43,8 @@ export const activeFetch = async e => {
       console.log(error);
     });
 };
+
+const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
 
 async function fetchItems() {
   const params = new URLSearchParams({
@@ -99,15 +99,39 @@ function renderItems(items) {
       <h2 class="Modal__About">ABOUT</h2>
       <p class="Modal__Review">${items.overview}</p>
       <div class="Modal__Buttons">
-        <button class="Modal__Button Modal__Button--Watched">
+        <button class="Modal__Button Modal__Button--Watched data-movie="add">
           ADD TO WATCHED
         </button>
-        <button class="Modal__Button Modal__Button--Queue">ADD TO QUEUE</button>
+        <button class="Modal__Button Modal__Button--Queue" data-movie="queue">ADD TO QUEUE</button>
       </div>`;
   
   modalOpen.innerHTML = markup;
   
   const closeBtn = document.querySelector('[data-modal="close"]');
+
+  // const btnWatch = document.querySelector('[data-movie="add"]');
+  // const btnQueue = document.querySelector('[data-movie="queue]');
+
+  // const addMovie = {
+  //   addedMovie: []
+  // };
+
+  // const queueMovie = {
+  //   queuedMovie: []
+  // };
+
+  // console.log(btnWatch);
+
+  // btnWatch.addEventListener('click', () => {
+  //   addMovie.addedMovie.push(movieId);
+  // });
+
+  //  btnQueue.addEventListener('click', () => {
+  //   addMovie.queuedMovie.push(movieId);
+  // });
+
+  // localStorage.setItem("addMovie", JSON.stringify(addMovie));
+  // localStorage.setItem("queueMovie", JSON.stringify(addMovie));
 
   [blur, closeBtn].map(el => el.addEventListener('click', toggleHidden));
 
