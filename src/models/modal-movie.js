@@ -1,15 +1,26 @@
 import axios from 'axios';
-import { movieId } from './create-movie-card';
 var debounce = require('lodash.debounce');
-
 
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
 
-export const toggleHidden = () => {
+const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
   if (modalOpen.innerHTML !== "") modalOpen.innerHTML = "";
 };
+
+const gallery = document.querySelector('.Gallery');
+
+let movieId = 500;
+
+gallery.addEventListener('click', e => {
+  const divId = e.target.closest('div[id]');
+  if (divId) {
+    movieId = divId.getAttribute('id');
+    activeFetch(e);
+    toggleHidden(e);
+  }
+});
 
 let mouseX;
 let mouseY;
@@ -52,8 +63,6 @@ async function fetchItems() {
 
 function renderItems(items) {
 
-  console.log("działa " + movieId);
-
   let genre = [];
   for (const key of items.genres) {
     genre.push(key.name);
@@ -62,9 +71,11 @@ function renderItems(items) {
   const genres = genre.join(", ");
 
   const markup = `
-  <div class="Modal__Close" data-modal="close">
-      <div class="Modal__Close-x" height="50" width="50"></div>
-    </div>
+    <button class="Modal__Close" data-modal="close">
+        <svg width="30" height="30" class="Modal__Svg">
+          <use href="../icons/icons.svg#icon-close"></use>
+        </svg>
+    </button>
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">
       <h1 class="Modal__MovieTitle">${items.title}</h1>
