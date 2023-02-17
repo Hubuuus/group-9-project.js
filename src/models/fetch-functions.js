@@ -1,25 +1,33 @@
 import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
+import { namesGenres } from './genresid-name';
+import { activeFetch, toggleHidden } from './modal-movie';
 
-const DEBOUNCE_DELAY = 500;
+const gallery = document.querySelector('.Gallery');
+
+let movieId;
+
+const DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
-export const gallery = document.querySelector('.Gallery');
 const inputMovie = document.querySelector('.SearchInput');
 
 let page = 1;
 
-inputMovie.addEventListener('input', debounce( async event => {
-  event.preventDefault();
+inputMovie.addEventListener(
+  'input',
+  debounce(async event => {
+    event.preventDefault();
 
-  // const title = event.target.value.trim();
-  const title = inputMovie.value.trim();
+    // const title = event.target.value.trim();
+    const title = inputMovie.value.trim();
 
-  fetchSearchedMovies(title);
-}, DEBOUNCE_DELAY));
+    fetchSearchedMovies(title);
+  }, DEBOUNCE_DELAY)
+);
 
 export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
@@ -35,14 +43,13 @@ export const fetchSearchedMovies = async (input, page) => {
     .then(response => {
       galleryOfMovies(response);
 
-      // console.log(response);
+      console.log('searched results:', response.data.results);
       return response;
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
     });
 
-  console.log('Response', response);
   return response;
 };
 
@@ -56,30 +63,24 @@ function galleryOfMovies(response) {
   const searched = response.data.results;
   getGenres().then(item => {
     const genres = item;
-    createCards(searched);
+    createCards(searched, genres);
   });
-
-  function createCards(movie) {
-    movie.map(item => {
-      // const genresName = nameOfGenres(movie, genres);
-      movieCard(item);
-    });
-  }
-
-  // function nameOfGenres(movie, genres) {
-  //   return genres.reduce((accumulator, item) => {
-  //     if (movie.genre_ids.includes(item.id)) {
-  //       accumulator.push(item.name);
-  //     }
-  //     return accumulator;
-  //   }, []);
-  // } 
-
 }
 
+export function createCards(movie, genres) {
+  // console.log('wynik;', movie, genres);
+  // console.log('test movie:', movie[0].genre_ids);
+  // console.log('test genre:', genres[0]);
 
+  movie.map(movie => {
+    const genresName = namesGenres(movie.genre_ids, genres);
+    // console.log('firstGenres:', genresName);
+    // const genresName = mapGenreIdsToName(item.genres_ids, genres);
+    movieCard(movie, genresName);
+  });
+}
 
-function movieCard(movie) {
+function movieCard(movie, genresName) {
   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   // let genresName =  nameOfGenres(movie, genres);
   gallery.insertAdjacentHTML(
@@ -90,11 +91,23 @@ function movieCard(movie) {
           <p class="MovieCardData">
             <span class="MovieCardTitle">${movie.title}
           </span>
-           "//$//{genresName}" | ${movie.release_date.slice(0,4)}
+           "${genresName.splice(0, 3).join(', ')}" | ${movie.release_date.slice(
+      0,
+      4
+    )}
           </p>
         </div>
       </div>`
   );
+  const movieCards = document.querySelectorAll('.MovieCard');
+  for (let movieCard of movieCards) {
+    movieCard.addEventListener('click', function () {
+      movieId = this.id;
+      // console.log('ID: ' + movieId);
+    });
+  }
+  movieCards.forEach(el => el.addEventListener('click', toggleHidden));
+  movieCards.forEach(el => el.addEventListener('click', e => activeFetch(e)));
 }
 
 export const fetchPopularMovies = async () => {
@@ -108,8 +121,8 @@ export const fetchPopularMovies = async () => {
       },
     })
     .then(function (response) {
-      console.log('response', response);
-      console.log('results', response.data.results);
+      // console.log('popular:', response);
+      console.log('popular results:', response.data.results);
       return response;
     })
     .catch(function (error) {

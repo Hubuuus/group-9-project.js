@@ -2,211 +2,210 @@
 
 //Edytować poniżej
 body {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .blur {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0,0,0,0.5);
-    backdrop-filter: blur(8px);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
 }
 
 .Modal {
-    min-width: 250px;
+  min-width: 250px;
+  width: 90%;
+  max-width: 400px;
+  background-color: $bg-main;
+  position: fixed;
+  max-height: 90%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: zoom 0.5s ease forwards;
+  border-radius: 10px;
+
+  &__Close {
+    position: absolute;
+    top: 6px;
+    right: 12px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+  &__Close-x {
+    display: inline-block;
+    background-color: green;
+    width: 2em;
+    height: 2em;
+    // stroke-width: 0;
+    // background-image: url("data:image/svg+xml,%3Cdefs%3E%3Csymbol id='close1' viewBox='0 0 32 32'%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 8.533l14.933 14.933'%3E%3C/path%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 23.467l14.933-14.933'%3E%3C/path%3E%3C/symbol%3E%3C/defs%3E");
+  }
+  &__Image {
     width: 90%;
-    max-width: 400px;
-    background-color: $bg-main;
-    position: fixed;
-    max-height: 90%;
-    overflow-y: auto;
+    padding-bottom: 136%;
+    background-image: url(../images/imageMovieMobile.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 100%;
+    margin: 40px auto 0;
+  }
+  &__Text {
+    width: 90%;
+    margin: 20px auto 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  &__MovieTitle {
+    font-size: 20px;
+    margin: 0 auto;
+    line-height: 23px;
+  }
+  &__Info {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: zoom 0.5s ease forwards;
-    border-radius: 10px;
+    margin-top: 20px;
+  }
+  &__Properties {
+    color: $tx-secondary;
+    width: 100px;
+    margin-right: 20px;
+  }
+  &__Property {
+    margin-top: 10px;
+  }
+  &__Value {
+    margin-top: 12px;
+  }
+  &__Values {
+    line-height: 14px;
+  }
+  &__Votes {
+    color: $tx-secondary;
+  }
+  &__OneVote {
+    background-color: $btn-accent;
+    color: $tx-basic;
+    border-radius: 7px;
+    padding: 5px 10px;
+  }
+  &__AllVotes {
+    background-color: $bg-footer;
+    color: $tx-primary;
+    border-radius: 7px;
+    padding: 5px 10px;
+  }
+  &__About {
+    margin-top: 20px;
+    font-size: 12px;
+  }
 
-    &__Close {
-        position: absolute;
-        top: 6px;
-        right: 12px;
-        width: 25px;
-        height: 25px;
-        text-align: center;
-        background-repeat: no-repeat;
-        cursor: pointer;
-        border: none;
+  &__Review {
+    margin-top: 10px;
+    line-height: 20px;
+  }
+  &__Buttons {
+    margin: 21px 0 41px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    min-width: 260px;
+  }
+  &__Button {
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    width: 120px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    line-height: 16px;
+    transition: 0.3s ease;
+
+    &--Watched {
+      color: $tx-basic;
+      border: none;
+      background-color: $btn-accent;
+      &:hover {
+        background-color: $btn-hover;
+      }
     }
-    // &__Close-x {
-    //     display: inline-block;
-    //     width: 2em;
-    //     height: 2em;
-    //     }
-        &__Svg {
-        // background-image: url("data:image/svg+xml,%3Csymbol id='close1' viewBox='0 0 32 32'%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 8.533l14.933 14.933'%3E%3C/path%3E%3Cpath stroke-width='2.1333' stroke-miterlimit='4' stroke-linecap='butt' stroke-linejoin='miter' d='M8.533 23.467l14.933-14.933'%3E%3C/path%3E%3C/symbol%3E");        stroke: currentColor;
-        stroke: currentColor;
-        background-color: $bg-main;
-        }
-        &__Image {
-        width: 90%;
-        padding-bottom: 136%;
-        background-image: url(../images/imageMovieMobile.jpg);
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: 50% 100%;
-        margin: 40px auto 0;
-    }
-    &__Text {
-        width: 90%;
-        margin: 20px auto 0;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-    }
-    &__MovieTitle {
-        font-size: 20px;
-        margin: 0 auto;
-        line-height: 23px;
-    }
-    &__Info {
-        display: flex;
-        margin-top: 20px;
-    }
-    &__Properties {
-        color: $tx-secondary;
-        width: 100px;
-        margin-right: 20px;
-    }
-    &__Property {
-        margin-top: 10px;
-    }
-    &__Value {
-        margin-top: 12px;
-    }
-    &__Values {
-        line-height: 14px;
-    }
-    &__Votes {
-        color: $tx-secondary;
-    }
-    &__OneVote {
-        background-color: $btn-accent;
-        color: $tx-basic;
-        border-radius: 7px;
-        padding: 5px 10px;
-    }
-    &__AllVotes {
+
+    &--Queue {
+      background-color: $btn-basic;
+      border: 1px solid $tx-primary;
+      &:hover {
         background-color: $bg-footer;
-        color: $tx-primary;
-        border-radius: 7px;
-        padding: 5px 10px;
+      }
     }
-    &__About {
-        margin-top: 20px;
-        font-size: 12px;
-    }
-
-    &__Review {
-        margin-top: 10px;
-        line-height: 20px;
-    }
-    &__Buttons {
-        margin: 21px 0 41px;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        min-width: 260px;
-    }
-    &__Button {
-        font-family: 'Roboto', sans-serif;
-        cursor: pointer;
-        width: 120px;
-        padding: 5px 10px;
-        font-size: 12px;
-        border-radius: 5px;
-        line-height: 16px;
-        transition: 0.3s ease;
-
-        &--Watched {
-            color: $tx-basic;
-            border: none;
-            background-color: $btn-accent;
-            &:hover {
-                background-color: $btn-hover;
-            }
-        }
-
-        &--Queue {
-            background-color: $btn-basic;
-            border: 1px solid $tx-primary;
-            &:hover {
-                background-color: $bg-footer;
-            }
-        }
-    }
+  }
 }
 
 @keyframes zoom {
-    from {transform: translate(-50%, -50%) scale(0);}
-    to {
-        transform: translate(-50%, -50%) scale(1);
-        top: 50%;
-        left: 50%;
-    }
+  from {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+    left: 50%;
+  }
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 @media (min-width: 768px) {
-    .Modal {
-        flex-direction: row;
-        align-items: start;
-        height: 552px;
-        max-width: 80%;
-        overflow: hidden;
-        max-width: 757px;
+  .Modal {
+    flex-direction: row;
+    align-items: start;
+    height: 552px;
+    max-width: 80%;
+    overflow: hidden;
+    max-width: 757px;
 
-        &__Image {
-            max-height: 20%;
-            width: 42%;
-            background-position: top;
-            margin: 0 auto 40px;
-            position: relative;
-            top: 50px;
-        }
-        &__Text {
-            width: 45%;
-            margin: 0 auto;
-            position: relative;
-            top: 50px;
-        }
+    &__Image {
+      max-height: 20%;
+      width: 42%;
+      background-position: top;
+      margin: 0 auto 40px;
+      position: relative;
+      top: 50px;
     }
+    &__Text {
+      width: 45%;
+      margin: 0 auto;
+      position: relative;
+      top: 50px;
+    }
+  }
 }
 
 @media (min-width: 1024px) {
-    .Modal {
-        height: 50vw;
-        max-height: 552px;
-        width: 80%;
-        max-width: 882px;
+  .Modal {
+    height: 50vw;
+    max-height: 552px;
+    width: 80%;
+    max-width: 882px;
 
-        &__Image {
-            width: 35%;
-            height: 40vw;
-            max-height: 450px;
-            background-image: url(../images/imageMovie.jpg);
-            background-position: top right;
-            margin: 0 20px 40px 40px;
-        }
-        &__MovieTitle {
-            font-size: 30px;
-            line-height: 35px;
-        }
-        &__Text {
-            width: 55%;
-        }
+    &__Image {
+      width: 35%;
+      height: 40vw;
+      max-height: 450px;
+      background-image: url(../images/imageMovie.jpg);
+      background-position: top right;
+      margin: 0 20px 40px 40px;
     }
+    &__MovieTitle {
+      font-size: 30px;
+      line-height: 35px;
+    }
+    &__Text {
+      width: 55%;
+    }
+  }
 }
