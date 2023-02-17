@@ -1,6 +1,8 @@
 import axios from 'axios';
-// import { movieId } from './create-movie-card';
 var debounce = require('lodash.debounce');
+
+const blur = document.querySelector('[data-modal="blur"]');
+const modalOpen = document.querySelector('[data-modal="open"]');
 
 const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
@@ -13,17 +15,12 @@ let movieId = 500;
 
 gallery.addEventListener('click', e => {
   const img = e.target.closest('div[id] img');
-  console.log(e.target);
   if (img) {
     movieId = img.parentNode.getAttribute('id');
-    console.log('Kliknięto obrazek o id:', movieId);
-    e.target.addEventListener('click', toggleHidden);
-    e.target.addEventListener('click', e => activeFetch(e));
+    activeFetch(e);
+    toggleHidden(e);
   }
 });
-
-const blur = document.querySelector('[data-modal="blur"]');
-const modalOpen = document.querySelector('[data-modal="open"]');
 
 let mouseX;
 let mouseY;
@@ -66,8 +63,6 @@ async function fetchItems() {
 
 function renderItems(items) {
 
-  console.log("działa " + movieId);
-
   let genre = [];
   for (const key of items.genres) {
     genre.push(key.name);
@@ -77,7 +72,7 @@ function renderItems(items) {
 
   const markup = `
   <div class="Modal__Close" data-modal="close">
-      <div class="Modal__Close-x" height="50" width="50"></div>
+      <div class="Modal__Close-x"></div>
     </div>
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">
