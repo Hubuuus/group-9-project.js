@@ -9,7 +9,7 @@ const toggleHidden = () => {
   if (modalOpen.innerHTML !== "") modalOpen.innerHTML = "";
 };
 
-const gallery = document.querySelector('.Gallery');
+export const gallery = document.querySelector('.Gallery');
 
 let movieId = 500;
 
@@ -61,8 +61,8 @@ async function fetchItems() {
   };
 };
 
-const addMovie = [];
-const queueMovie = [];
+export const addMovie = true ? JSON.parse(localStorage.getItem('addMovie')) || [] : [];
+export const queueMovie = true ? JSON.parse(localStorage.getItem('queueMovie')) || [] : [];
 
 function renderItems(items) {
 
