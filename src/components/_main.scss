@@ -124,6 +124,7 @@
   transition: 0.4s;
   overflow: hidden;
   box-sizing: content-box;
+  border-radius: 5px;
 
   &::before {
     content: '';
