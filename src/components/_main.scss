@@ -138,10 +138,11 @@
   }
 
   &:hover {
-    transform: rotateX(10deg);
-    margin: -25px -15px;
+    transform: rotateX(10deg) scale(1.05);
+    margin: -5px -5px;
     box-shadow: 15px 50px 25px #00000050;
     cursor: pointer;
+
 
     p,
     span {
@@ -159,7 +160,7 @@
     opacity: 1;
   }
 
-  2% {
+  0.5% {
     opacity: 0;
   }
 
