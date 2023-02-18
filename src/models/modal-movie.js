@@ -4,10 +4,10 @@ var debounce = require('lodash.debounce');
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
 
-export const toggleHidden = () => {
+function toggleHidden() {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
   if (modalOpen.innerHTML !== '') modalOpen.innerHTML = '';
-};
+}
 
 const gallery = document.querySelector('.Gallery');
 

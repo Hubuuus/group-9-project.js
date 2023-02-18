@@ -13,7 +13,7 @@ import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
-import { activeFetch, toggleHidden } from './modal-movie';
+// import { activeFetch, toggleHidden } from './modal-movie';
 
 let movieId;
 const gallery = document.querySelector('.Gallery');
@@ -170,8 +170,8 @@ function movieCard(movie, genresName) {
       // console.log('ID: ' + movieId);
     });
   }
-  movieCards.forEach(el => el.addEventListener('click', toggleHidden));
-  movieCards.forEach(el => el.addEventListener('click', e => activeFetch(e)));
+  // movieCards.forEach(el => el.addEventListener('click', toggleHidden));
+  // movieCards.forEach(el => el.addEventListener('click', e => activeFetch(e)));
 }
 
 document.addEventListener('DOMContentLoaded', presentMovies());
