@@ -69,4 +69,4 @@ function showAddedMovies(movie, genresName) {
   );
 };
 
-// btnWatchedLib.addEventListener('click', activeFetchLib);
+btnWatchedLib.addEventListener('click', activeFetchLib);
