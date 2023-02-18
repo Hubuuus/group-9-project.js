@@ -16,57 +16,57 @@
 // // btnWatch.addEventListener('click', addMovieToWatched);
 // // // localStorage.clear();
 
-import axios from "axios";
-import { addMovie, btnWatchedLib, gallery } from "./modal-movie";
+// import axios from "axios";
+// import { addMovie, btnWatchedLib, gallery } from "./modal-movie";
 
-const btnWatchedLib = document.querySelector('[data-library="watched"]');
-const btnQueueLib = document.querySelector('[data-library="queue"]');
+// const btnWatchedLib = document.querySelector('[data-library="watched"]');
+// const btnQueueLib = document.querySelector('[data-library="queue"]');
 
-const activeFetchLib = async e => {
-  e.preventDefault();
-  if (gallery.innerHTML !== "") gallery.innerHTML = "";
-  fetchItems()
-    .then(items => showAddedMovies(items))
-    .catch(error => {
-      console.log(error);
-    });
-};
+// const activeFetchLib = async e => {
+//   e.preventDefault();
+//   if (gallery.innerHTML !== "") gallery.innerHTML = "";
+//   fetchItems()
+//     .then(items => showAddedMovies(items))
+//     .catch(error => {
+//       console.log(error);
+//     });
+// };
 
-const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
+// const apiKey = "28e7de8a02a020e11a900cecedfaedb8";
 
-async function fetchItems() {
-  const params = new URLSearchParams({
-    api_key: apiKey,
-    });
+// async function fetchItems() {
+//   const params = new URLSearchParams({
+//     api_key: apiKey,
+//     });
 
-    try {
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/movie/${addMovie.join()}?${params}`
-        );
-        return response.data;
-    } catch (error) {
-        console.log("Error: ", error);
-  };
-};
+//     try {
+//         const response = await axios.get(
+//             `https://api.themoviedb.org/3/movie/${addMovie.join()}?${params}`
+//         );
+//         return response.data;
+//     } catch (error) {
+//         console.log("Error: ", error);
+//   };
+// };
 
-function showAddedMovies(movie, genresName) {
-  let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-  gallery.insertAdjacentHTML(
-    'beforeend',
-    ` <div class="MovieCard" id="${movie.id}">
-        <img src="${poster}" alt="${movie.title}" loading="lazy" /> 
-        <div class="MovieCardInfo">
-          <p class="MovieCardData">
-            <span class="MovieCardTitle">${movie.title}
-          </span>
-           ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(
-      0,
-      4
-    )}
-          </p>
-        </div>
-      </div>`
-  );
-};
+// function showAddedMovies(movie, genresName) {
+//   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+//   gallery.insertAdjacentHTML(
+//     'beforeend',
+//     ` <div class="MovieCard" id="${movie.id}">
+//         <img src="${poster}" alt="${movie.title}" loading="lazy" /> 
+//         <div class="MovieCardInfo">
+//           <p class="MovieCardData">
+//             <span class="MovieCardTitle">${movie.title}
+//           </span>
+//            ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(
+//       0,
+//       4
+//     )}
+//           </p>
+//         </div>
+//       </div>`
+//   );
+// };
 
-btnWatchedLib.addEventListener('click', activeFetchLib);
+// btnWatchedLib.addEventListener('click', activeFetchLib);
