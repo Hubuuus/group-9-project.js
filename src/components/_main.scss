@@ -143,7 +143,6 @@
     box-shadow: 15px 50px 25px #00000050;
     cursor: pointer;
 
-
     p,
     span {
       animation: textEffect 10s ease alternate;
@@ -176,7 +175,8 @@
     opacity: 1;
   }
 
-  10% {}
+  10% {
+  }
 }
 
 img {
@@ -268,5 +268,61 @@ img {
 
   img {
     height: 398px;
+  }
+}
+
+// PAGINATION
+.Pagination-Container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 40px;
+}
+
+.Pagination-Btn {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 16px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33em;
+  background-color: $btn-basic;
+  &:hover {
+    cursor: pointer;
+  }
+  & __Icon {
+    fill: $ic-basic;
+  }
+  &__Arrow {
+    background-color: $btn-page;
+    width: 40px;
+    height: 40px;
+    &:hover {
+      background-color: $btn-hover2;
+    }
+  }
+  &--Active {
+    background-color: $btn-accent;
+    color: $tx-basic;
+    width: 40px;
+    height: 40px;
+    &:hover {
+      background-color: $btn-hover;
+    }
+  }
+  &__Dots:hover {
+    cursor: default;
+    pointer-events: none;
   }
 }
