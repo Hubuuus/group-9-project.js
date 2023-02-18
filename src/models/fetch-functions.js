@@ -155,7 +155,7 @@ function movieCard(movie, genresName) {
           <p class="MovieCardData">
             <span class="MovieCardTitle">${movie.title}
           </span>
-           "${genresName.splice(0, 3).join(', ')}" | ${movie.release_date.slice(
+           ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(
       0,
       4
     )}
