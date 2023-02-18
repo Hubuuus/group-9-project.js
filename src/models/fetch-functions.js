@@ -1,22 +1,55 @@
+/*
+ŚCIEŻKA DZIAŁANIA PLIKUÓW JS PRZY POBIERNIU TYTUŁÓW FILMÓW Z API
+1. POPULARNE FILMY
+  - presentMovies() -> getGenres() -> fetchPopularMovies() -> createCards
+  - createCards() -> namesGenres() -> movieCard() -> html
+2. WYSZUKIWANE FILMY
+  - eventListener() -> fetchSearchedMovies() -> galleryOfMovies()
+  -> getGenres() -> createCards() -> namesGenres() ->
+  -> movieCard() -> html
+
+*/
 import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
 import { activeFetch, toggleHidden } from './modal-movie';
 
-const gallery = document.querySelector('.Gallery');
-
 let movieId;
-
+const gallery = document.querySelector('.Gallery');
 const DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
-
 const BASE_URL = 'https://api.themoviedb.org/3/';
-
 const inputMovie = document.querySelector('.SearchInput');
 
-let page = 1;
+export function clearGallery() {
+  gallery.innerHTML = '';
+}
 
+// FUNCTION AUTOMATICALLY FETCHING MOST POPULAR MOVIES
+export const fetchPopularMovies = async () => {
+  const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
+
+  const response = await axios
+    .get(urlPopularMovies, {
+      params: {
+        api_key: API_KEY,
+        // page: page,
+      },
+    })
+    .then(function (response) {
+      // console.log('popular:', response);
+      // console.log('popular results:', response.data.results);
+      return response;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  return response;
+};
+
+// EVENT LISTENING TO SEARCHBAR INPUT
 inputMovie.addEventListener(
   'input',
   debounce(async event => {
@@ -29,6 +62,7 @@ inputMovie.addEventListener(
   }, DEBOUNCE_DELAY)
 );
 
+// FUNCTION FETCHIN MOVIES BY QUERY
 export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
 
@@ -43,7 +77,7 @@ export const fetchSearchedMovies = async (input, page) => {
     .then(response => {
       galleryOfMovies(response);
 
-      console.log('searched results:', response.data.results);
+      // console.log('searched results:', response.data.results);
       return response;
     })
     .catch(error => {
@@ -52,10 +86,6 @@ export const fetchSearchedMovies = async (input, page) => {
 
   return response;
 };
-
-export function clearGallery() {
-  gallery.innerHTML = '';
-}
 
 function galleryOfMovies(response) {
   clearGallery();
@@ -67,6 +97,27 @@ function galleryOfMovies(response) {
   });
 }
 
+// FUNCTION GETTING GENRES FROM MOVIES
+export const getGenres = async () => {
+  const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list';
+  // const urlGenres = "https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
+
+  const response = await axios
+    .get(urlGenres, {
+      params: {
+        api_key: API_KEY,
+      },
+    })
+    .then(function (response) {
+      return response.data.genres;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  return response;
+};
+
 export function createCards(movie, genres) {
   // console.log('wynik;', movie, genres);
   // console.log('test movie:', movie[0].genre_ids);
@@ -74,15 +125,28 @@ export function createCards(movie, genres) {
 
   movie.map(movie => {
     const genresName = namesGenres(movie.genre_ids, genres);
-    // console.log('firstGenres:', genresName);
-    // const genresName = mapGenreIdsToName(item.genres_ids, genres);
     movieCard(movie, genresName);
   });
 }
 
+// export const getDetails = async movie_id => {
+//   const urlInfo = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
+
+//   const response = await axios
+//     .get(urlInfo)
+//     .then(function (response) {
+//       console.log(response.data);
+//       return response.data;
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+
+//   return response;
+// };
+
 function movieCard(movie, genresName) {
   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-  // let genresName =  nameOfGenres(movie, genres);
   gallery.insertAdjacentHTML(
     'beforeend',
     ` <div class="MovieCard" id="${movie.id}">
@@ -109,63 +173,5 @@ function movieCard(movie, genresName) {
   movieCards.forEach(el => el.addEventListener('click', toggleHidden));
   movieCards.forEach(el => el.addEventListener('click', e => activeFetch(e)));
 }
-
-export const fetchPopularMovies = async () => {
-  const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
-
-  const response = await axios
-    .get(urlPopularMovies, {
-      params: {
-        api_key: API_KEY,
-        // page: page,
-      },
-    })
-    .then(function (response) {
-      // console.log('popular:', response);
-      console.log('popular results:', response.data.results);
-      return response;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-  return response;
-};
-
-export const getGenres = async () => {
-  const urlGenres = 'https://api.themoviedb.org/3/genre/movie/list';
-  // const urlGenres = "https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
-
-  const response = await axios
-    .get(urlGenres, {
-      params: {
-        api_key: API_KEY,
-      },
-    })
-    .then(function (response) {
-      return response.data.genres;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-  return response;
-};
-
-export const getDetails = async movie_id => {
-  const urlInfo = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
-
-  const response = await axios
-    .get(urlInfo)
-    .then(function (response) {
-      console.log(response.data);
-      return response.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-  return response;
-};
 
 document.addEventListener('DOMContentLoaded', presentMovies());
