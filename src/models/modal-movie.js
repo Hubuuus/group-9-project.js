@@ -72,11 +72,11 @@ function renderItems(items) {
 
   const genres = genre.join(', ');
 
+  // <svg width="30" height="30" class="Modal__Svg">
+  //   <use href="../icons/icons.svg#icon-close"></use>
+  // </svg>
   const markup = `
     <button class="Modal__Close" data-modal="close">
-        <svg width="30" height="30" class="Modal__Svg">
-          <use href="../icons/icons.svg#icon-close"></use>
-        </svg>
     </button>
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">

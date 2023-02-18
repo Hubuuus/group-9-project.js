@@ -22,6 +22,7 @@ const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
 
+console.log('are you dead?');
 export function clearGallery() {
   gallery.innerHTML = '';
 }
