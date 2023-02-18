@@ -8,10 +8,11 @@
             <use href="../icons/icons.svg#icon-film"></use>
           </svg>
         </a>
-        <a class="NavbarBrand PageMain NavbarBrandTxt" href="./index.html">Filmoteka</a>
+        <a class="NavbarBrand PageMain NavbarBrandTxt" href="./index.html"
+          >Filmoteka</a
+        >
       </div>
       <!-- end navbar left side -->
-
 
       <!-- start navbar right side -->
       <div class="Collapse NavbarCollapse">
@@ -20,7 +21,9 @@
             <a class="NavPageHome" href="./index.html">Home</a>
           </li>
           <li class="">
-            <a id="active-nav" class="NavPageMyLibrary" href="./my-library.html">My Library</a>
+            <a id="active-nav" class="NavPageMyLibrary" href="./my-library.html"
+              >My Library</a
+            >
           </li>
         </ul>
       </div>
@@ -28,13 +31,14 @@
     </div>
     <!-- start buttons -->
     <div class="Header__Buttons">
-      <button class="Header__Button Header__Button--Active">
+      <button
+        class="Header__Button Header__Button--Active"
+        data-library="watched"
+      >
         <!-- <span></span> -->
         WATCHED
       </button>
-      <button class="Header__Button">
-        QUEUE
-      </button>
+      <button class="Header__Button" data-library="queue">QUEUE</button>
     </div>
     <!-- end buttons -->
   </nav>

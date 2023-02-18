@@ -4,12 +4,12 @@ var debounce = require('lodash.debounce');
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
 
-function toggleHidden() {
+export const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
   if (modalOpen.innerHTML !== '') modalOpen.innerHTML = '';
-}
+};
 
-const gallery = document.querySelector('.Gallery');
+export const gallery = document.querySelector('.Gallery');
 
 let movieId = 500;
 
@@ -38,9 +38,7 @@ document.addEventListener(
   }, 5)
 );
 
-const apiKey = '28e7de8a02a020e11a900cecedfaedb8';
-
-export const activeFetch = async e => {
+const activeFetch = async e => {
   e.preventDefault();
   fetchItems()
     .then(items => renderItems(items))
@@ -48,6 +46,8 @@ export const activeFetch = async e => {
       console.log(error);
     });
 };
+
+const apiKey = '28e7de8a02a020e11a900cecedfaedb8';
 
 async function fetchItems() {
   const params = new URLSearchParams({
@@ -63,6 +63,9 @@ async function fetchItems() {
     console.log('Error: ', error);
   }
 }
+
+export const addMovie = true ? JSON.parse(localStorage.getItem('addMovie')) || [] : [];
+export const queueMovie = true ? JSON.parse(localStorage.getItem('queueMovie')) || [] : [];
 
 function renderItems(items) {
   let genre = [];
@@ -101,13 +104,30 @@ function renderItems(items) {
       <h2 class="Modal__About">ABOUT</h2>
       <p class="Modal__Review">${items.overview}</p>
       <div class="Modal__Buttons">
-        <button class="Modal__Button Modal__Button--Watched">
+        <button class="Modal__Button Modal__Button--Watched" data-movie="add">
           ADD TO WATCHED
         </button>
-        <button class="Modal__Button Modal__Button--Queue">ADD TO QUEUE</button>
+        <button class="Modal__Button Modal__Button--Queue" data-movie="queue">ADD TO QUEUE</button>
       </div>`;
 
   modalOpen.innerHTML = markup;
+
+  const btnWatch = document.querySelector('[data-movie="add"]');
+  const btnQueue = document.querySelector('[data-movie="queue"]');
+
+  btnWatch.addEventListener('click', () => {
+    if (!addMovie.includes(movieId)) {
+      addMovie.push(movieId);
+    }
+    localStorage.setItem('addMovie', JSON.stringify(addMovie));
+  });
+
+  btnQueue.addEventListener('click', () => {
+    if (!queueMovie.includes(movieId)) {
+      queueMovie.push(movieId);
+    }
+    localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
+  });
 
   const closeBtn = document.querySelector('[data-modal="close"]');
 
