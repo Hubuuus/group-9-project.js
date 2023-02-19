@@ -150,7 +150,9 @@ function movieCard(movie, genresName) {
   gallery.insertAdjacentHTML(
     'beforeend',
     ` <div class="MovieCard" id="${movie.id}">
-        <img src="${poster}" alt="${movie.title}" loading="lazy" /> 
+        <img src="${poster}" <img class ="MoviePoster" src="${poster}" 
+        onerror="this.src='https://ik.imagekit.io/paulinas/noTMDBposter.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1676735394520'" 
+        alt="${movie.title}" loading="lazy" /> 
         <div class="MovieCardInfo">
           <p class="MovieCardData">
             <span class="MovieCardTitle">${movie.title}
