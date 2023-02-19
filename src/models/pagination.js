@@ -1,62 +1,94 @@
-import axios from 'axios';
+// export function renderPagination(totalPages, totalResults) {
+const paginationNumbers = document.getElementById('pagination-numbers');
+const paginatedList = document.getElementById('paginated-list');
+const listItems = paginatedList.querySelectorAll('li');
+const nextButton = document.getElementById('next-button');
+const prevButton = document.getElementById('prev-button');
 
-// let page = 1;
-const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
+//how many items we want displayed on each page
+const paginationLimit = 20;
 
-// SMALL FUNCTION CONVERTING RESPONSE INTO JSON
-function fetchJsonResponse(url) {
-  return fetch(url)
-    .then(response => response.json())
-    .catch(error => console.log('error', error));
+//   how many pages there will be based on the paginationLimit
+//   const pageCount = Math.ceil(listItems.length / paginationLimit);
+const pageCount = totalPages;
+
+//  store the value of the currentPage
+let currentPage;
+
+let totalPagesArr = Array.from(Array(totalPages).keys());
+
+//ADD PAGE NUMBERS FUNCTION
+function appendPageNumber(index) {
+  const pageNumber = document.createElement('button');
+  pageNumber.className = 'pagination-number';
+  pageNumber.innerHTML = index;
+  pageNumber.setAttribute('page-index', index);
+  pageNumber.setAttribute('aria-label', 'Page ' + index);
+  paginationNumbers.appendChild(pageNumber);
 }
-////////////////////////////////////////////////////////
-// TEST
-
-// fetchJsonResponse(
-//   `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`
-// )
-//   .then(response => console.log(response))
-//   .catch(error => console.log(error));
-
-////////////////////////////////////////////////////////
-
-// FUNCTION HANDLING PAGINATION DIV UNDER MOVIE GALLERY
-export async function renderPaginator(count, selectedPage = 1, pageSize = 12) {
-  const pages = Math.ceil(count / pageSize);
-  const select = document.getElementById('Pagination-Select');
-  select.innerHTML = '';
-
-  for (let i = 1; i <= pages; i++) {
-    const option = document.createElement('option');
-    option.innerHTML = 'Page' + i;
-    option.value = 1;
-    if (i === Number(selectedPage)) {
-      option.setAttribute('selected', true);
-    }
-    select.append(option);
+function getPaginationNumbers() {
+  for (let i = 1; i <= pageCount; i++) {
+    appendPageNumber(i);
   }
-  select.addEventListener('change', event => {
-    const selectedPage = event.target.value;
-    const loadingSpinner = document.querySelector('.Pagination-Loader');
-    loadingSpinner.classList.remove('hidden');
-
-    const response = axios.get(
-      'https://api.themoviedb.org/3/trending/movie/day',
-      { params: { api_key: API_KEY, page: 1 } }
-    );
-    fetchJsonResponse(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${selectedPage}`
-    )
-      .then(response => {
-        //rekurencja - wywoływanie funkcji wewnątrz siebie)
-        renderPaginator(response.data.total_results, selectedPage);
-        // presentMovies();
-      })
-      .then(() => {
-        setTimeout(() => {
-          loadingSpinner.classList.add('hidden');
-        }, 1500);
-      });
-  });
 }
-// document.addEventListener('DOMContentLoaded', renderPaginator());
+
+//
+window.addEventListener('load', () => {
+  getPaginationNumbers();
+});
+
+// DISPLAY ACTIVE PAGE
+//RANGE FOR ITEMS TO BE SHOWN
+const setCurrentPage = pageNum => {
+  currentPage = pageNum;
+  handleActivePageNumber();
+
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+  //   listItems.forEach((item, index) => {
+  //     item.classList.add('hidden');
+  //     if (index >= prevRange && index < currRange) {
+  //       item.classList.remove('hidden');
+  //     }
+  //   });
+  totalPagesArr.forEach((item, index) => {
+    elementContainer.innerHTML = '';
+    if (index >= prevRange && index < currRange) {
+      elementContainer.appendChild(item);
+    }
+  });
+};
+
+//set the current page as page 1 once the webpage loads
+window.addEventListener('load', () => {
+  getPaginationNumbers();
+  setCurrentPage(1);
+});
+
+// //add page number buttons event listners
+
+// window.addEventListener('load', () => {
+//   getPaginationNumbers();
+//   setCurrentPage(1);
+//   document.querySelectorAll('.pagination-number').forEach(button => {
+//     const pageIndex = Number(button.getAttribute('page-index'));
+//     if (pageIndex) {
+//       button.addEventListener('click', () => {
+//         setCurrentPage(pageIndex);
+//       });
+//     }
+//   });
+// });
+
+// //set active page number
+// const handleActivePageNumber = () => {
+//   document.querySelectorAll('.pagination-number').forEach(button => {
+//     button.classList.remove('active');
+
+//     const pageIndex = Number(button.getAttribute('page-index'));
+//     if (pageIndex == currentPage) {
+//       button.classList.add('active');
+//     }
+//   });
+// };
+// // }

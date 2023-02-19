@@ -38,8 +38,8 @@ export const fetchPopularMovies = async () => {
       },
     })
     .then(function (response) {
-      // console.log('popular:', response);
-      // console.log('popular results:', response.data.results);
+      console.log('popular:', response);
+      console.log('popular results:', response.data.results);
       return response;
     })
     .catch(function (error) {

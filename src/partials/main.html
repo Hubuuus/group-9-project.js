@@ -1,7 +1,38 @@
 <main class="Container">
   <div class="Pagination-Loader hidden">LOADING MOVIES</div>
-  <div class="Pagination-Container">
-    <button class="Pagination-Btn Pagination-Btn__Arrow">
+  <nav class="pagination-container">
+    <button
+      class="pagination-button"
+      id="prev-button"
+      title="Previous page"
+      aria-label="Previous page"
+    >
+      &lt;
+    </button>
+
+    <div id="pagination-numbers">
+      <ul id="paginated-list" aria-live="polite">
+        <!-- <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li> -->
+      </ul>
+    </div>
+
+    <button
+      class="pagination-button"
+      id="next-button"
+      title="Next page"
+      aria-label="Next page"
+    >
+      &gt;
+    </button>
+  </nav>
+  <!-- <div class="Pagination-Container">
+    <button
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Prev-Btn"
+      title="Previous page"
+    >
       <svg
         class="Pagination-Btn__Icon"
         width="16"
@@ -11,14 +42,18 @@
         <use href="../icons/icons.svg#icon-arrow-left"></use>
       </svg>
     </button>
-    <button class="Pagination-Btn">1</button>
-    <button class="Pagination-Btn Pagination-Btn__Dots">...</button>
-    <button class="Pagination-Btn Pagination-Btn--Active">3</button>
-    <button class="Pagination-Btn">4</button>
-    <button class="Pagination-Btn">5</button>
-    <button class="Pagination-Btn Pagination-Btn__Dots">...</button>
-    <button class="Pagination-Btn">7</button>
-    <button class="Pagination-Btn Pagination-Btn__Arrow">
+    <div class="Pagination--Numbers">
+      <button class="Pagination-Number">1</button>
+      <button class="Pagination-Number Pagination-Btn--Active">3</button>
+      <button class="Pagination-Number">4</button>
+      <button class="Pagination-Number">5</button>
+      <button class="Pagination-Number">7</button>
+    </div>
+    <button
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Next-Btn"
+      title="Next page"
+    >
       <svg
         class="Pagination-Btn__Icon"
         width="16"
@@ -28,7 +63,7 @@
         <use href="../icons/icons.svg#icon-arrow-right"></use>
       </svg>
     </button>
-  </div>
+  </div> -->
   <div class="Gallery">
     <!-- <div class="movie-card"> -->
     <!-- <img
