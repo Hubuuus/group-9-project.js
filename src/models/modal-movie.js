@@ -135,7 +135,7 @@ function renderItems(items) {
     if (e.key === 'Escape')
       [modalOpen, blur].map(el => {
         el.classList.add('hidden');
-        modalOpen.innerHTML = '';
+        modalContent.innerHTML = '';
       });
   };
 
