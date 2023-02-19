@@ -13,19 +13,34 @@ body {
   backdrop-filter: blur(8px);
 }
 
-.Modal {
+.Card {
   min-width: 250px;
   width: 90%;
-  max-width: 400px;
+  max-width: 380px;
   background-color: $bg-main;
   position: fixed;
   max-height: 90%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   animation: zoom 0.5s ease forwards;
-  border-radius: 10px;
+  border-radius: 3px;
+}
+
+.Modal {
+  // min-width: 250px;
+  width: 100%;
+  // max-width: 400px;
+  // background-color: $bg-main;
+  // position: fixed;
+  height: 100%;
+  // overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // animation: zoom 0.5s ease forwards;
+  // border-radius: 10px;
 
   &__Close {
     position: absolute;
@@ -35,7 +50,11 @@ body {
     height: 25px;
     text-align: center;
     background-repeat: no-repeat;
+    background-color: transparent;
     cursor: pointer;
+    border: none;
+    fill: black;
+    stroke: black;
   }
   &__Close-x {
     display: inline-block;
@@ -118,7 +137,8 @@ body {
   &__Button {
     font-family: 'Roboto', sans-serif;
     cursor: pointer;
-    width: 120px;
+    width: 136px;
+    height: 44px;
     padding: 5px 10px;
     font-size: 12px;
     border-radius: 5px;
@@ -160,13 +180,22 @@ body {
 }
 
 @media (min-width: 768px) {
+  .Card {
+    // flex-direction: row;
+    // align-items: start;
+    height: 552px;
+    // width: 80%;
+    overflow: hidden;
+    max-width: 757px;
+  }
+
   .Modal {
     flex-direction: row;
     align-items: start;
-    height: 552px;
-    max-width: 80%;
-    overflow: hidden;
-    max-width: 757px;
+    // height: 552px;
+    // max-width: 80%;
+    // overflow: hidden;
+    max-width: 100%;
 
     &__Image {
       max-height: 20%;
@@ -186,11 +215,18 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .Modal {
+  .Card {
     height: 50vw;
     max-height: 552px;
     width: 80%;
     max-width: 882px;
+  }
+
+  .Modal {
+    // height: 50vw;
+    // max-height: 552px;
+    // width: 80%;
+    // max-width: 882px;
 
     &__Image {
       width: 35%;

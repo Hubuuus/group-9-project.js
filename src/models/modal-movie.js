@@ -3,10 +3,11 @@ var debounce = require('lodash.debounce');
 
 const blur = document.querySelector('[data-modal="blur"]');
 const modalOpen = document.querySelector('[data-modal="open"]');
+const modalContent = document.querySelector('[data-modal="content"]');
 
 export const toggleHidden = () => {
   [modalOpen, blur].map(el => el.classList.toggle('hidden'));
-  if (modalOpen.innerHTML !== '') modalOpen.innerHTML = '';
+  if (modalContent.innerHTML !== '') modalContent.innerHTML = '';
 };
 
 export const gallery = document.querySelector('.Gallery');
@@ -75,12 +76,8 @@ function renderItems(items) {
 
   const genres = genre.join(', ');
 
-  const markup = `
-    <button class="Modal__Close" data-modal="close">
-        <svg width="30" height="30" class="Modal__Svg">
-          <use href="../icons/icons.svg#icon-close"></use>
-        </svg>
-    </button>
+  modalContent.insertAdjacentHTML(
+    'beforeend',`
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">
       <h1 class="Modal__MovieTitle">${items.title}</h1>
@@ -108,9 +105,10 @@ function renderItems(items) {
           ADD TO WATCHED
         </button>
         <button class="Modal__Button Modal__Button--Queue" data-movie="queue">ADD TO QUEUE</button>
-      </div>`;
+      </div>
+      </div>`);
 
-  modalOpen.innerHTML = markup;
+  // modalOpen.innerHTML = markup;
 
   const btnWatch = document.querySelector('[data-movie="add"]');
   const btnQueue = document.querySelector('[data-movie="queue"]');

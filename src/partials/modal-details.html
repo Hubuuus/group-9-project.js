@@ -1,4 +1,11 @@
 <body>
   <div class="blur hidden" data-modal="blur"></div>
-  <div class="Modal hidden" data-modal="open"></div>
+  <div class="Card hidden" data-modal="open">
+    <button class="Modal__Close" data-modal="close">
+      <svg class="Modal__Svg" width="24" height="24" viewBox="0 0 1 1">
+        <use href="../icons/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+    <div class="Modal" data-modal="content"></div>
+  </div>
 </body>
