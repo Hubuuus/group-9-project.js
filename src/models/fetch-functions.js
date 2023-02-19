@@ -21,6 +21,7 @@ const DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
+const alert = document.querySelector('[data-header="alert"]');
 
 export function clearGallery() {
   gallery.innerHTML = '';
@@ -78,10 +79,22 @@ export const fetchSearchedMovies = async (input, page) => {
       galleryOfMovies(response);
 
       // console.log('searched results:', response.data.results);
+      //       alert.innerHTML = ``;
+      // if (response.data.results.length === 0) {
+      //   console.log("error");
+      //   setInterval(alert.innerHTML = `Search result not successful. Enter the correct movie name and search
+      //   again.`, 1000);
+      // }
+
+      alert.classList.add('hidden');
+      if (response.data.results.length === 0) {
+        alert.classList.remove('hidden');
+      }
+
       return response;
     })
-    .catch(error => {
-      console.log(error);
+    .catch(() => {
+      console.log('error');
     });
 
   return response;

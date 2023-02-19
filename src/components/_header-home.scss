@@ -1,7 +1,7 @@
 @use '../utils/forward' as *;
 
 //Edytować poniżej
-.HeaderMain{
+.HeaderMain {
   background-color: black;
 }
 .Navbar {
@@ -53,25 +53,26 @@
   justify-content: space-between;
   align-items: center;
   color: $tx-basic;
-  }
+}
 
-  .NavbarContainer{
-    max-width: 280px;
-    margin: auto;
-    @media screen and (min-width: 768px) {
-      max-width: 618px;}
-    @media screen and (min-width: 1024px) {
-      max-width: 882px;}
+.NavbarContainer {
+  max-width: 280px;
+  margin: auto;
+  @media screen and (min-width: 768px) {
+    max-width: 618px;
   }
+  @media screen and (min-width: 1024px) {
+    max-width: 882px;
+  }
+}
 
 .NavbarBrandIcon {
   stroke: $ic-secondary;
   fill: transparent;
   // fill: $ic-secondary;
-
 }
 
-.NavbarBrand{
+.NavbarBrand {
   text-decoration: none;
   border-bottom: none;
 }
@@ -85,8 +86,7 @@
   }
 }
 
-.Search__Svg{
-  
+.Search__Svg {
   fill: transparent;
 }
 
@@ -109,7 +109,7 @@
   @media screen and (min-width: 320px) {
     margin-left: 39px;
   }
-  
+
   &:hover {
     opacity: 0.6;
     transition: 0.3s;
@@ -178,13 +178,33 @@
   justify-content: center;
   padding-top: 22px;
   color: $tx-error;
-
   max-width: 280px;
   margin: auto;
+  animation: alert 0.5s ease;
+
   @media screen and (min-width: 768px) {
-    max-width: 618px;}
+    max-width: 618px;
+  }
   @media screen and (min-width: 1024px) {
-    max-width: 882px;}
+    max-width: 882px;
+  }
+}
+
+@keyframes alert {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  50% {
+    opacity: 0;
+    
+  }
+
+  100% {
+    opacity: 1;
+    transform: translatY(0px);
+  }
 }
 
 #active-nav::after {
@@ -196,21 +216,20 @@
   content: '';
 }
 #active-nav:hover:after {
-  background:$bg-main;
-  transition:.8s;
+  background: $bg-main;
+  transition: 0.8s;
 }
 
-.NavbarBrandTxt{
+.NavbarBrandTxt {
   padding-left: 12px;
-  display:none;
+  display: none;
   @media screen and (min-width: 768px) {
-  display: flex;
+    display: flex;
   }
   @media screen and (min-width: 1024px) {
-  display: flex;
+    display: flex;
   }
 }
-
 
 //   @media screen and (min-width: 320px) {
 //     .search-container {
