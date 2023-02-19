@@ -50,11 +50,22 @@ export const fetchPopularMovies = async () => {
   return response;
 };
 
+// OFF ENTER KEY
+inputMovie.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+  }
+});
+
+
 // EVENT LISTENING TO SEARCHBAR INPUT
 inputMovie.addEventListener(
   'input',
   debounce(async event => {
     event.preventDefault();
+
+
+
 
     // const title = event.target.value.trim();
     const title = inputMovie.value.trim();
@@ -67,6 +78,10 @@ inputMovie.addEventListener(
 export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
 
+  
+
+
+
   const response = await axios
     .get(urlSearchedMovies, {
       params: {
@@ -78,6 +93,7 @@ export const fetchSearchedMovies = async (input, page) => {
     .then(response => {
       galleryOfMovies(response);
 
+    
       // console.log('searched results:', response.data.results);
       //       alert.innerHTML = ``;
       // if (response.data.results.length === 0) {

@@ -29,20 +29,15 @@
     </div>
     <!-- start search -->
     <div class="Search">
-      <form class="SearchContainer">
-        <input
+      <form class="SearchContainer"
+      autocomplete="off">
+        <input 
           class="SearchInput"
           type="text"
           placeholder="Search..."
           name="search"
         />
-        <button class="SearchButton" type="submit">
-          <span class="Search__Svg">
-            <svg width="12" height="12">
-              <use href="../icons/icons.svg#icon-search-2"></use>
-            </svg>
-          </span>
-        </button>
+       
       </form>
     </div>
     <div class="SearchAlert hidden" data-header="alert">
