@@ -33,6 +33,10 @@
   display: none;
 }
 
+.transitionEfc {
+  transition: 0.5s;
+}
+
 .Container {
   min-width: 320px;
   min-height: 300px;
@@ -44,7 +48,6 @@
   justify-content: center;
   padding-left: 20px;
   padding-right: 20px;
-  transition: 0.5s;
 }
 
 .Gallery {
@@ -154,16 +157,23 @@
     filter: blur(10px);
     transition: 0.5s;
   }
+  & span {
+    text-shadow: 0 0 10px 0 $tx-basic;
+  }
 
   &:hover {
     transform: rotateX(10deg) scale(1.05);
     margin: -5px -5px;
     box-shadow: 15px 50px 25px #00000050;
     cursor: pointer;
+    background-color: $tx-basic;
 
     p,
     span {
-      animation: textEffect 10s ease alternate;
+      animation: textEffect 25s ease forwards infinite;
+    }
+    span {
+      color: $tx-primary;
     }
   }
 
@@ -174,26 +184,30 @@
 
 @keyframes textEffect {
   0% {
-    opacity: 1;
+    opacity: 0;
   }
-
-  0.5% {
+  1% {
     opacity: 0;
   }
 
-  4% {
+  2% {
     text-align: center;
   }
 
-  7% {
+  2% {
     text-align: center;
   }
 
-  8% {
+  2.5% {
     opacity: 1;
   }
 
-  10% {
+  2.5% {
+    opacity: 1;
+  }
+
+  100% {
+    text-align: center;
   }
 }
 
