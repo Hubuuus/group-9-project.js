@@ -1,7 +1,7 @@
 /*
 ŚCIEŻKA DZIAŁANIA PLIKUÓW JS PRZY POBIERNIU TYTUŁÓW FILMÓW Z API
 1. POPULARNE FILMY
-  - presentMovies() -> getGenres() -> fetchPopularMovies() -> createCards
+  - presentMovies() -> getGenres() -> fetchPopularMovies()
   - createCards() -> namesGenres() -> movieCard() -> html
 2. WYSZUKIWANE FILMY
   - eventListener() -> fetchSearchedMovies() -> galleryOfMovies()
@@ -13,34 +13,35 @@ import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
-// import { activeFetch, toggleHidden } from './modal-movie';
+import { getPaginationNumbers, setCurrentPage } from './pagination';
 
-let movieId;
 const gallery = document.querySelector('.Gallery');
 const DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
 const alert = document.querySelector('[data-header="alert"]');
+const nextButton = document.getElementById('Next-Button');
+const prevButton = document.getElementById('Prev-Button');
 
-export function clearGallery() {
-  gallery.innerHTML = '';
-}
+let currentPage = 1;
 
 // FUNCTION AUTOMATICALLY FETCHING MOST POPULAR MOVIES
-export const fetchPopularMovies = async () => {
+export async function fetchPopularMovies(pageNumber) {
   const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
 
   const response = await axios
     .get(urlPopularMovies, {
       params: {
         api_key: API_KEY,
-        // page: page,
+        page: pageNumber,
       },
     })
     .then(function (response) {
-      console.log('popular:', response);
-      console.log('popular results:', response.data.results);
+      // console.log('popular:', response);
+      // console.log('popular results:', response.data.results);
+      // getPaginationNumbers(30);
+      // setCurrentPage(1);
       return response;
     })
     .catch(function (error) {
@@ -48,17 +49,29 @@ export const fetchPopularMovies = async () => {
     });
 
   return response;
-};
+}
 
+nextButton.addEventListener('click', () => {
+  currentPage += 1;
+  console.log(currentPage);
+  fetchPopularMovies(currentPage);
+});
+prevButton.addEventListener('click', () => {
+  currentPage -= 1;
+  console.log(currentPage);
+  fetchPopularMovies(currentPage);
+});
 
+export function clearGallery() {
+  gallery.innerHTML = '';
+}
 
 // OFF ENTER KEY
-inputMovie.addEventListener('keypress', function(e) {
+inputMovie.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     e.preventDefault();
   }
 });
-
 
 //EVENT LISTENING TO SEARCHBAR INPUT
 inputMovie.addEventListener(
@@ -66,13 +79,12 @@ inputMovie.addEventListener(
   debounce(async event => {
     event.preventDefault();
     const title = event.target.value.trim();
-   
     fetchSearchedMovies(title);
   }, DEBOUNCE_DELAY)
 );
 
 // FUNCTION FETCHIN MOVIES BY QUERY
-export const fetchSearchedMovies = async (input, page) => {
+export const fetchSearchedMovies = async (input, pageNumber) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
 
   const response = await axios
@@ -80,7 +92,7 @@ export const fetchSearchedMovies = async (input, page) => {
       params: {
         api_key: API_KEY,
         query: input,
-        page: page,
+        page: pageNumber,
       },
     })
     .then(response => {

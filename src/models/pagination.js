@@ -1,11 +1,13 @@
+//
 const paginationNumbers = document.getElementById('Pagination-Numbers');
-const paginatedList = document.getElementById('Paginated-List');
-const listItems = paginatedList.querySelectorAll('li');
+// const paginatedList = document.getElementById('Paginated-List');
+// const listItems = paginatedList.querySelectorAll('li');
 const nextButton = document.getElementById('Next-Button');
 const prevButton = document.getElementById('Prev-Button');
 
-const paginationLimit = 3;
-const pageCount = Math.ceil(listItems.length / paginationLimit);
+// const paginationLimit = 3;
+// const pageCount = Math.ceil(listItems.length / paginationLimit);
+const pageCount = 20;
 let currentPage = 1;
 //how many items we want displayed on each page
 // const paginationLimit = 20;
@@ -30,7 +32,7 @@ function appendPageNumber(index) {
   pageNumber.setAttribute('aria-label', 'Page ' + index);
   paginationNumbers.appendChild(pageNumber);
 }
-function getPaginationNumbers() {
+export function getPaginationNumbers(pageCount) {
   for (let i = 1; i <= pageCount; i++) {
     appendPageNumber(i);
   }
@@ -50,32 +52,32 @@ const handleActivePageNumber = () => {
 
 // DISPLAY ACTIVE PAGE
 //RANGE FOR ITEMS TO BE SHOWN
-const setCurrentPage = pageNum => {
+export function setCurrentPage(pageNum) {
   currentPage = pageNum;
   handleActivePageNumber();
   handlePageButtonsStatus();
 
-  const prevRange = (pageNum - 1) * paginationLimit;
-  const currRange = pageNum * paginationLimit;
-  listItems.forEach((item, index) => {
-    item.classList.add('hidden');
-    if (index >= prevRange && index < currRange) {
-      item.classList.remove('hidden');
-    }
-  });
+  // const prevRange = (pageNum - 1) * paginationLimit;
+  // const currRange = pageNum * paginationLimit;
+  // listItems.forEach((item, index) => {
+  //   item.classList.add('hidden');
+  //   if (index >= prevRange && index < currRange) {
+  //     item.classList.remove('hidden');
+  //   }
+  // });
   // totalPagesArr.forEach((item, index) => {
   //   elementContainer.innerHTML = '';
   //   if (index >= prevRange && index < currRange) {
   //     elementContainer.appendChild(item);
   //   }
   // });
-};
+}
 
 //set the current page as page 1 once the webpage loads
 //add page number buttons event listners
 
 window.addEventListener('load', () => {
-  getPaginationNumbers();
+  // getPaginationNumbers(20);
   setCurrentPage(1);
 
   prevButton.addEventListener('click', () => {
