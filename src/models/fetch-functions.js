@@ -17,7 +17,7 @@ import { namesGenres } from './genresid-name';
 
 let movieId;
 const gallery = document.querySelector('.Gallery');
-const DEBOUNCE_DELAY = 1000;
+let DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
@@ -50,37 +50,44 @@ export const fetchPopularMovies = async () => {
   return response;
 };
 
+
+
 // OFF ENTER KEY
 inputMovie.addEventListener('keypress', function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
+    let title = inputMovie.value.trim();
+ 
+    fetchSearchedMovies(title);
+  }
+  else {
+    inputMovie.addEventListener(
+      'input',
+      debounce(async event => {
+        event.preventDefault();
+        const title = event.target.value.trim();
+      
+        fetchSearchedMovies(title);
+      }, DEBOUNCE_DELAY)
+    );
   }
 });
 
 
 // EVENT LISTENING TO SEARCHBAR INPUT
-inputMovie.addEventListener(
-  'input',
-  debounce(async event => {
-    event.preventDefault();
-
-
-
-
-    // const title = event.target.value.trim();
-    const title = inputMovie.value.trim();
-
-    fetchSearchedMovies(title);
-  }, DEBOUNCE_DELAY)
-);
+// inputMovie.addEventListener(
+//   'input',
+//   debounce(async event => {
+//     event.preventDefault();
+//     const title = event.target.value.trim();
+   
+//     fetchSearchedMovies(title);
+//   }, DEBOUNCE_DELAY)
+// );
 
 // FUNCTION FETCHIN MOVIES BY QUERY
 export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
-
-  
-
-
 
   const response = await axios
     .get(urlSearchedMovies, {
@@ -92,8 +99,6 @@ export const fetchSearchedMovies = async (input, page) => {
     })
     .then(response => {
       galleryOfMovies(response);
-
-    
       // console.log('searched results:', response.data.results);
       //       alert.innerHTML = ``;
       // if (response.data.results.length === 0) {
@@ -101,12 +106,10 @@ export const fetchSearchedMovies = async (input, page) => {
       //   setInterval(alert.innerHTML = `Search result not successful. Enter the correct movie name and search
       //   again.`, 1000);
       // }
-
       alert.classList.add('hidden');
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
       }
-
       return response;
     })
     .catch(() => {
