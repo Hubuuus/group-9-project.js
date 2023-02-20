@@ -75,10 +75,15 @@ function renderItems(items) {
   }
 
   const genres = genre.join(', ');
+  let poster = `https://image.tmdb.org/t/p/w500${items.poster_path}`;
+
+  if (items.poster_path === null) {
+    poster = 'https://ik.imagekit.io/paulinas/noTMDBposter.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1676735394520';
+  }
 
   modalContent.insertAdjacentHTML(
     'beforeend',`
-    <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
+    <div class="Modal__Image" style="background-image: url(${poster})"></div>
     <div class="Modal__Text">
       <h1 class="Modal__MovieTitle dark-mode">${items.title}</h1>
       <div class="Modal__Info dark-mode">
