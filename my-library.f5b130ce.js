@@ -1,0 +1,2 @@
+const o=document.querySelector(".Container"),e=document.querySelectorAll(".dark-mode"),l=document.querySelectorAll(".dark-mode-btn");console.log(e);const c=()=>{""===o.style.backgroundColor?(o.style.backgroundColor="black",e.forEach((o=>o.style.color="white"))):(o.style.backgroundColor="",e.forEach((o=>o.style.color=""))),l.forEach((o=>o.classList.toggle("dark-hidden"))),console.log("klik!")};l.forEach((o=>o.addEventListener("click",c)));
+//# sourceMappingURL=my-library.f5b130ce.js.map
