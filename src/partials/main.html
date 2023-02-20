@@ -1,26 +1,54 @@
 <main class="Container">
   <div class="Pagination-Loader hidden">LOADING MOVIES</div>
-  <nav class="pagination-container">
+  <!-- <div id="Pager"></div> -->
+  <ul id="Paginated-List" aria-live="polite">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+    <li>Item 6</li>
+    <li>Item 7</li>
+    <li>Item 8</li>
+    <li>Item 9</li>
+    <li>Item 10</li>
+    <li>Item 11</li>
+    <li>Item 12</li>
+    <li>Item 13</li>
+    <li>Item 14</li>
+    <li>Item 15</li>
+    <li>Item 16</li>
+    <li>Item 17</li>
+    <li>Item 18</li>
+    <li>Item 19</li>
+    <li>Item 20</li>
+    <li>Item 21</li>
+    <li>Item 22</li>
+    <li>Item 23</li>
+    <li>Item 24</li>
+    <li>Item 25</li>
+    <li>Item 26</li>
+    <li>Item 27</li>
+    <li>Item 28</li>
+    <li>Item 29</li>
+    <li>Item 30</li>
+  </ul>
+
+  <nav class="Pagination-Container">
     <button
-      class="pagination-button"
-      id="prev-button"
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Prev-Button"
       title="Previous page"
       aria-label="Previous page"
     >
       &lt;
     </button>
 
-    <div id="pagination-numbers">
-      <ul id="paginated-list" aria-live="polite">
-        <!-- <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li> -->
-      </ul>
-    </div>
+    <div id="Pagination-Numbers"></div>
 
     <button
-      class="pagination-button"
-      id="next-button"
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Next-Button"
       title="Next page"
       aria-label="Next page"
     >
@@ -42,12 +70,12 @@
         <use href="../icons/icons.svg#icon-arrow-left"></use>
       </svg>
     </button>
-    <div class="Pagination--Numbers">
+    <div class="Pagination-Numbers">
       <button class="Pagination-Number">1</button>
-      <button class="Pagination-Number Pagination-Btn--Active">3</button>
+      <button class="Pagination-Number Pagination-Btn--Active">2</button>
+      <button class="Pagination-Number">3</button>
       <button class="Pagination-Number">4</button>
       <button class="Pagination-Number">5</button>
-      <button class="Pagination-Number">7</button>
     </div>
     <button
       class="Pagination-Btn Pagination-Btn__Arrow"

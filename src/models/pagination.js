@@ -1,26 +1,30 @@
-// export function renderPagination(totalPages, totalResults) {
-const paginationNumbers = document.getElementById('pagination-numbers');
-const paginatedList = document.getElementById('paginated-list');
+const paginationNumbers = document.getElementById('Pagination-Numbers');
+const paginatedList = document.getElementById('Paginated-List');
 const listItems = paginatedList.querySelectorAll('li');
-const nextButton = document.getElementById('next-button');
-const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('Next-Button');
+const prevButton = document.getElementById('Prev-Button');
 
+const paginationLimit = 3;
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage = 1;
 //how many items we want displayed on each page
-const paginationLimit = 20;
+// const paginationLimit = 20;
 
+// const pageCount = 10;
 //   how many pages there will be based on the paginationLimit
 //   const pageCount = Math.ceil(listItems.length / paginationLimit);
-const pageCount = totalPages;
+// const pageCount = totalPages;
+// const totalPages = 10;
 
 //  store the value of the currentPage
-let currentPage;
 
-let totalPagesArr = Array.from(Array(totalPages).keys());
+// const totalPagesArr = Array.from(Array(totalPages).keys());
+// console.log('🚀 ~ totalPagesArr', totalPagesArr);
 
 //ADD PAGE NUMBERS FUNCTION
 function appendPageNumber(index) {
   const pageNumber = document.createElement('button');
-  pageNumber.className = 'pagination-number';
+  pageNumber.className = 'Pagination-Btn';
   pageNumber.innerHTML = index;
   pageNumber.setAttribute('page-index', index);
   pageNumber.setAttribute('aria-label', 'Page ' + index);
@@ -32,63 +36,83 @@ function getPaginationNumbers() {
   }
 }
 
-//
-window.addEventListener('load', () => {
-  getPaginationNumbers();
-});
+//set active page number
+const handleActivePageNumber = () => {
+  document.querySelectorAll('.Pagination-Btn').forEach(button => {
+    button.classList.remove('Pagination-Btn--Active');
+
+    const pageIndex = Number(button.getAttribute('page-index'));
+    if (pageIndex == currentPage) {
+      button.classList.add('Pagination-Btn--Active');
+    }
+  });
+};
 
 // DISPLAY ACTIVE PAGE
 //RANGE FOR ITEMS TO BE SHOWN
 const setCurrentPage = pageNum => {
   currentPage = pageNum;
   handleActivePageNumber();
+  handlePageButtonsStatus();
 
   const prevRange = (pageNum - 1) * paginationLimit;
   const currRange = pageNum * paginationLimit;
-  //   listItems.forEach((item, index) => {
-  //     item.classList.add('hidden');
-  //     if (index >= prevRange && index < currRange) {
-  //       item.classList.remove('hidden');
-  //     }
-  //   });
-  totalPagesArr.forEach((item, index) => {
-    elementContainer.innerHTML = '';
+  listItems.forEach((item, index) => {
+    item.classList.add('hidden');
     if (index >= prevRange && index < currRange) {
-      elementContainer.appendChild(item);
+      item.classList.remove('hidden');
     }
   });
+  // totalPagesArr.forEach((item, index) => {
+  //   elementContainer.innerHTML = '';
+  //   if (index >= prevRange && index < currRange) {
+  //     elementContainer.appendChild(item);
+  //   }
+  // });
 };
 
 //set the current page as page 1 once the webpage loads
+//add page number buttons event listners
+
 window.addEventListener('load', () => {
   getPaginationNumbers();
   setCurrentPage(1);
+
+  prevButton.addEventListener('click', () => {
+    setCurrentPage(currentPage - 1);
+  });
+  nextButton.addEventListener('click', () => {
+    setCurrentPage(currentPage + 1);
+  });
+
+  document.querySelectorAll('.Pagination-Btn').forEach(button => {
+    const pageIndex = Number(button.getAttribute('page-index'));
+    if (pageIndex) {
+      button.addEventListener('click', () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
 });
 
-// //add page number buttons event listners
-
-// window.addEventListener('load', () => {
-//   getPaginationNumbers();
-//   setCurrentPage(1);
-//   document.querySelectorAll('.pagination-number').forEach(button => {
-//     const pageIndex = Number(button.getAttribute('page-index'));
-//     if (pageIndex) {
-//       button.addEventListener('click', () => {
-//         setCurrentPage(pageIndex);
-//       });
-//     }
-//   });
-// });
-
-// //set active page number
-// const handleActivePageNumber = () => {
-//   document.querySelectorAll('.pagination-number').forEach(button => {
-//     button.classList.remove('active');
-
-//     const pageIndex = Number(button.getAttribute('page-index'));
-//     if (pageIndex == currentPage) {
-//       button.classList.add('active');
-//     }
-//   });
-// };
-// // }
+//Disable Page Navigation Buttons
+const disableButton = button => {
+  button.classList.add('Disabled');
+  button.setAttribute('Disabled', true);
+};
+const enableButton = button => {
+  button.classList.remove('Disabled');
+  button.removeAttribute('Disabled');
+};
+const handlePageButtonsStatus = () => {
+  if (currentPage === 1) {
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+  if (pageCount === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};
