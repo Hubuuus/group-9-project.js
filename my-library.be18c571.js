@@ -1,2 +1,0 @@
-!function(){var o=document.querySelector(".Container"),r=document.querySelectorAll(".dark-mode"),e=document.querySelectorAll(".dark-mode-btn");console.log(r);var n=function(){""===o.style.backgroundColor?(o.style.backgroundColor="black",r.forEach((function(o){return o.style.color="white"}))):(o.style.backgroundColor="",r.forEach((function(o){return o.style.color=""}))),e.forEach((function(o){return o.classList.toggle("dark-hidden")})),console.log("klik!")};e.forEach((function(o){return o.addEventListener("click",n)}))}();
-//# sourceMappingURL=my-library.be18c571.js.map
