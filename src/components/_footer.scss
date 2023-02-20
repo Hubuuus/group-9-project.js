@@ -3,27 +3,33 @@
 //Edytować poniżej
 a {
   text-decoration: none;
-  border-bottom: 1px solid $tx-primary;
+  border-bottom: 1px solid $tx-alternative;
   color: $tx-primary;
   cursor: pointer;
 }
 
 .footer {
+  display: flex;
+  flex-direction: row;
+  position: sticky;
+  bottom: 0;
   width: 100%;
-  color: #545454;
+  height: 100px;
+  color: $tx-alternative;
   text-align: center;
   align-items: center;
+  justify-content: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   background-color: $bg-footer;
-  padding: 42px 36px 42px 44px;
 }
 
 @media screen and (min-width: 768px) {
   .footer {
     font-size: 16px;
     line-height: 19px;
+    height: 77px;
   }
 }
 
