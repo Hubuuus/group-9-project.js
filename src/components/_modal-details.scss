@@ -53,9 +53,16 @@ body {
     background-color: transparent;
     cursor: pointer;
     border: none;
-    fill: black;
-    stroke: black;
+    fill: $bg-main;
+    stroke: currentColor;
+    background-color: $bg-main;
+    transition: 300ms;
   }
+  &__Close:hover,
+  &__Close:focus {
+    color: $tx-accent;
+  }
+
   &__Close-x {
     display: inline-block;
     background-color: green;
