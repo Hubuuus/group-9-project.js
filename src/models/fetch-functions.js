@@ -17,7 +17,7 @@ import { namesGenres } from './genresid-name';
 
 let movieId;
 const gallery = document.querySelector('.Gallery');
-let DEBOUNCE_DELAY = 1000;
+const DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
@@ -56,34 +56,20 @@ export const fetchPopularMovies = async () => {
 inputMovie.addEventListener('keypress', function(e) {
   if (e.key === 'Enter') {
     e.preventDefault();
-    let title = inputMovie.value.trim();
- 
-    fetchSearchedMovies(title);
-  }
-  else {
-    inputMovie.addEventListener(
-      'input',
-      debounce(async event => {
-        event.preventDefault();
-        const title = event.target.value.trim();
-      
-        fetchSearchedMovies(title);
-      }, DEBOUNCE_DELAY)
-    );
   }
 });
 
 
-// EVENT LISTENING TO SEARCHBAR INPUT
-// inputMovie.addEventListener(
-//   'input',
-//   debounce(async event => {
-//     event.preventDefault();
-//     const title = event.target.value.trim();
+//EVENT LISTENING TO SEARCHBAR INPUT
+inputMovie.addEventListener(
+  'input',
+  debounce(async event => {
+    event.preventDefault();
+    const title = event.target.value.trim();
    
-//     fetchSearchedMovies(title);
-//   }, DEBOUNCE_DELAY)
-// );
+    fetchSearchedMovies(title);
+  }, DEBOUNCE_DELAY)
+);
 
 // FUNCTION FETCHIN MOVIES BY QUERY
 export const fetchSearchedMovies = async (input, page) => {
