@@ -80,26 +80,26 @@ function renderItems(items) {
     'beforeend',`
     <div class="Modal__Image" style="background-image: url('https://image.tmdb.org/t/p/w500${items.poster_path}')"></div>
     <div class="Modal__Text">
-      <h1 class="Modal__MovieTitle">${items.title}</h1>
-      <div class="Modal__Info">
-        <div class="Modal__Properties">
+      <h1 class="Modal__MovieTitle dark-mode">${items.title}</h1>
+      <div class="Modal__Info dark-mode">
+        <div class="Modal__Properties dark-mode">
           <p>Vote / Votes</p>
-          <p class="Modal__Property">Popularity</p>
-          <p class="Modal__Property">Original Title</p>
-          <p class="Modal__Property">Genre</p>
+          <p class="Modal__Property dark-mode">Popularity</p>
+          <p class="Modal__Property dark-mode">Original Title</p>
+          <p class="Modal__Property dark-mode">Genre</p>
         </div>
         <div class="Modal__Values">
           <p class="Modal__Votes">
             <span class="Modal__OneVote">${items.vote_average}</span> /
-            <span class="Modal__AllVotes">${items.vote_count}</span>
+            <span class="Modal__AllVotes dark-mode">${items.vote_count}</span>
           </p>
-          <p class="Modal__Value">${items.popularity}</p>
-          <p class="Modal__Value">${items.original_title}</p>
-          <p class="Modal__Value">${genres}</p>
+          <p class="Modal__Value dark-mode">${items.popularity}</p>
+          <p class="Modal__Value dark-mode">${items.original_title}</p>
+          <p class="Modal__Value dark-mode">${genres}</p>
         </div>
       </div>
-      <h2 class="Modal__About">ABOUT</h2>
-      <p class="Modal__Review">${items.overview}</p>
+      <h2 class="Modal__About dark-mode">ABOUT</h2>
+      <p class="Modal__Review dark-mode">${items.overview}</p>
       <div class="Modal__Buttons">
         <button class="Modal__Button Modal__Button--Watched" data-movie="add">
           ADD TO WATCHED
@@ -116,6 +116,10 @@ function renderItems(items) {
   btnWatch.addEventListener('click', () => {
     if (!addMovie.includes(movieId)) {
       addMovie.push(movieId);
+      btnWatch.classList.add('button-addEffect');
+      setTimeout(function() {
+        btnWatch.classList.remove('button-addEffect');
+      }, 300);
     }
     localStorage.setItem('addMovie', JSON.stringify(addMovie));
   });
@@ -123,6 +127,10 @@ function renderItems(items) {
   btnQueue.addEventListener('click', () => {
     if (!queueMovie.includes(movieId)) {
       queueMovie.push(movieId);
+      btnQueue.classList.add('button-addEffect');
+      setTimeout(function() {
+        btnQueue.classList.remove('button-addEffect');
+      }, 300);
     }
     localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
   });

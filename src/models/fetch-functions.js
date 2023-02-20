@@ -157,7 +157,7 @@ function movieCard(movie, genresName) {
         alt="${movie.title}" loading="lazy" /> 
         <div class="MovieCardInfo">
           <p class="MovieCardData">
-            <span class="MovieCardTitle">${movie.title}
+            <span class="MovieCardTitle dark-mode">${movie.title}
           </span>
            ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(
       0,

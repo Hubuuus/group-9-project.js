@@ -72,5 +72,6 @@ function showAddedMovies(movie) {
     if (gallery.innerHTML !== "") loader.innerHTML = "";
 };
 
+window.addEventListener('load', activeFetchLibAdd);
 btnWatchedLib.addEventListener('click', activeFetchLibAdd);
 btnQueueLib.addEventListener('click', activeFetchLibQueue);

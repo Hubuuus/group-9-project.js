@@ -165,7 +165,8 @@ body {
       background-color: $btn-basic;
       border: 1px solid $tx-primary;
       &:hover {
-        background-color: $bg-footer;
+        background-color: $btn-accent;
+        color: $tx-basic;
       }
     }
   }
@@ -184,6 +185,12 @@ body {
 
 .hidden {
   display: none;
+}
+
+.Modal__Button.button-addEffect {
+  color: $btn-accent;
+  background-color: #fff;
+  box-shadow: 0 0 10px 10px $btn-accent;
 }
 
 @media (min-width: 768px) {
