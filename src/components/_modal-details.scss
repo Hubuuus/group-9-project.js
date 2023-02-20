@@ -5,6 +5,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.dark-mode-orange:hover,
+.dark-mode-orange:focus {
+  color: $tx-accent !important;
+}
+
 .blur {
   position: fixed;
   width: 100%;
@@ -53,9 +58,7 @@ body {
     background-color: transparent;
     cursor: pointer;
     border: none;
-    fill: $bg-main;
     stroke: currentColor;
-    background-color: $bg-main;
     transition: 300ms;
   }
   &__Close:hover,

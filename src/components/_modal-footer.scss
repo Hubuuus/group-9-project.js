@@ -108,12 +108,12 @@
     position: absolute;
     right: 8px;
     top: 8px;
-    background-color: $bg-main;
+    transition: 300ms;
+    background-color: transparent;
   }
 
   &__Svg {
     stroke: currentColor;
-    background-color: $bg-main;
   }
 
   &__Svg:hover,
