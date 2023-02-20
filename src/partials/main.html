@@ -1,8 +1,111 @@
 <main class="Container">
-  <div class="Pagination-Loader">LOADING MOVIES</div>
-  <div class="Gallery"></div>
-  <div id="Pagination-Container" class="">
-    <label for="Pagination">Select Page</label>
-    <select id="Pagination"></select>
+  <div class="Pagination-Loader hidden">LOADING MOVIES</div>
+  <!-- <div id="Pager"></div> -->
+  <ul id="Paginated-List" aria-live="polite">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+    <li>Item 6</li>
+    <li>Item 7</li>
+    <li>Item 8</li>
+    <li>Item 9</li>
+    <li>Item 10</li>
+    <li>Item 11</li>
+    <li>Item 12</li>
+    <li>Item 13</li>
+    <li>Item 14</li>
+    <li>Item 15</li>
+    <li>Item 16</li>
+    <li>Item 17</li>
+    <li>Item 18</li>
+    <li>Item 19</li>
+    <li>Item 20</li>
+    <li>Item 21</li>
+    <li>Item 22</li>
+    <li>Item 23</li>
+    <li>Item 24</li>
+    <li>Item 25</li>
+    <li>Item 26</li>
+    <li>Item 27</li>
+    <li>Item 28</li>
+    <li>Item 29</li>
+    <li>Item 30</li>
+  </ul>
+
+  <nav class="Pagination-Container">
+    <button
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Prev-Button"
+      title="Previous page"
+      aria-label="Previous page"
+    >
+      &lt;
+    </button>
+
+    <div id="Pagination-Numbers"></div>
+
+    <button
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Next-Button"
+      title="Next page"
+      aria-label="Next page"
+    >
+      &gt;
+    </button>
+  </nav>
+  <!-- <div class="Pagination-Container">
+    <button
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Prev-Btn"
+      title="Previous page"
+    >
+      <svg
+        class="Pagination-Btn__Icon"
+        width="16"
+        height="16"
+        viewBox="0 0 1 1"
+      >
+        <use href="../icons/icons.svg#icon-arrow-left"></use>
+      </svg>
+    </button>
+    <div class="Pagination-Numbers">
+      <button class="Pagination-Number">1</button>
+      <button class="Pagination-Number Pagination-Btn--Active">2</button>
+      <button class="Pagination-Number">3</button>
+      <button class="Pagination-Number">4</button>
+      <button class="Pagination-Number">5</button>
+    </div>
+    <button
+      class="Pagination-Btn Pagination-Btn__Arrow"
+      id="Next-Btn"
+      title="Next page"
+    >
+      <svg
+        class="Pagination-Btn__Icon"
+        width="16"
+        height="16"
+        viewBox="0 0 1 1"
+      >
+        <use href="../icons/icons.svg#icon-arrow-right"></use>
+      </svg>
+    </button>
+  </div> -->
+  <div class="Gallery">
+    <!-- <div class="movie-card"> -->
+    <!-- <img
+        src="./images/movie1.jpg"
+        srcset="./images/movie1@2x.jpg 2x, ./images/movie1@3x.jpg 3x"
+        alt="Monster Hunter"
+        loading="lazy"
+      />
+      <div class="movie-card__info">
+        <p class="movie-card__data">
+          <span class="movie-card__title"> Monster Hunter </span>
+          Drama, Action | 2020
+        </p>
+      </div>
+    <div class ="gallery"> -->
   </div>
 </main>

@@ -144,7 +144,6 @@
     box-shadow: 15px 50px 25px #00000050;
     cursor: pointer;
 
-
     p,
     span {
       animation: textEffect 10s ease alternate;
@@ -177,7 +176,8 @@
     opacity: 1;
   }
 
-  10% {}
+  10% {
+  }
 }
 
 img {
@@ -270,4 +270,66 @@ img {
   img {
     height: 398px;
   }
+}
+
+// PAGINATION
+
+.Pagination-Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 40px;
+}
+#Pagination-Numbers {
+}
+
+.Pagination-Btn {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33em;
+  background-color: $btn-basic;
+  &:hover {
+    cursor: pointer;
+    background-color: $btn-page;
+  }
+  // & __Icon {
+  //   fill: $ic-basic;
+  // }
+  &__Arrow {
+    background-color: $btn-page;
+    width: 40px;
+    height: 40px;
+    &:hover {
+      background-color: $btn-basic;
+    }
+  }
+  &--Active {
+    background-color: $btn-accent;
+    color: $tx-basic;
+    width: 40px;
+    height: 40px;
+    &:hover {
+      background-color: $btn-accent;
+    }
+  }
+}
+
+.Pagination-Btn__Arrow:not(.Disabled):hover {
+  background: $btn-hover2;
+}
+.Pagination-Btn__Arrow.Disabled:hover {
+  background: $btn-page;
 }

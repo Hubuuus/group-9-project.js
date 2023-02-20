@@ -1,35 +1,118 @@
-let page = 1;
+const paginationNumbers = document.getElementById('Pagination-Numbers');
+const paginatedList = document.getElementById('Paginated-List');
+const listItems = paginatedList.querySelectorAll('li');
+const nextButton = document.getElementById('Next-Button');
+const prevButton = document.getElementById('Prev-Button');
 
-// SMALL FUNCTION CONVERTING RESPONSE INTO JSON
-function fetchJsonResponse(url) {
-  return fetch(url)
-    .then(response => response.json())
-    .catch(error => console.log('error', error));
+const paginationLimit = 3;
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage = 1;
+//how many items we want displayed on each page
+// const paginationLimit = 20;
+
+// const pageCount = 10;
+//   how many pages there will be based on the paginationLimit
+//   const pageCount = Math.ceil(listItems.length / paginationLimit);
+// const pageCount = totalPages;
+// const totalPages = 10;
+
+//  store the value of the currentPage
+
+// const totalPagesArr = Array.from(Array(totalPages).keys());
+// console.log('🚀 ~ totalPagesArr', totalPagesArr);
+
+//ADD PAGE NUMBERS FUNCTION
+function appendPageNumber(index) {
+  const pageNumber = document.createElement('button');
+  pageNumber.className = 'Pagination-Btn';
+  pageNumber.innerHTML = index;
+  pageNumber.setAttribute('page-index', index);
+  pageNumber.setAttribute('aria-label', 'Page ' + index);
+  paginationNumbers.appendChild(pageNumber);
 }
-// FUNCTION HANDLING PAGINATION DIV UNDER MOVIE GALLERY
-function renderPaginator(count, selectedPage = 1, pageSize = 12) {
-  const pages = Math.ceil(count / pageSize);
-  const select = document.getElementById('Pagination-Select');
-  select.innerHTML = '';
-
-  for (let i = 1; i <= pages; i++) {
-    const option = document.createElement('option');
-    option.innerHTML = 'Page' + i;
-    option.value = 1;
-    if (i === Number(selectedPage)) {
-      option.setAttribute('selected', true);
-    }
-    select.append(option);
+function getPaginationNumbers() {
+  for (let i = 1; i <= pageCount; i++) {
+    appendPageNumber(i);
   }
-  select.addEventListener('change', event => {
-    fetchJsonResponse(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&page=${selectedPage}`
-    ).then(response => {
-      //rekurencja - wywoływanie funkcji wewnątrz siebie)
-      renderPaginator(response.data.total_results, selectedPage);
-      // presentMovies();
-    });
-  });
-  renderPaginator(response.data.total_results);
 }
-// document.addEventListener('DOMContentLoaded', renderPaginator());
+
+//set active page number
+const handleActivePageNumber = () => {
+  document.querySelectorAll('.Pagination-Btn').forEach(button => {
+    button.classList.remove('Pagination-Btn--Active');
+
+    const pageIndex = Number(button.getAttribute('page-index'));
+    if (pageIndex == currentPage) {
+      button.classList.add('Pagination-Btn--Active');
+    }
+  });
+};
+
+// DISPLAY ACTIVE PAGE
+//RANGE FOR ITEMS TO BE SHOWN
+const setCurrentPage = pageNum => {
+  currentPage = pageNum;
+  handleActivePageNumber();
+  handlePageButtonsStatus();
+
+  const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+  listItems.forEach((item, index) => {
+    item.classList.add('hidden');
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove('hidden');
+    }
+  });
+  // totalPagesArr.forEach((item, index) => {
+  //   elementContainer.innerHTML = '';
+  //   if (index >= prevRange && index < currRange) {
+  //     elementContainer.appendChild(item);
+  //   }
+  // });
+};
+
+//set the current page as page 1 once the webpage loads
+//add page number buttons event listners
+
+window.addEventListener('load', () => {
+  getPaginationNumbers();
+  setCurrentPage(1);
+
+  prevButton.addEventListener('click', () => {
+    setCurrentPage(currentPage - 1);
+  });
+  nextButton.addEventListener('click', () => {
+    setCurrentPage(currentPage + 1);
+  });
+
+  document.querySelectorAll('.Pagination-Btn').forEach(button => {
+    const pageIndex = Number(button.getAttribute('page-index'));
+    if (pageIndex) {
+      button.addEventListener('click', () => {
+        setCurrentPage(pageIndex);
+      });
+    }
+  });
+});
+
+//Disable Page Navigation Buttons
+const disableButton = button => {
+  button.classList.add('Disabled');
+  button.setAttribute('Disabled', true);
+};
+const enableButton = button => {
+  button.classList.remove('Disabled');
+  button.removeAttribute('Disabled');
+};
+const handlePageButtonsStatus = () => {
+  if (currentPage === 1) {
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+  if (pageCount === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};

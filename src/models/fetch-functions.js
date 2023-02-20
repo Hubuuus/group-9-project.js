@@ -39,8 +39,8 @@ export const fetchPopularMovies = async () => {
       },
     })
     .then(function (response) {
-      // console.log('popular:', response);
-      // console.log('popular results:', response.data.results);
+      console.log('popular:', response);
+      console.log('popular results:', response.data.results);
       return response;
     })
     .catch(function (error) {
@@ -146,22 +146,6 @@ export function createCards(movie, genres) {
     movieCard(movie, genresName);
   });
 }
-
-// export const getDetails = async movie_id => {
-//   const urlInfo = `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
-
-//   const response = await axios
-//     .get(urlInfo)
-//     .then(function (response) {
-//       console.log(response.data);
-//       return response.data;
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-
-//   return response;
-// };
 
 function movieCard(movie, genresName) {
   let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
