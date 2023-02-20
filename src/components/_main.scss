@@ -17,6 +17,22 @@
 //     justify-content: center;
 //   }
 
+.dark-mode-btn {
+  position: absolute;
+  top: 235px;
+  left: -115px;
+  cursor: pointer;
+}
+
+.light {
+  left: -115px;
+  fill: white;
+}
+
+.dark-hidden {
+  display: none;
+}
+
 .Container {
   min-width: 320px;
   min-height: 300px;
