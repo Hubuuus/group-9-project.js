@@ -65,6 +65,10 @@ inputMovie.addEventListener(
   'input',
   debounce(async event => {
     event.preventDefault();
+    if (inputMovie.value == ''){
+      return location.reload();
+    }
+
     const title = event.target.value.trim();
    
     fetchSearchedMovies(title);
@@ -96,6 +100,7 @@ export const fetchSearchedMovies = async (input, page) => {
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
       }
+
       return response;
     })
     .catch(() => {
