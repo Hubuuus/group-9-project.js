@@ -41,7 +41,16 @@
   border-radius: 10px;
   z-index: 2;
   animation: openModal 0.5s forwards;
-
+  &__Logo {
+    display: flex;
+    flex-direction: column;
+    fill: $tx-accent;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 30;
+    top: -120px;
+  }
   &__Header {
     display: flex;
     justify-content: center;
@@ -66,6 +75,7 @@
     font-weight: 500;
     margin: auto;
     cursor: pointer;
+    padding-top: 70px;
   }
 
   &__Item {
@@ -161,7 +171,9 @@
 @media screen and (min-width: 768px) {
   .ModalFooter {
     max-width: 600px;
-
+    &__Logo {
+      left: 130;
+    }
     &__Header {
       font-size: 30px;
       line-height: 35px;
@@ -191,7 +203,9 @@
 @media screen and (min-width: 1024px) {
   .ModalFooter {
     max-width: 800px;
-
+    &__Logo {
+      left: 230px;
+    }
     &__RightSide {
       justify-content: flex-start;
     }
