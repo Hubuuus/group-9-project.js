@@ -1,12 +1,15 @@
 import { fetchPopularMovies } from './fetch-functions';
 import { getGenres, createCards } from './fetch-functions';
 
-export function presentMovies(pageNum) {
+export function presentMovies(page) {
   getGenres().then(item => {
     const genres = item;
-
-    fetchPopularMovies(pageNum).then(result => {
+    //edit hubert paginacja
+    document.querySelector('.Gallery').innerHTML = '';
+    //edit hubert paginacja
+    fetchPopularMovies(page).then(result => {
       const popular = result.data.results;
+
       createCards(popular, genres);
     });
   });

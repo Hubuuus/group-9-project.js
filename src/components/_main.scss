@@ -306,6 +306,10 @@ img {
   // & __Icon {
   //   fill: $ic-basic;
   // }
+  &__Dots:hover {
+    background: $btn-basic;
+    cursor: default;
+  }
   &__Arrow {
     background-color: $btn-page;
     width: 40px;
@@ -330,4 +334,9 @@ img {
 }
 .Pagination-Btn__Arrow.Disabled:hover {
   background: $btn-page;
+  cursor: default;
 }
+// .Pagination-Btn .Disabled:hover {
+//   background: $btn-basic;
+//   cursor: default;
+// }

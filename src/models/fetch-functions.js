@@ -21,27 +21,226 @@ const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
 const alert = document.querySelector('[data-header="alert"]');
+//edit hubert paginacja
 const nextButton = document.getElementById('Next-Button');
 const prevButton = document.getElementById('Prev-Button');
+let nrButton = '';
+const paginationNumbers = document.getElementById('Pagination-Numbers');
+//edit hubert paginacja
 
+// export function clearGallery() {
+//   gallery.innerHTML = '';
+// }
+
+//edit hubert paginacja
 let currentPage = 1;
+const pageCount = 20;
+
+// window.addEventListener('load', () => {
+//   nextButton.addEventListener('click', event => {
+//     event.preventDefault();
+//     currentPage++;
+//     console.log(currentPage);
+//     presentMovies(currentPage);
+//     handlePageButtonsStatus(currentPage);
+//     getPagination(currentPage);
+//   });
+
+//   prevButton.addEventListener('click', event => {
+//     event.preventDefault();
+//     currentPage--;
+//     console.log(currentPage);
+//     presentMovies(currentPage);
+//     handlePageButtonsStatus(currentPage);
+//     getPagination(currentPage);
+//   });
+
+//   nrButton.addEventListener('click', event => {
+//     event.preventDefault();
+//     console.log('nrButton');
+//     console.log(currentPage);
+//     // presentMovies(currentPage);
+//     // handlePageButtonsStatus(currentPage);
+//     // getPagination(currentPage);
+//   });
+// });
+
+function setCurrentPage(pageNum) {
+  currentPage = pageNum;
+  console.log(currentPage);
+}
+
+//Disable Page Navigation Buttons
+const disableButton = button => {
+  button.classList.add('Disabled');
+  button.setAttribute('Disabled', true);
+};
+const enableButton = button => {
+  button.classList.remove('Disabled');
+  button.removeAttribute('Disabled');
+};
+const handlePageButtonsStatus = currentPage => {
+  if (currentPage === 1) {
+    console.log(currentPage);
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+  if (pageCount === currentPage) {
+    console.log(currentPage);
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};
+
+//GENERATE NUMBERS IN DIV MAIN
+
+const getPagination = () => {
+  paginationNumbers.innerHTML = '';
+  getNumbers(1);
+  if (currentPage <= 5) {
+    getNumbers(2);
+    getNumbers(3);
+    getNumbers(4);
+    getNumbers(5);
+    getDots();
+  } else if (currentPage >= pageCount - 5) {
+    getDots();
+    getNumbers(pageCount - 4);
+    getNumbers(pageCount - 3);
+    getNumbers(pageCount - 2);
+    getNumbers(pageCount - 1);
+  } else {
+    getDots();
+    getNumbers(currentPage - 1);
+    getNumbers(currentPage);
+    getNumbers(currentPage + 1);
+    getDots();
+  }
+  getNumbers(pageCount);
+};
+
+const getDots = () => {
+  paginationNumbers.insertAdjacentHTML(
+    'beforeend',
+    `
+      <button class="Pagination-Btn Pagination-Btn__Dots" id="Nr-Button">
+      ...
+      </button>
+    `
+  );
+};
+
+const getNumbers = number => {
+  paginationNumbers.insertAdjacentHTML(
+    'beforeend',
+    `
+      <button class="Pagination-Btn Nr-Button" id="Nr-Button">
+      ${number}
+      </button>
+    `
+  );
+  nrButton = document.querySelector('.Nr-Button');
+};
+
+handlePageButtonsStatus(currentPage);
+getPagination(currentPage);
+
+window.addEventListener('load', () => {
+  // setCurrentPage(1);
+  nextButton.addEventListener('click', event => {
+    event.preventDefault();
+    currentPage++;
+    console.log(currentPage);
+    presentMovies(currentPage);
+    handlePageButtonsStatus(currentPage);
+    getPagination(currentPage);
+  });
+
+  prevButton.addEventListener('click', event => {
+    event.preventDefault();
+    currentPage--;
+    console.log(currentPage);
+    presentMovies(currentPage);
+    handlePageButtonsStatus(currentPage);
+    getPagination(currentPage);
+  });
+
+  nrButton.addEventListener('click', event => {
+    event.preventDefault();
+    const pageIndex = Number(nrButton.textContent);
+    if (pageIndex) {
+      button.addEventListener('click', () => {
+        
+        console.log(pageIndex);
+        // setCurrentPage(pageIndex);
+      });
+    }
+  });
+  });
+
+//   document.querySelectorAll('.Pagination-Btn').forEach(button => {
+//     const pageIndex = Number(nrButton.textContent);
+//     if (pageIndex) {
+//       button.addEventListener('click', () => {
+        
+//         console.log(pageIndex);
+//         // setCurrentPage(pageIndex);
+//       });
+//     }
+//   });
+// });
+
+
+
+// window.addEventListener('load', () => {
+//   // getPaginationNumbers(20);
+//   setCurrentPage(1);
+
+// button.addEventListener('click', () => {
+//   //         setCurrentPage(pageIndex);
+
+//edit hubert paginacja
+
+// left.addEventListener(
+//   'click',
+//   debounce(async event => {
+//     event.preventDefault();
+//     currentPage--;
+
+//     fetchPopularMovies(currentPage);
+//   })
+// );
+
+// right.addEventListener(
+//   'click',
+//   debounce(async event => {
+//     event.preventDefault();
+//     currentPage++;
+//     // fetchPopularMovies(currentPage);
+//     presentMovies(currentPage);
+//     console.log(currentPage);
+//     // console.log(x);
+//   })
+// );
+
+//edit hubert paginacja
 
 // FUNCTION AUTOMATICALLY FETCHING MOST POPULAR MOVIES
-export async function fetchPopularMovies(pageNumber) {
+export const fetchPopularMovies = async page => {
   const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
 
   const response = await axios
     .get(urlPopularMovies, {
       params: {
         api_key: API_KEY,
-        page: pageNumber,
+        page: page,
       },
     })
     .then(function (response) {
       // console.log('popular:', response);
       // console.log('popular results:', response.data.results);
-      // getPaginationNumbers(30);
-      // setCurrentPage(1);
       return response;
     })
     .catch(function (error) {
@@ -49,22 +248,7 @@ export async function fetchPopularMovies(pageNumber) {
     });
 
   return response;
-}
-
-nextButton.addEventListener('click', () => {
-  currentPage += 1;
-  console.log(currentPage);
-  fetchPopularMovies(currentPage);
-});
-prevButton.addEventListener('click', () => {
-  currentPage -= 1;
-  console.log(currentPage);
-  fetchPopularMovies(currentPage);
-});
-
-export function clearGallery() {
-  gallery.innerHTML = '';
-}
+};
 
 // OFF ENTER KEY
 inputMovie.addEventListener('keypress', function (e) {
@@ -78,8 +262,13 @@ inputMovie.addEventListener(
   'input',
   debounce(async event => {
     event.preventDefault();
+    if (inputMovie.value == '') {
+      return location.reload();
+    }
+
     const title = event.target.value.trim();
-    fetchSearchedMovies(title);
+
+    fetchSearchedMovies(title, page);
   }, DEBOUNCE_DELAY)
 );
 
