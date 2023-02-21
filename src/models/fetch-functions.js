@@ -37,11 +37,6 @@ const paginationNumbers = document.getElementById('Pagination-Numbers');
 let currentPage = 1;
 const pageCount = 20;
 
-function setCurrentPage(pageNum) {
-  currentPage = pageNum;
-  console.log(currentPage);
-}
-
 //Disable Page Navigation Buttons
 const disableButton = button => {
   button.classList.add('Disabled');
@@ -146,18 +141,16 @@ window.addEventListener('load', () => {
   });
 
   document.querySelectorAll('.Nr-Button').forEach(button => {
-    const currentPage = Number(button.textContent);
-
-    button.addEventListener('click', () => {
-      // currentPage = currentPage2;
-      // event.preventDefault();
-      console.log(currentPage);
-      // setCurrentPage(pageIndex);
-      // location.reload();
-      presentMovies(currentPage);
-      handlePageButtonsStatus(currentPage);
-      getPagination(currentPage);
-    });
+    const pageIndex = Number(button.textContent);
+    if (pageIndex !== currentPage) {
+      button.addEventListener('click', () => {
+        currentPage = pageIndex;
+        console.log(currentPage);
+        presentMovies(currentPage);
+        handlePageButtonsStatus(currentPage);
+        getPagination(currentPage);
+      });
+    }
   });
 });
 
