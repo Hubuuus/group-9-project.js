@@ -38,6 +38,12 @@ export function clearGallery() {
   gallery.innerHTML = '';
 }
 
+// disable paginator on My library
+const myLibrary = document.querySelector('NavPageMyLibrary');
+myLibrary.addEventListener('click', () => {
+  // disable pagination on my library - TO DO
+});
+
 //Disable Page Navigation Buttons
 const disableButton = button => {
   button.classList.add('Disabled');
@@ -215,7 +221,7 @@ inputMovie.addEventListener(
     if (inputMovie.value == '') {
       return location.reload();
     }
-
+    document.querySelector('.Pagination-Container').classList.add('hidden');
     const title = event.target.value.trim();
 
     fetchSearchedMovies(title);
@@ -256,8 +262,8 @@ export const fetchSearchedMovies = async input => {
     .catch(() => {
       console.log('error');
     });
-    Loading.remove(500);
-    Notify.success(`We found ${response.data.total_results} movies!`);
+  Loading.remove(500);
+  Notify.info(`We found ${response.data.total_results} movies!`);
 
   return response;
 };
