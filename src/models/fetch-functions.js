@@ -125,11 +125,13 @@ const getPagination = (page, pageCount) => {
     }
   } else {
     getNumbers(1);
+    getNumbers(1);
     getDots();
     for (let i = page - 2; i <= page + 2; i++) {
       getNumbers(i);
     }
     getDots();
+    getNumbers(pageCount);
     getNumbers(pageCount);
   }
 };
