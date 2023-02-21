@@ -140,7 +140,7 @@
   box-sizing: content-box;
   transition: 0.4s;
   overflow: hidden;
-  box-sizing: content-box;
+  // box-sizing: content-box;
   border-radius: 5px;
 
   &::before {
@@ -157,7 +157,7 @@
 
   &:hover {
     transform: rotateX(10deg) scale(1.05);
-    margin: -5px -5px;
+    // margin: -5px -5px;
     box-shadow: 15px 50px 25px #00000050;
     cursor: pointer;
 
@@ -190,10 +190,12 @@
   }
 
   8% {
+    // text-align: center;
     opacity: 1;
   }
 
-  10% {
+  100% {
+    text-align: center;
   }
 }
 
