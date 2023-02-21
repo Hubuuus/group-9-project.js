@@ -1,7 +1,7 @@
 /*
 ŚCIEŻKA DZIAŁANIA PLIKUÓW JS PRZY POBIERNIU TYTUŁÓW FILMÓW Z API
 1. POPULARNE FILMY
-  - presentMovies() -> getGenres() -> fetchPopularMovies() -> createCards
+  - presentMovies() -> getGenres() -> fetchPopularMovies()
   - createCards() -> namesGenres() -> movieCard() -> html
 2. WYSZUKIWANE FILMY
   - eventListener() -> fetchSearchedMovies() -> galleryOfMovies()
@@ -13,34 +13,180 @@ import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
-// import { activeFetch, toggleHidden } from './modal-movie';
 
-let movieId;
 const gallery = document.querySelector('.Gallery');
 const DEBOUNCE_DELAY = 1000;
 const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
 const alert = document.querySelector('[data-header="alert"]');
+//edit hubert paginacja
+const nextButton = document.getElementById('Next-Button');
+const prevButton = document.getElementById('Prev-Button');
+let nrButton = '';
+
+const paginationNumbers = document.getElementById('Pagination-Numbers');
+
+let currentPage = 1;
+// let pageCount;
+// let page = 1;
 
 export function clearGallery() {
   gallery.innerHTML = '';
 }
 
+//Disable Page Navigation Buttons
+const disableButton = button => {
+  button.classList.add('Disabled');
+  button.setAttribute('Disabled', true);
+};
+const enableButton = button => {
+  button.classList.remove('Disabled');
+  button.removeAttribute('Disabled');
+};
+
+const handlePageButtonsStatus = (page, pageCount) => {
+  if (page === 1) {
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+  if (page === pageCount) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};
+
+//set active page number
+const handleActivePageNumber = page => {
+  document.querySelectorAll('.Nr-Button').forEach(button => {
+    button.classList.remove('Pagination-Btn--Active');
+  });
+
+  document.querySelectorAll('.Nr-Button').forEach(button => {
+    const pageIndex = Number(button.textContent);
+    if (pageIndex == page) {
+      button.classList.add('Pagination-Btn--Active');
+    }
+  });
+};
+// hubert's set active page number
+// const updateActivePage = () => {
+//   const buttons = document.querySelectorAll('.Pagination-Numbers .Nr-Button');
+//   buttons.forEach(button => {
+//     const pageNumber = parseInt(button.innerHTML);
+//     if (pageNumber === currentPage) {
+//       button.classList.add('active');
+//     } else {
+//       button.classList.remove('active');
+//     }
+//   });
+// };
+
+const getDots = () => {
+  paginationNumbers.insertAdjacentHTML(
+    'beforeend',
+    `
+      <button class="Pagination-Btn Pagination-Btn__Dots" id="Nr-Button">
+      ...
+      </button>
+    `
+  );
+};
+
+const getNumbers = number => {
+  const isActive = number === currentPage ? 'Pagination-Btn--Active' : '';
+
+  paginationNumbers.insertAdjacentHTML(
+    'beforeend',
+    `
+      <button class="Pagination-Btn Nr-Button ${isActive}" id="Nr-Button" >
+      ${number}
+      </button>
+    `
+  );
+};
+
+//GENERATE NUMBERS IN DIV MAIN
+const getPagination = (page, pageCount) => {
+  paginationNumbers.innerHTML = '';
+  if (page <= 5) {
+    for (let i = 1; i <= 7; i++) {
+      getNumbers(i);
+    }
+    getDots();
+    getNumbers(pageCount);
+  } else if (page >= pageCount - 5) {
+    getNumbers(1);
+    getDots();
+    for (let i = pageCount - 6; i <= pageCount; i++) {
+      getNumbers(i);
+    }
+  } else {
+    getNumbers(1);
+    getDots();
+    for (let i = page - 2; i <= page + 2; i++) {
+      getNumbers(i);
+    }
+    getDots();
+    getNumbers(pageCount);
+  }
+};
+
+window.addEventListener('load', () => {
+  handlePageButtonsStatus(1);
+  getPagination(1);
+  handleActivePageNumber(currentPage);
+
+  nextButton.addEventListener('click', event => {
+    event.preventDefault();
+    currentPage++;
+    presentMovies(currentPage);
+    handlePageButtonsStatus(currentPage);
+    getPagination(currentPage);
+    handleActivePageNumber(currentPage);
+  });
+
+  prevButton.addEventListener('click', event => {
+    event.preventDefault();
+    currentPage--;
+    presentMovies(currentPage);
+    handlePageButtonsStatus(currentPage);
+    getPagination(currentPage);
+    handleActivePageNumber(currentPage);
+  });
+
+  paginationNumbers.addEventListener('click', event => {
+    if (event.target.classList.contains('Nr-Button')) {
+      const pageIndex = Number(event.target.textContent);
+      if (pageIndex !== currentPage) {
+        currentPage = pageIndex;
+        presentMovies(currentPage);
+        handlePageButtonsStatus(currentPage);
+        getPagination(currentPage);
+        handleActivePageNumber(currentPage);
+      }
+    }
+  });
+});
+
 // FUNCTION AUTOMATICALLY FETCHING MOST POPULAR MOVIES
-export const fetchPopularMovies = async () => {
+export const fetchPopularMovies = async page => {
   const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
 
   const response = await axios
     .get(urlPopularMovies, {
       params: {
         api_key: API_KEY,
-        // page: page,
+        page: page,
       },
     })
     .then(function (response) {
-      console.log('popular:', response);
-      console.log('popular results:', response.data.results);
+      // RENDER PAGINATION WITH TOTAL RESPONSES / 10
+      const totalPages = response.data.total_pages / 10;
+      getPagination(currentPage, totalPages);
+      handlePageButtonsStatus(currentPage, totalPages);
       return response;
     })
     .catch(function (error) {
@@ -50,33 +196,31 @@ export const fetchPopularMovies = async () => {
   return response;
 };
 
-
-
 // OFF ENTER KEY
-inputMovie.addEventListener('keypress', function(e) {
+inputMovie.addEventListener('keypress', function (e) {
   if (e.key === 'Enter') {
     e.preventDefault();
   }
 });
-
 
 //EVENT LISTENING TO SEARCHBAR INPUT
 inputMovie.addEventListener(
   'input',
   debounce(async event => {
     event.preventDefault();
-    if (inputMovie.value == ''){
+    if (inputMovie.value == '') {
       return location.reload();
     }
 
     const title = event.target.value.trim();
-   
+
     fetchSearchedMovies(title);
   }, DEBOUNCE_DELAY)
 );
 
 // FUNCTION FETCHIN MOVIES BY QUERY
-export const fetchSearchedMovies = async (input, page) => {
+// deleted from argument pageNumber
+export const fetchSearchedMovies = async input => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
 
   const response = await axios
@@ -84,7 +228,7 @@ export const fetchSearchedMovies = async (input, page) => {
       params: {
         api_key: API_KEY,
         query: input,
-        page: page,
+        // page: pageNumber,
       },
     })
     .then(response => {
