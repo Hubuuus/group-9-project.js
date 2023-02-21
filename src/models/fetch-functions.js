@@ -13,6 +13,9 @@ import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
+import loader from './loaderSpinner';
+import { Loading, Notify } from 'notiflix';
+// import { activeFetch, toggleHidden } from './modal-movie';
 
 const gallery = document.querySelector('.Gallery');
 const DEBOUNCE_DELAY = 1000;
@@ -174,7 +177,8 @@ window.addEventListener('load', () => {
 // FUNCTION AUTOMATICALLY FETCHING MOST POPULAR MOVIES
 export const fetchPopularMovies = async page => {
   const urlPopularMovies = 'https://api.themoviedb.org/3/trending/movie/day';
-
+  loader();
+  // Loading.add();
   const response = await axios
     .get(urlPopularMovies, {
       params: {
@@ -192,7 +196,7 @@ export const fetchPopularMovies = async page => {
     .catch(function (error) {
       console.log(error);
     });
-
+  Loading.remove(500);
   return response;
 };
 
@@ -222,6 +226,7 @@ inputMovie.addEventListener(
 // deleted from argument pageNumber
 export const fetchSearchedMovies = async input => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
+  loader();
 
   const response = await axios
     .get(urlSearchedMovies, {
@@ -232,6 +237,7 @@ export const fetchSearchedMovies = async input => {
       },
     })
     .then(response => {
+      // loader();
       galleryOfMovies(response);
       // console.log('searched results:', response.data.results);
       //       alert.innerHTML = ``;
@@ -244,12 +250,14 @@ export const fetchSearchedMovies = async input => {
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
       }
-
+      // Loading.remove();
       return response;
     })
     .catch(() => {
       console.log('error');
     });
+    Loading.remove(500);
+    Notify.success(`We found ${response.data.total_results} movies!`);
 
   return response;
 };

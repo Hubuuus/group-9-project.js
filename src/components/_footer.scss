@@ -8,10 +8,10 @@ a {
   cursor: pointer;
 }
 
-.footer {
+.Footer {
   display: flex;
   flex-direction: row;
-  position: sticky;
+  position: relative;
   bottom: 0;
   width: 100%;
   height: 100px;
@@ -26,7 +26,7 @@ a {
 }
 
 @media screen and (min-width: 768px) {
-  .footer {
+  .Footer {
     font-size: 16px;
     line-height: 19px;
     height: 77px;

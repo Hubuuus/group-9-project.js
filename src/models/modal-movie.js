@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix';
 var debounce = require('lodash.debounce');
 
 const blur = document.querySelector('[data-modal="blur"]');
@@ -115,6 +116,16 @@ function renderItems(items) {
 
   // modalOpen.innerHTML = markup;
 
+  // btnWatch.setAttribute('id', movieId);
+  // btnQueue.setAttribute('id', movieId);
+
+  // if (addMovie.includes(movieId)) {
+  //   btnWatch.innerHTML = 'REMOVE FROM WATCHED';
+  // }
+  // if (queueMovie.includes(movieId)) {
+  //   btnQueue.innerHTML = 'REMOVE FROM QUEUE';
+  // }
+
   const btnWatch = document.querySelector('[data-movie="add"]');
   const btnQueue = document.querySelector('[data-movie="queue"]');
 
@@ -124,9 +135,22 @@ function renderItems(items) {
       btnWatch.classList.add('button-addEffect');
       setTimeout(function() {
         btnWatch.classList.remove('button-addEffect');
+        btnWatch.textContent = 'REMOVE FROM WATCHED';
+        btnQueue.textContent = 'ALREADY WATCHED';
       }, 300);
-    }
+      Notify.success('Movie successfully added to watched.');
+      localStorage.setItem('addMovie', JSON.stringify(addMovie));
+    } else {
+      addMovie.splice(addMovie.indexOf(movieId), 1); 
+      btnWatch.classList.add('button-addEffect');
+      btnWatch.textContent = 'REMOVED FROM WATCHED';
+      setTimeout(function() {
+        btnWatch.classList.remove('button-addEffect');
+        btnWatch.textContent = 'ADD TO WATCHED';
+    }, 300);
+    Notify.warning('Movie removed from watched!');
     localStorage.setItem('addMovie', JSON.stringify(addMovie));
+  }
   });
 
   btnQueue.addEventListener('click', () => {
@@ -135,9 +159,20 @@ function renderItems(items) {
       btnQueue.classList.add('button-addEffect');
       setTimeout(function() {
         btnQueue.classList.remove('button-addEffect');
+        btnQueue.textContent = 'REMOVE FROM QUEUE';
       }, 300);
+      Notify.success('Movie successfully added to queue.');
+      localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
+    } else {
+      queueMovie.splice(queueMovie.indexOf(movieId), 1);
+      btnQueue.classList.add('button-addEffect');
+      setTimeout(function(){
+        btnQueue.classList.remove('button-addEffect');
+        btnQueue.textContent = 'ADD TO QUEUE';
+      }, 300);
+      Notify.warning('Movie removed from queue!');
+      localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
     }
-    localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
   });
 
   const closeBtn = document.querySelector('[data-modal="close"]');
@@ -153,4 +188,6 @@ function renderItems(items) {
   };
 
   document.addEventListener('keyup', escModal);
+
 }
+
