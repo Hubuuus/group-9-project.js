@@ -85,28 +85,28 @@ const getNumbers = number => {
 
 const getPagination = () => {
   paginationNumbers.innerHTML = '';
-  getNumbers(1);
-  if (currentPage <= 5) {
-    getNumbers(2);
-    getNumbers(3);
-    getNumbers(4);
-    getNumbers(5);
+
+  if (currentPage <= 3) {
+    for (let i = 1; i <= 5; i++) {
+      getNumbers(i);
+    }
     getDots();
-  } else if (currentPage >= pageCount - 5) {
+    getNumbers(pageCount);
+  } else if (currentPage >= pageCount - 3) {
+    getNumbers(1);
     getDots();
-    getNumbers(pageCount - 4);
-    getNumbers(pageCount - 3);
-    getNumbers(pageCount - 2);
-    getNumbers(pageCount - 1);
+    for (let i = pageCount - 4; i <= pageCount; i++) {
+      getNumbers(i);
+    }
   } else {
+    getNumbers(1);
     getDots();
-    getNumbers(currentPage - 1);
-    getNumbers(currentPage);
-    getNumbers(currentPage + 1);
+    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+      getNumbers(i);
+    }
     getDots();
+    getNumbers(pageCount);
   }
-  getNumbers(pageCount);
-  // nrButton = document.querySelectorAll('.Pagination-Btn');
 };
 
 // const addClass = el => {
@@ -140,18 +140,18 @@ window.addEventListener('load', () => {
     getPagination(currentPage);
   });
 
-  document.querySelectorAll('.Nr-Button').forEach(button => {
-    const pageIndex = Number(button.textContent);
+  paginationNumbers.addEventListener('click', event => {
+  if (event.target.classList.contains('Nr-Button')) {
+    const pageIndex = Number(event.target.textContent);
     if (pageIndex !== currentPage) {
-      button.addEventListener('click', () => {
-        currentPage = pageIndex;
-        console.log(currentPage);
-        presentMovies(currentPage);
-        handlePageButtonsStatus(currentPage);
-        getPagination(currentPage);
-      });
+      currentPage = pageIndex;
+      console.log(currentPage);
+      presentMovies(currentPage);
+      handlePageButtonsStatus(currentPage);
+      getPagination(currentPage);
     }
-  });
+  }
+});
 });
 
 //edit hubert paginacja
