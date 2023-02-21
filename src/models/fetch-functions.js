@@ -13,7 +13,6 @@ import axios from 'axios';
 import { presentMovies } from './present-movies';
 import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
-import { getPaginationNumbers, setCurrentPage } from './pagination';
 
 const gallery = document.querySelector('.Gallery');
 const DEBOUNCE_DELAY = 1000;
@@ -27,19 +26,13 @@ const prevButton = document.getElementById('Prev-Button');
 let nrButton = '';
 
 const paginationNumbers = document.getElementById('Pagination-Numbers');
-//edit hubert paginacja
 
-// export function clearGallery() {
-//   gallery.innerHTML = '';
-// }
-
-//edit hubert paginacja
 let currentPage = 1;
-const pageCount = 20;
+// let pageCount;
+// let page = 1;
 
-function setCurrentPage(pageNum) {
-  currentPage = pageNum;
-  console.log(currentPage);
+export function clearGallery() {
+  gallery.innerHTML = '';
 }
 
 //Disable Page Navigation Buttons
@@ -51,18 +44,45 @@ const enableButton = button => {
   button.classList.remove('Disabled');
   button.removeAttribute('Disabled');
 };
-const handlePageButtonsStatus = currentPage => {
-  if (currentPage === 1) {
+
+const handlePageButtonsStatus = (page, pageCount) => {
+  if (page === 1) {
     disableButton(prevButton);
   } else {
     enableButton(prevButton);
   }
-  if (pageCount === currentPage) {
+  if (page === pageCount) {
     disableButton(nextButton);
   } else {
     enableButton(nextButton);
   }
 };
+
+//set active page number
+const handleActivePageNumber = page => {
+  document.querySelectorAll('.Nr-Button').forEach(button => {
+    button.classList.remove('Pagination-Btn--Active');
+  });
+
+  document.querySelectorAll('.Nr-Button').forEach(button => {
+    const pageIndex = Number(button.textContent);
+    if (pageIndex == page) {
+      button.classList.add('Pagination-Btn--Active');
+    }
+  });
+};
+// hubert's set active page number
+// const updateActivePage = () => {
+//   const buttons = document.querySelectorAll('.Pagination-Numbers .Nr-Button');
+//   buttons.forEach(button => {
+//     const pageNumber = parseInt(button.innerHTML);
+//     if (pageNumber === currentPage) {
+//       button.classList.add('active');
+//     } else {
+//       button.classList.remove('active');
+//     }
+//   });
+// };
 
 const getDots = () => {
   paginationNumbers.insertAdjacentHTML(
@@ -76,10 +96,12 @@ const getDots = () => {
 };
 
 const getNumbers = number => {
+  const isActive = number === currentPage ? 'Pagination-Btn--Active' : '';
+
   paginationNumbers.insertAdjacentHTML(
     'beforeend',
     `
-      <button class="Pagination-Btn Nr-Button" id="Nr-Button">
+      <button class="Pagination-Btn Nr-Button ${isActive}" id="Nr-Button" >
       ${number}
       </button>
     `
@@ -87,81 +109,67 @@ const getNumbers = number => {
 };
 
 //GENERATE NUMBERS IN DIV MAIN
-
-const getPagination = () => {
+const getPagination = (page, pageCount) => {
   paginationNumbers.innerHTML = '';
-  getNumbers(1);
-  if (currentPage <= 5) {
-    getNumbers(2);
-    getNumbers(3);
-    getNumbers(4);
-    getNumbers(5);
+  if (page <= 5) {
+    for (let i = 1; i <= 7; i++) {
+      getNumbers(i);
+    }
     getDots();
-  } else if (currentPage >= pageCount - 5) {
+    getNumbers(pageCount);
+  } else if (page >= pageCount - 5) {
+    getNumbers(1);
     getDots();
-    getNumbers(pageCount - 4);
-    getNumbers(pageCount - 3);
-    getNumbers(pageCount - 2);
-    getNumbers(pageCount - 1);
+    for (let i = pageCount - 6; i <= pageCount; i++) {
+      getNumbers(i);
+    }
   } else {
+    getNumbers(1);
     getDots();
-    getNumbers(currentPage - 1);
-    getNumbers(currentPage);
-    getNumbers(currentPage + 1);
+    for (let i = page - 2; i <= page + 2; i++) {
+      getNumbers(i);
+    }
     getDots();
+    getNumbers(pageCount);
   }
-  getNumbers(pageCount);
-  // nrButton = document.querySelectorAll('.Pagination-Btn');
 };
 
-// const addClass = el => {
-//   el.classList.add('Nr-Button');
-// };
-
-// const nrButton = document.querySelectorAll('.Pagination-Btn');
-
-// addClass(nrButton);
-
-handlePageButtonsStatus(currentPage);
-getPagination(currentPage);
-
 window.addEventListener('load', () => {
-  // setCurrentPage(1);
+  handlePageButtonsStatus(1);
+  getPagination(1);
+  handleActivePageNumber(currentPage);
+
   nextButton.addEventListener('click', event => {
     event.preventDefault();
     currentPage++;
-    console.log('Activ page:', currentPage);
     presentMovies(currentPage);
     handlePageButtonsStatus(currentPage);
     getPagination(currentPage);
+    handleActivePageNumber(currentPage);
   });
 
   prevButton.addEventListener('click', event => {
     event.preventDefault();
     currentPage--;
-    console.log('Activ page:', currentPage);
     presentMovies(currentPage);
     handlePageButtonsStatus(currentPage);
     getPagination(currentPage);
+    handleActivePageNumber(currentPage);
   });
 
-  document.querySelectorAll('.Nr-Button').forEach(button => {
-    const currentPage = Number(button.textContent);
-
-    button.addEventListener('click', () => {
-      // currentPage = currentPage2;
-      // event.preventDefault();
-      console.log(currentPage);
-      // setCurrentPage(pageIndex);
-      // location.reload();
-      presentMovies(currentPage);
-      handlePageButtonsStatus(currentPage);
-      getPagination(currentPage);
-    });
+  paginationNumbers.addEventListener('click', event => {
+    if (event.target.classList.contains('Nr-Button')) {
+      const pageIndex = Number(event.target.textContent);
+      if (pageIndex !== currentPage) {
+        currentPage = pageIndex;
+        presentMovies(currentPage);
+        handlePageButtonsStatus(currentPage);
+        getPagination(currentPage);
+        handleActivePageNumber(currentPage);
+      }
+    }
   });
 });
-
-//edit hubert paginacja
 
 // FUNCTION AUTOMATICALLY FETCHING MOST POPULAR MOVIES
 export const fetchPopularMovies = async page => {
@@ -175,8 +183,10 @@ export const fetchPopularMovies = async page => {
       },
     })
     .then(function (response) {
-      // console.log('popular:', response);
-      // console.log('popular results:', response.data.results);
+      // RENDER PAGINATION WITH TOTAL RESPONSES / 10
+      const totalPages = response.data.total_pages / 10;
+      getPagination(currentPage, totalPages);
+      handlePageButtonsStatus(currentPage, totalPages);
       return response;
     })
     .catch(function (error) {
@@ -204,12 +214,13 @@ inputMovie.addEventListener(
 
     const title = event.target.value.trim();
 
-    fetchSearchedMovies(title, page);
+    fetchSearchedMovies(title);
   }, DEBOUNCE_DELAY)
 );
 
 // FUNCTION FETCHIN MOVIES BY QUERY
-export const fetchSearchedMovies = async (input, pageNumber) => {
+// deleted from argument pageNumber
+export const fetchSearchedMovies = async input => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
 
   const response = await axios
@@ -217,7 +228,7 @@ export const fetchSearchedMovies = async (input, pageNumber) => {
       params: {
         api_key: API_KEY,
         query: input,
-        page: pageNumber,
+        // page: pageNumber,
       },
     })
     .then(response => {
