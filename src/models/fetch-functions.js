@@ -25,6 +25,7 @@ const alert = document.querySelector('[data-header="alert"]');
 const nextButton = document.getElementById('Next-Button');
 const prevButton = document.getElementById('Prev-Button');
 let nrButton = '';
+
 const paginationNumbers = document.getElementById('Pagination-Numbers');
 //edit hubert paginacja
 
@@ -35,35 +36,6 @@ const paginationNumbers = document.getElementById('Pagination-Numbers');
 //edit hubert paginacja
 let currentPage = 1;
 const pageCount = 20;
-
-// window.addEventListener('load', () => {
-//   nextButton.addEventListener('click', event => {
-//     event.preventDefault();
-//     currentPage++;
-//     console.log(currentPage);
-//     presentMovies(currentPage);
-//     handlePageButtonsStatus(currentPage);
-//     getPagination(currentPage);
-//   });
-
-//   prevButton.addEventListener('click', event => {
-//     event.preventDefault();
-//     currentPage--;
-//     console.log(currentPage);
-//     presentMovies(currentPage);
-//     handlePageButtonsStatus(currentPage);
-//     getPagination(currentPage);
-//   });
-
-//   nrButton.addEventListener('click', event => {
-//     event.preventDefault();
-//     console.log('nrButton');
-//     console.log(currentPage);
-//     // presentMovies(currentPage);
-//     // handlePageButtonsStatus(currentPage);
-//     // getPagination(currentPage);
-//   });
-// });
 
 function setCurrentPage(pageNum) {
   currentPage = pageNum;
@@ -81,17 +53,37 @@ const enableButton = button => {
 };
 const handlePageButtonsStatus = currentPage => {
   if (currentPage === 1) {
-    console.log(currentPage);
     disableButton(prevButton);
   } else {
     enableButton(prevButton);
   }
   if (pageCount === currentPage) {
-    console.log(currentPage);
     disableButton(nextButton);
   } else {
     enableButton(nextButton);
   }
+};
+
+const getDots = () => {
+  paginationNumbers.insertAdjacentHTML(
+    'beforeend',
+    `
+      <button class="Pagination-Btn Pagination-Btn__Dots" id="Nr-Button">
+      ...
+      </button>
+    `
+  );
+};
+
+const getNumbers = number => {
+  paginationNumbers.insertAdjacentHTML(
+    'beforeend',
+    `
+      <button class="Pagination-Btn Nr-Button" id="Nr-Button">
+      ${number}
+      </button>
+    `
+  );
 };
 
 //GENERATE NUMBERS IN DIV MAIN
@@ -119,30 +111,16 @@ const getPagination = () => {
     getDots();
   }
   getNumbers(pageCount);
+  // nrButton = document.querySelectorAll('.Pagination-Btn');
 };
 
-const getDots = () => {
-  paginationNumbers.insertAdjacentHTML(
-    'beforeend',
-    `
-      <button class="Pagination-Btn Pagination-Btn__Dots" id="Nr-Button">
-      ...
-      </button>
-    `
-  );
-};
+// const addClass = el => {
+//   el.classList.add('Nr-Button');
+// };
 
-const getNumbers = number => {
-  paginationNumbers.insertAdjacentHTML(
-    'beforeend',
-    `
-      <button class="Pagination-Btn Nr-Button" id="Nr-Button">
-      ${number}
-      </button>
-    `
-  );
-  nrButton = document.querySelector('.Nr-Button');
-};
+// const nrButton = document.querySelectorAll('.Pagination-Btn');
+
+// addClass(nrButton);
 
 handlePageButtonsStatus(currentPage);
 getPagination(currentPage);
@@ -152,7 +130,7 @@ window.addEventListener('load', () => {
   nextButton.addEventListener('click', event => {
     event.preventDefault();
     currentPage++;
-    console.log(currentPage);
+    console.log('Activ page:', currentPage);
     presentMovies(currentPage);
     handlePageButtonsStatus(currentPage);
     getPagination(currentPage);
@@ -161,69 +139,27 @@ window.addEventListener('load', () => {
   prevButton.addEventListener('click', event => {
     event.preventDefault();
     currentPage--;
-    console.log(currentPage);
+    console.log('Activ page:', currentPage);
     presentMovies(currentPage);
     handlePageButtonsStatus(currentPage);
     getPagination(currentPage);
   });
 
-  nrButton.addEventListener('click', event => {
-    event.preventDefault();
-    const pageIndex = Number(nrButton.textContent);
-    if (pageIndex) {
-      button.addEventListener('click', () => {
-        
-        console.log(pageIndex);
-        // setCurrentPage(pageIndex);
-      });
-    }
+  document.querySelectorAll('.Nr-Button').forEach(button => {
+    const currentPage = Number(button.textContent);
+
+    button.addEventListener('click', () => {
+      // currentPage = currentPage2;
+      // event.preventDefault();
+      console.log(currentPage);
+      // setCurrentPage(pageIndex);
+      // location.reload();
+      presentMovies(currentPage);
+      handlePageButtonsStatus(currentPage);
+      getPagination(currentPage);
+    });
   });
-  });
-
-//   document.querySelectorAll('.Pagination-Btn').forEach(button => {
-//     const pageIndex = Number(nrButton.textContent);
-//     if (pageIndex) {
-//       button.addEventListener('click', () => {
-        
-//         console.log(pageIndex);
-//         // setCurrentPage(pageIndex);
-//       });
-//     }
-//   });
-// });
-
-
-
-// window.addEventListener('load', () => {
-//   // getPaginationNumbers(20);
-//   setCurrentPage(1);
-
-// button.addEventListener('click', () => {
-//   //         setCurrentPage(pageIndex);
-
-//edit hubert paginacja
-
-// left.addEventListener(
-//   'click',
-//   debounce(async event => {
-//     event.preventDefault();
-//     currentPage--;
-
-//     fetchPopularMovies(currentPage);
-//   })
-// );
-
-// right.addEventListener(
-//   'click',
-//   debounce(async event => {
-//     event.preventDefault();
-//     currentPage++;
-//     // fetchPopularMovies(currentPage);
-//     presentMovies(currentPage);
-//     console.log(currentPage);
-//     // console.log(x);
-//   })
-// );
+});
 
 //edit hubert paginacja
 
