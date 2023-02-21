@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix';
 var debounce = require('lodash.debounce');
 
 const blur = document.querySelector('[data-modal="blur"]');
@@ -126,6 +127,7 @@ function renderItems(items) {
         btnWatch.classList.remove('button-addEffect');
       }, 300);
     }
+    Notify.success('The movie was added to watched');
     localStorage.setItem('addMovie', JSON.stringify(addMovie));
   });
 
@@ -137,6 +139,7 @@ function renderItems(items) {
         btnQueue.classList.remove('button-addEffect');
       }, 300);
     }
+    Notify.success('The movie was added to queue');
     localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
   });
 
