@@ -267,8 +267,8 @@ img {
   width: auto;
   overflow: visible;
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 5px;
   font-size: 12px;
   font-family: 'Roboto';
@@ -277,9 +277,9 @@ img {
   font-size: 12px;
   line-height: 1.33em;
   background-color: $btn-basic;
-  // &__Dots {
-  //   width: 20px;
-  // }
+  &__Dots {
+    width: 15px;
+  }
   &:hover {
     cursor: pointer;
     background-color: $btn-page;
@@ -290,8 +290,8 @@ img {
   }
   &__Arrow {
     background-color: $btn-page;
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 30px;
     &:hover {
       background-color: $btn-basic;
     }
@@ -299,8 +299,8 @@ img {
   &--Active {
     background-color: $btn-accent;
     color: $tx-basic;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     &:hover {
       background-color: $btn-accent;
     }
@@ -323,9 +323,10 @@ img {
   .Pagination-Container {
     margin-bottom: 60px;
   }
-  // .Pagination-Btn {
-  //   width: 20px;
-  // }
+  .Pagination-Btn {
+    width: 40px;
+    height: 40px;
+  }
 
   .Gallery {
     margin-top: 60px;

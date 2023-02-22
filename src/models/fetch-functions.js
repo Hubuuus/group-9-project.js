@@ -285,7 +285,7 @@ inputMovie.addEventListener(
 // deleted from argument pageNumber
 export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
-  loader();
+  // loader();
 
   const response = await axios
     .get(urlSearchedMovies, {
@@ -299,7 +299,7 @@ export const fetchSearchedMovies = async (input, page) => {
       if (currentPage === 1) {
         Notify.success(`We found ${response.data.total_results} movies!`);
       }
-      // loader();
+      loader();
       let pageCount = 0;
       if (response.data.total_results % 20 === 0) {
         pageCount = response.data.total_results / 20;
@@ -315,15 +315,13 @@ export const fetchSearchedMovies = async (input, page) => {
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
       }
-      // Loading.remove();
+      Loading.remove(500);
 
       return response;
     })
     .catch(() => {
       console.log('error');
     });
-  Loading.remove(500);
-  Notify.info(`We found ${response.data.total_results} movies!`);
 
   return response;
 };
