@@ -3,12 +3,10 @@ import { gallery, addMovie, queueMovie } from './modal-movie';
 
 const btnWatchedLib = document.querySelector('[data-library="watched"]');
 const btnQueueLib = document.querySelector('[data-library="queue"]');
-const loader = document.querySelector('.Pagination-Loader');
 
 const activeFetchLibAdd = async e => {
   e.preventDefault();
   gallery.innerHTML = '';
-  // if (gallery.innerHTML === "") loader.innerHTML = "LOADING MOVIES";
 
   const ids = addMovie; // przykładowe id filmów
   const fetchRequests = ids.map(id =>
@@ -30,7 +28,6 @@ const activeFetchLibAdd = async e => {
 const activeFetchLibQueue = async e => {
   e.preventDefault();
   gallery.innerHTML = '';
-  //  if (gallery.innerHTML === "") loader.innerHTML = "LOADING MOVIES";
 
   const ids = queueMovie; // przykładowe id filmów
   const fetchRequests = ids.map(id =>
@@ -84,7 +81,6 @@ function showAddedMovies(movie) {
         </div>
       </div>`
   );
-  if (gallery.innerHTML !== '') loader.innerHTML = '';
 }
 
 window.addEventListener('load', activeFetchLibAdd);
