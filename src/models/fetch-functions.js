@@ -15,7 +15,6 @@ import debounce from 'lodash.debounce';
 import { namesGenres } from './genresid-name';
 import loader from './loaderSpinner';
 import { Loading, Notify } from 'notiflix';
-// import { activeFetch, toggleHidden } from './modal-movie';
 
 const gallery = document.querySelector('.Gallery');
 const DEBOUNCE_DELAY = 1000;
@@ -23,10 +22,8 @@ const API_KEY = '28e7de8a02a020e11a900cecedfaedb8';
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const inputMovie = document.querySelector('.SearchInput');
 const alert = document.querySelector('[data-header="alert"]');
-//edit hubert paginacja
 const nextButton = document.getElementById('Next-Button');
 const prevButton = document.getElementById('Prev-Button');
-let nrButton = '';
 
 const paginationNumbers = document.getElementById('Pagination-Numbers');
 
@@ -38,6 +35,12 @@ export function clearGallery() {
   gallery.innerHTML = '';
 }
 
+// disable pagination on My Library
+const myLibrary = document.querySelector('.NavPageMyLibrary');
+const paginationContainer = document.querySelector('.Pagination-Container');
+myLibrary.addEventListener('click', () => {
+  paginationContainer.classList.add('hidden');
+});
 
 //Disable Page Navigation Buttons
 const disableButton = button => {
@@ -156,6 +159,7 @@ window.addEventListener('load', () => {
     handlePageButtonsStatus(currentPage);
     getPagination(currentPage);
     handleActivePageNumber(currentPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   prevButton.addEventListener('click', event => {
@@ -165,6 +169,7 @@ window.addEventListener('load', () => {
     handlePageButtonsStatus(currentPage);
     getPagination(currentPage);
     handleActivePageNumber(currentPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   paginationNumbers.addEventListener('click', event => {
@@ -180,6 +185,7 @@ window.addEventListener('load', () => {
           handlePageButtonsStatus(currentPage);
           getPagination(currentPage);
           handleActivePageNumber(currentPage);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }
     }
@@ -271,7 +277,7 @@ export const fetchSearchedMovies = async (input, page) => {
         alert.classList.remove('hidden');
       }
       // Loading.remove();
-      
+
       return response;
     })
     .catch(() => {
