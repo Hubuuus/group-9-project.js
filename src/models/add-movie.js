@@ -8,7 +8,7 @@ const loader = document.querySelector('.Pagination-Loader');
 const activeFetchLibAdd = async e => {
     e.preventDefault();
     gallery.innerHTML = "";
-    if (gallery.innerHTML === "") loader.innerHTML = "LOADING MOVIES";
+    // if (gallery.innerHTML === "") loader.innerHTML = "LOADING MOVIES";
     
   const ids = addMovie; // przykładowe id filmów
   const fetchRequests = ids.map(id => fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`));
@@ -24,7 +24,7 @@ const activeFetchLibAdd = async e => {
 const activeFetchLibQueue = async e => {
     e.preventDefault();
     gallery.innerHTML = "";
-   if (gallery.innerHTML === "") loader.innerHTML = "LOADING MOVIES";
+  //  if (gallery.innerHTML === "") loader.innerHTML = "LOADING MOVIES";
     
   const ids = queueMovie; // przykładowe id filmów
   const fetchRequests = ids.map(id => fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`));

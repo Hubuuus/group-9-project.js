@@ -31,7 +31,7 @@ let nrButton = '';
 const paginationNumbers = document.getElementById('Pagination-Numbers');
 
 let currentPage = 1;
-// let pageCount;
+let pageEnd = 100;
 // let page = 1;
 
 export function clearGallery() {
@@ -114,32 +114,38 @@ const getNumbers = number => {
 //GENERATE NUMBERS IN DIV MAIN
 const getPagination = (page, pageCount) => {
   paginationNumbers.innerHTML = '';
-  if (page <= 5) {
-    for (let i = 1; i <= 7; i++) {
+  if (pageCount >= 9) {
+    if (page <= 5) {
+      for (let i = 1; i <= 7; i++) {
+        getNumbers(i);
+      }
+      getDots();
+      getNumbers(pageCount);
+    } else if (page >= pageCount - 5) {
+      getNumbers(1);
+      getDots();
+      for (let i = pageCount - 6; i <= pageCount; i++) {
+        getNumbers(i);
+      }
+    } else {
+      getNumbers(1);
+      getDots();
+      for (let i = page - 2; i <= page + 2; i++) {
+        getNumbers(i);
+      }
+      getDots();
+      getNumbers(pageCount);
+    }
+  } else if (pageCount < 9) {
+    for (let i = 1; i <= pageCount; i++) {
       getNumbers(i);
     }
-    getDots();
-    getNumbers(pageCount);
-  } else if (page >= pageCount - 5) {
-    getNumbers(1);
-    getDots();
-    for (let i = pageCount - 6; i <= pageCount; i++) {
-      getNumbers(i);
-    }
-  } else {
-    getNumbers(1);
-    getDots();
-    for (let i = page - 2; i <= page + 2; i++) {
-      getNumbers(i);
-    }
-    getDots();
-    getNumbers(pageCount);
   }
 };
 
 window.addEventListener('load', () => {
   handlePageButtonsStatus(1);
-  getPagination(1);
+  getPagination(1, pageEnd);
   handleActivePageNumber(currentPage);
 
   nextButton.addEventListener('click', event => {
@@ -165,10 +171,15 @@ window.addEventListener('load', () => {
       const pageIndex = Number(event.target.textContent);
       if (pageIndex !== currentPage) {
         currentPage = pageIndex;
-        presentMovies(currentPage);
-        handlePageButtonsStatus(currentPage);
-        getPagination(currentPage);
-        handleActivePageNumber(currentPage);
+        if (inputMovie.value !== '') {
+          console.log('inputxxx');
+          fetchSearchedMovies(title, currentPage);
+        } else {
+          presentMovies(currentPage);
+          handlePageButtonsStatus(currentPage);
+          getPagination(currentPage);
+          handleActivePageNumber(currentPage);
+        }
       }
     }
   });
@@ -207,6 +218,8 @@ inputMovie.addEventListener('keypress', function (e) {
   }
 });
 
+let title = '';
+
 //EVENT LISTENING TO SEARCHBAR INPUT
 inputMovie.addEventListener(
   'input',
@@ -216,15 +229,16 @@ inputMovie.addEventListener(
       return location.reload();
     }
 
-    const title = event.target.value.trim();
-
+    title = event.target.value.trim();
+    console.log('title', title);
     fetchSearchedMovies(title);
+    return title;
   }, DEBOUNCE_DELAY)
 );
 
 // FUNCTION FETCHIN MOVIES BY QUERY
 // deleted from argument pageNumber
-export const fetchSearchedMovies = async input => {
+export const fetchSearchedMovies = async (input, page) => {
   const urlSearchedMovies = 'https://api.themoviedb.org/3/search/movie';
   loader();
 
@@ -233,19 +247,21 @@ export const fetchSearchedMovies = async input => {
       params: {
         api_key: API_KEY,
         query: input,
-        // page: pageNumber,
+        page: page,
       },
     })
     .then(response => {
       // loader();
+      let pageCount = 0;
+      if (response.data.total_results % 20 === 0) {
+        pageCount = response.data.total_results / 20;
+      } else {
+        pageCount = Math.ceil(response.data.total_results / 20);
+      }
       galleryOfMovies(response);
-      // console.log('searched results:', response.data.results);
-      //       alert.innerHTML = ``;
-      // if (response.data.results.length === 0) {
-      //   console.log("error");
-      //   setInterval(alert.innerHTML = `Search result not successful. Enter the correct movie name and search
-      //   again.`, 1000);
-      // }
+      getPagination(currentPage, pageCount);
+      handlePageButtonsStatus(currentPage, pageCount);
+      // console.log("wynij", response.data.total_results);
       alert.classList.add('hidden');
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
@@ -256,8 +272,8 @@ export const fetchSearchedMovies = async input => {
     .catch(() => {
       console.log('error');
     });
-    Loading.remove(500);
-    Notify.success(`We found ${response.data.total_results} movies!`);
+  Loading.remove(500);
+  Notify.success(`We found ${response.data.total_results} movies!`);
 
   return response;
 };
