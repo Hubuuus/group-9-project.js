@@ -65,7 +65,13 @@ async function fetchItems() {
 
 function showAddedMovies(movie) {
   const genresName = movie.genres.map(genre => genre.name);
-  const poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  let poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+
+  if (movie.poster_path === null) {
+    poster =
+      'https://ik.imagekit.io/paulinas/noTMDBposter.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1676735394520';
+  }
+  // const poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   gallery.insertAdjacentHTML(
     'beforeend',
     ` <div class="MovieCard" id="${movie.id}">
