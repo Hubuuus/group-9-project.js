@@ -38,7 +38,6 @@ export function clearGallery() {
   gallery.innerHTML = '';
 }
 
-
 //Disable Page Navigation Buttons
 const disableButton = button => {
   button.classList.add('Disabled');
@@ -228,12 +227,13 @@ inputMovie.addEventListener(
     event.preventDefault();
     if (inputMovie.value == '') {
       return location.reload();
+    } else {
+      title = event.target.value.trim();
+      console.log('title', title);
+      currentPage = 1;
+      fetchSearchedMovies(title);
+      return title;
     }
-
-    title = event.target.value.trim();
-    console.log('title', title);
-    fetchSearchedMovies(title);
-    return title;
   }, DEBOUNCE_DELAY)
 );
 
@@ -265,13 +265,15 @@ export const fetchSearchedMovies = async (input, page) => {
       galleryOfMovies(response);
       getPagination(currentPage, pageCount);
       handlePageButtonsStatus(currentPage, pageCount);
+
+      
       // console.log("wynij", response.data.total_results);
       alert.classList.add('hidden');
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
       }
       // Loading.remove();
-      
+
       return response;
     })
     .catch(() => {
