@@ -38,6 +38,7 @@ export function clearGallery() {
   gallery.innerHTML = '';
 }
 
+
 //Disable Page Navigation Buttons
 const disableButton = button => {
   button.classList.add('Disabled');
@@ -251,6 +252,9 @@ export const fetchSearchedMovies = async (input, page) => {
       },
     })
     .then(response => {
+      if (currentPage === 1) {
+        Notify.success(`We found ${response.data.total_results} movies!`);
+      }
       // loader();
       let pageCount = 0;
       if (response.data.total_results % 20 === 0) {
@@ -267,13 +271,14 @@ export const fetchSearchedMovies = async (input, page) => {
         alert.classList.remove('hidden');
       }
       // Loading.remove();
+      
       return response;
     })
     .catch(() => {
       console.log('error');
     });
   Loading.remove(500);
-  Notify.success(`We found ${response.data.total_results} movies!`);
+  // Notify.success(`We found ${response.data.total_results} movies!`);
 
   return response;
 };
