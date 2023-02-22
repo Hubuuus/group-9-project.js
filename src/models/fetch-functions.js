@@ -38,6 +38,12 @@ export function clearGallery() {
   gallery.innerHTML = '';
 }
 
+// disable paginator on My library
+const myLibrary = document.querySelector('NavPageMyLibrary');
+myLibrary.addEventListener('click', () => {
+  // disable pagination on my library - TO DO
+});
+
 //Disable Page Navigation Buttons
 const disableButton = button => {
   button.classList.add('Disabled');
@@ -273,7 +279,7 @@ export const fetchSearchedMovies = async (input, page) => {
       console.log('error');
     });
   Loading.remove(500);
-  Notify.success(`We found ${response.data.total_results} movies!`);
+  Notify.info(`We found ${response.data.total_results} movies!`);
 
   return response;
 };
