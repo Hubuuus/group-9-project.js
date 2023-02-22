@@ -233,12 +233,13 @@ inputMovie.addEventListener(
     event.preventDefault();
     if (inputMovie.value == '') {
       return location.reload();
+    } else {
+      title = event.target.value.trim();
+      console.log('title', title);
+      currentPage = 1;
+      fetchSearchedMovies(title);
+      return title;
     }
-
-    title = event.target.value.trim();
-    console.log('title', title);
-    fetchSearchedMovies(title);
-    return title;
   }, DEBOUNCE_DELAY)
 );
 
@@ -257,6 +258,9 @@ export const fetchSearchedMovies = async (input, page) => {
       },
     })
     .then(response => {
+      if (currentPage === 1) {
+        Notify.success(`We found ${response.data.total_results} movies!`);
+      }
       // loader();
       let pageCount = 0;
       if (response.data.total_results % 20 === 0) {
@@ -267,12 +271,15 @@ export const fetchSearchedMovies = async (input, page) => {
       galleryOfMovies(response);
       getPagination(currentPage, pageCount);
       handlePageButtonsStatus(currentPage, pageCount);
+
+      
       // console.log("wynij", response.data.total_results);
       alert.classList.add('hidden');
       if (response.data.results.length === 0) {
         alert.classList.remove('hidden');
       }
       // Loading.remove();
+
       return response;
     })
     .catch(() => {
