@@ -39,7 +39,7 @@ export function clearGallery() {
 const myLibrary = document.querySelector('.NavPageMyLibrary');
 const paginationContainer = document.querySelector('.Pagination-Container');
 myLibrary.addEventListener('click', () => {
-  paginationContainer.classList.add('hidden');
+  paginationContainer.classList.add('Hidden');
 });
 
 //Disable Page Navigation Buttons
@@ -215,7 +215,7 @@ window.addEventListener('load', () => {
       if (pageIndex !== currentPage) {
         currentPage = pageIndex;
         if (inputMovie.value !== '') {
-          console.log('inputxxx');
+          // console.log('inputxxx');
           fetchSearchedMovies(title, currentPage);
         } else {
           presentMovies(currentPage);
@@ -273,7 +273,7 @@ inputMovie.addEventListener(
       return location.reload();
     } else {
       title = event.target.value.trim();
-      console.log('title', title);
+      // console.log('title', title);
       currentPage = 1;
       fetchSearchedMovies(title);
       return title;
@@ -311,9 +311,9 @@ export const fetchSearchedMovies = async (input, page) => {
       handlePageButtonsStatus(currentPage, pageCount);
 
       // console.log("wynij", response.data.total_results);
-      alert.classList.add('hidden');
+      alert.classList.add('Hidden');
       if (response.data.results.length === 0) {
-        alert.classList.remove('hidden');
+        alert.classList.remove('Hidden');
       }
       Loading.remove(500);
 
@@ -378,7 +378,7 @@ function movieCard(movie, genresName) {
         alt="${movie.title}" loading="lazy" /> 
         <div class="MovieCardInfo">
           <p class="MovieCardData">
-            <span class="MovieCardTitle dark-mode">${movie.title}
+            <span class="MovieCardTitle DarkMode">${movie.title}
           </span>
            ${genresName.splice(0, 3).join(', ')} | ${movie.release_date.slice(
       0,

@@ -17,23 +17,23 @@
 //     justify-content: center;
 //   }
 
-.dark-mode-btn {
+.DarkModeBtn {
   position: absolute;
   top: 235px;
   left: -115px;
   cursor: pointer;
 }
 
-.light {
+.Light {
   left: -115px;
   fill: white;
 }
 
-.dark-hidden {
+.DarkHidden {
   display: none;
 }
 
-.transitionEfc {
+.TransitionEfc {
   transition: 0.5s;
 }
 

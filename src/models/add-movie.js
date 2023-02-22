@@ -89,6 +89,8 @@ function showAddedMovies(movie) {
   );
 }
 
-window.addEventListener('load', activeFetchLibAdd);
-btnWatchedLib.addEventListener('click', activeFetchLibAdd);
-btnQueueLib.addEventListener('click', activeFetchLibQueue);
+if (window.location.href.endsWith('/my-library.html')) {
+  window.addEventListener('load', activeFetchLibAdd);
+  btnWatchedLib.addEventListener('click', activeFetchLibAdd);
+  btnQueueLib.addEventListener('click', activeFetchLibQueue);
+}

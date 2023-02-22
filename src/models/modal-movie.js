@@ -7,7 +7,7 @@ const modalOpen = document.querySelector('[data-modal="open"]');
 const modalContent = document.querySelector('[data-modal="content"]');
 
 export const toggleHidden = () => {
-  [modalOpen, blur].map(el => el.classList.toggle('hidden'));
+  [modalOpen, blur].map(el => el.classList.toggle('Hidden'));
   if (modalContent.innerHTML !== '') modalContent.innerHTML = '';
 };
 
@@ -30,7 +30,7 @@ let mouseY;
 document.addEventListener(
   'mousemove',
   debounce(e => {
-    if (modalOpen.classList.contains('hidden')) {
+    if (modalOpen.classList.contains('Hidden')) {
       mouseX = `${e.clientX}px`;
       mouseY = `${e.clientY}px`;
       modalOpen.style.top = mouseY;
@@ -92,26 +92,26 @@ function renderItems(items) {
     `
     <div class="Modal__Image" style="background-image: url(${poster})"></div>
     <div class="Modal__Text">
-      <h1 class="Modal__MovieTitle dark-mode">${items.title}</h1>
-      <div class="Modal__Info dark-mode">
-        <div class="Modal__Properties dark-mode">
+      <h1 class="Modal__MovieTitle DarkMode">${items.title}</h1>
+      <div class="Modal__Info DarkMode">
+        <div class="Modal__Properties DarkMode">
           <p>Vote / Votes</p>
-          <p class="Modal__Property dark-mode">Popularity</p>
-          <p class="Modal__Property dark-mode">Original Title</p>
-          <p class="Modal__Property dark-mode">Genre</p>
+          <p class="Modal__Property DarkMode">Popularity</p>
+          <p class="Modal__Property DarkMode">Original Title</p>
+          <p class="Modal__Property DarkMode">Genre</p>
         </div>
         <div class="Modal__Values">
           <p class="Modal__Votes">
             <span class="Modal__OneVote">${items.vote_average}</span> /
-            <span class="Modal__AllVotes dark-mode">${items.vote_count}</span>
+            <span class="Modal__AllVotes DarkMode">${items.vote_count}</span>
           </p>
-          <p class="Modal__Value dark-mode">${items.popularity}</p>
-          <p class="Modal__Value dark-mode">${items.original_title}</p>
-          <p class="Modal__Value dark-mode">${genres}</p>
+          <p class="Modal__Value DarkMode">${items.popularity}</p>
+          <p class="Modal__Value DarkMode">${items.original_title}</p>
+          <p class="Modal__Value DarkMode">${genres}</p>
         </div>
       </div>
-      <h2 class="Modal__About dark-mode">ABOUT</h2>
-      <p class="Modal__Review dark-mode">${items.overview}</p>
+      <h2 class="Modal__About DarkMode">ABOUT</h2>
+      <p class="Modal__Review DarkMode">${items.overview}</p>
       <div class="Modal__Buttons">
         <button class="Modal__Button Modal__Button--Watched" data-movie="add">
           ADD TO WATCHED
@@ -139,9 +139,9 @@ function renderItems(items) {
   btnWatch.addEventListener('click', () => {
     if (!addMovie.includes(movieId)) {
       addMovie.push(movieId);
-      btnWatch.classList.add('button-addEffect');
+      btnWatch.classList.add('ButtonAddEffect');
       setTimeout(function () {
-        btnWatch.classList.remove('button-addEffect');
+        btnWatch.classList.remove('ButtonAddEffect');
         btnWatch.textContent = 'REMOVE FROM WATCHED';
         btnQueue.textContent = 'ALREADY WATCHED';
       }, 300);
@@ -149,10 +149,10 @@ function renderItems(items) {
       localStorage.setItem('addMovie', JSON.stringify(addMovie));
     } else {
       addMovie.splice(addMovie.indexOf(movieId), 1);
-      btnWatch.classList.add('button-addEffect');
+      btnWatch.classList.add('ButtonAddEffect');
       btnWatch.textContent = 'REMOVED FROM WATCHED';
       setTimeout(function () {
-        btnWatch.classList.remove('button-addEffect');
+        btnWatch.classList.remove('ButtonAddEffect');
         btnWatch.textContent = 'ADD TO WATCHED';
       }, 300);
       Notify.warning('Movie removed from watched!');
@@ -163,18 +163,18 @@ function renderItems(items) {
   btnQueue.addEventListener('click', () => {
     if (!queueMovie.includes(movieId)) {
       queueMovie.push(movieId);
-      btnQueue.classList.add('button-addEffect');
+      btnQueue.classList.add('ButtonAddEffect');
       setTimeout(function () {
-        btnQueue.classList.remove('button-addEffect');
+        btnQueue.classList.remove('ButtonAddEffect');
         btnQueue.textContent = 'REMOVE FROM QUEUE';
       }, 300);
       Notify.success('Movie successfully added to queue.');
       localStorage.setItem('queueMovie', JSON.stringify(queueMovie));
     } else {
       queueMovie.splice(queueMovie.indexOf(movieId), 1);
-      btnQueue.classList.add('button-addEffect');
+      btnQueue.classList.add('ButtonAddEffect');
       setTimeout(function () {
-        btnQueue.classList.remove('button-addEffect');
+        btnQueue.classList.remove('ButtonAddEffect');
         btnQueue.textContent = 'ADD TO QUEUE';
       }, 300);
       Notify.warning('Movie removed from queue!');
@@ -189,7 +189,7 @@ function renderItems(items) {
   const escModal = e => {
     if (e.key === 'Escape')
       [modalOpen, blur].map(el => {
-        el.classList.add('hidden');
+        el.classList.add('Hidden');
         modalContent.innerHTML = '';
       });
   };

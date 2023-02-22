@@ -1,21 +1,21 @@
 const container = document.querySelector('.Container');
-const textColor = document.querySelectorAll('.dark-mode');
-const darkModeBtn = document.querySelectorAll('.dark-mode-btn');
-const lightBtn = document.querySelector('.light');
-const darkBtn = document.querySelector('.dark');
+const textColor = document.querySelectorAll('.DarkMode');
+const darkModeBtn = document.querySelectorAll('.DarkModeBtn');
+const lightBtn = document.querySelector('.Light');
+const darkBtn = document.querySelector('.Dark');
 
 let darkModeFlag = JSON.parse(localStorage.getItem('darkModeFlag')) || false;
 
 const setDarkMode = (flag) => {
     if (flag) {
-    darkBtn.classList.add("dark-hidden");
-    lightBtn.classList.remove("dark-hidden");
+    darkBtn.classList.add("DarkHidden");
+    lightBtn.classList.remove("DarkHidden");
     container.style.backgroundColor = "#333";
     textColor.forEach(el => el.style.color = "#ddd");
     textColor.forEach(el => el.style.backgroundColor = "#333");
     } else {
-    darkBtn.classList.remove("dark-hidden");
-    lightBtn.classList.add("dark-hidden");
+    darkBtn.classList.remove("DarkHidden");
+    lightBtn.classList.add("DarkHidden");
     container.style.backgroundColor = "";
     textColor.forEach(el => el.style.color = "");
     textColor.forEach(el => el.style.backgroundColor = "");
@@ -26,7 +26,7 @@ const setDarkMode = (flag) => {
 
 darkModeBtn.forEach(el => {
     el.addEventListener('click', () => {
-    container.classList.add("transitionEfc")
+    container.classList.add("TransitionEfc")
       setDarkMode(!darkModeFlag);
   });
 });

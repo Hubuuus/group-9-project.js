@@ -1,7 +1,7 @@
 @use '../utils/forward' as *;
 
 //Edytować poniżej
-.HeaderMain{
+.HeaderMain {
   background-color: black;
 }
 .Navbar {
@@ -53,25 +53,26 @@
   justify-content: space-between;
   align-items: center;
   color: $tx-basic;
-  }
+}
 
-  .NavbarContainer{
-    max-width: 280px;
-    margin: auto;
-    @media screen and (min-width: 768px) {
-      max-width: 618px;}
-    @media screen and (min-width: 1024px) {
-      max-width: 882px;}
+.NavbarContainer {
+  max-width: 280px;
+  margin: auto;
+  @media screen and (min-width: 768px) {
+    max-width: 618px;
   }
+  @media screen and (min-width: 1024px) {
+    max-width: 882px;
+  }
+}
 
 .NavbarBrandIcon {
   stroke: $ic-secondary;
   fill: transparent;
   // fill: $ic-secondary;
-
 }
 
-.NavbarBrand{
+.NavbarBrand {
   text-decoration: none;
   border-bottom: none;
 }
@@ -136,57 +137,54 @@
 }
 #active-nav:hover:after {
   // width: 55px;
-  background:$bg-main;
-  transition:.8s;
+  background: $bg-main;
+  transition: 0.8s;
 }
 
-.NavbarBrandTxt{
+.NavbarBrandTxt {
   padding-left: 12px;
-  display:none;
+  display: none;
   @media screen and (min-width: 768px) {
-  display: flex;
+    display: flex;
   }
   @media screen and (min-width: 1024px) {
-  display: flex;
+    display: flex;
   }
 }
 
 .Header {
-
-&__Buttons {
-  margin: 45px 0 41px;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  min-width: 260px;
-}
-&__Button {
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-  width: 136px;
-  padding: 14px 38px 12px;
-  font-size: 12px;
-  border-radius: 5px;
-  line-height: 16px;
-  font-weight: 500;
-  color:$tx-basic;
-  transition: 0.3s ease;
-  background-color: transparent;
-  border: 1px solid $btn-basic;
-  &:hover {
-    background-color: $bg-footer;
-    color: $tx-accent;
+  &__Buttons {
+    margin: 45px 0 41px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    min-width: 260px;
   }
-  
-  &--Active {
+  &__Button {
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    width: 136px;
+    padding: 14px 38px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+    line-height: 16px;
+    font-weight: 500;
     color: $tx-basic;
-    border: none;
-    background-color: $btn-accent;
+    transition: 0.3s ease;
+    background-color: transparent;
+    border: 1px solid $btn-basic;
     &:hover {
-        background-color: $btn-hover;
+      background-color: $bg-footer;
+      color: $tx-accent;
     }
-}
-}
 
-
+    &--Active {
+      color: $tx-basic;
+      border: none;
+      background-color: $btn-accent;
+      &:hover {
+        background-color: $btn-hover;
+      }
+    }
+  }
 }
