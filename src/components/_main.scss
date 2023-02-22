@@ -277,13 +277,13 @@ img {
   font-size: 12px;
   line-height: 1.33em;
   background-color: $btn-basic;
+  &__Dots {
+    width: 20px;
+  }
   &:hover {
     cursor: pointer;
     background-color: $btn-page;
   }
-  // & __Icon {
-  //   fill: $ic-basic;
-  // }
   &__Dots:hover {
     background: $btn-basic;
     cursor: default;
@@ -314,10 +314,6 @@ img {
   background: $btn-page;
   cursor: default;
 }
-// .Pagination-Btn .Disabled:hover {
-//   background: $btn-basic;
-//   cursor: default;
-// }
 
 @media screen and (min-width: 768px) {
   .Container {
@@ -327,6 +323,9 @@ img {
   .Pagination-Container {
     margin-bottom: 60px;
   }
+  // .Pagination-Btn {
+  //   width: 20px;
+  // }
 
   .Gallery {
     margin-top: 60px;

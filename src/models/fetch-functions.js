@@ -118,31 +118,61 @@ const getNumbers = number => {
 //GENERATE NUMBERS IN DIV MAIN
 const getPagination = (page, pageCount) => {
   paginationNumbers.innerHTML = '';
-  if (pageCount >= 9) {
-    if (page <= 5) {
-      for (let i = 1; i <= 7; i++) {
+  if (window.innerWidth < 768) {
+    if (pageCount >= 5) {
+      if (page <= 3) {
+        for (let i = 1; i <= 4; i++) {
+          getNumbers(i);
+        }
+        getDots();
+        getNumbers(pageCount);
+      } else if (page >= pageCount - 5) {
+        getNumbers(1);
+        getDots();
+        for (let i = pageCount - 6; i <= pageCount; i++) {
+          getNumbers(i);
+        }
+      } else {
+        getNumbers(1);
+        getDots();
+        for (let i = page - 1; i <= page + 1; i++) {
+          getNumbers(i);
+        }
+        getDots();
+        getNumbers(pageCount);
+      }
+    } else if (pageCount < 9) {
+      for (let i = 1; i <= pageCount; i++) {
         getNumbers(i);
       }
-      getDots();
-      getNumbers(pageCount);
-    } else if (page >= pageCount - 5) {
-      getNumbers(1);
-      getDots();
-      for (let i = pageCount - 6; i <= pageCount; i++) {
-        getNumbers(i);
-      }
-    } else {
-      getNumbers(1);
-      getDots();
-      for (let i = page - 2; i <= page + 2; i++) {
-        getNumbers(i);
-      }
-      getDots();
-      getNumbers(pageCount);
     }
-  } else if (pageCount < 9) {
-    for (let i = 1; i <= pageCount; i++) {
-      getNumbers(i);
+  } else {
+    if (pageCount >= 9) {
+      if (page <= 5) {
+        for (let i = 1; i <= 7; i++) {
+          getNumbers(i);
+        }
+        getDots();
+        getNumbers(pageCount);
+      } else if (page >= pageCount - 5) {
+        getNumbers(1);
+        getDots();
+        for (let i = pageCount - 6; i <= pageCount; i++) {
+          getNumbers(i);
+        }
+      } else {
+        getNumbers(1);
+        getDots();
+        for (let i = page - 2; i <= page + 2; i++) {
+          getNumbers(i);
+        }
+        getDots();
+        getNumbers(pageCount);
+      }
+    } else if (pageCount < 9) {
+      for (let i = 1; i <= pageCount; i++) {
+        getNumbers(i);
+      }
     }
   }
 };
@@ -273,7 +303,6 @@ export const fetchSearchedMovies = async (input, page) => {
       getPagination(currentPage, pageCount);
       handlePageButtonsStatus(currentPage, pageCount);
 
-      
       // console.log("wynij", response.data.total_results);
       alert.classList.add('hidden');
       if (response.data.results.length === 0) {

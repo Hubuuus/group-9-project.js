@@ -66,8 +66,12 @@ async function fetchItems() {
   }
 }
 
-export const addMovie = true ? JSON.parse(localStorage.getItem('addMovie')) || [] : [];
-export const queueMovie = true ? JSON.parse(localStorage.getItem('queueMovie')) || [] : [];
+export const addMovie = true
+  ? JSON.parse(localStorage.getItem('addMovie')) || []
+  : [];
+export const queueMovie = true
+  ? JSON.parse(localStorage.getItem('queueMovie')) || []
+  : [];
 
 function renderItems(items) {
   let genre = [];
@@ -79,11 +83,13 @@ function renderItems(items) {
   let poster = `https://image.tmdb.org/t/p/w500${items.poster_path}`;
 
   if (items.poster_path === null) {
-    poster = 'https://ik.imagekit.io/paulinas/noTMDBposter.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1676735394520';
+    poster =
+      'https://ik.imagekit.io/paulinas/noTMDBposter.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1676735394520';
   }
 
   modalContent.insertAdjacentHTML(
-    'beforeend',`
+    'beforeend',
+    `
     <div class="Modal__Image" style="background-image: url(${poster})"></div>
     <div class="Modal__Text">
       <h1 class="Modal__MovieTitle dark-mode">${items.title}</h1>
@@ -112,7 +118,8 @@ function renderItems(items) {
         </button>
         <button class="Modal__Button Modal__Button--Queue" data-movie="queue">ADD TO QUEUE</button>
       </div>
-      </div>`);
+      </div>`
+  );
 
   // modalOpen.innerHTML = markup;
 
@@ -133,7 +140,7 @@ function renderItems(items) {
     if (!addMovie.includes(movieId)) {
       addMovie.push(movieId);
       btnWatch.classList.add('button-addEffect');
-      setTimeout(function() {
+      setTimeout(function () {
         btnWatch.classList.remove('button-addEffect');
         btnWatch.textContent = 'REMOVE FROM WATCHED';
         btnQueue.textContent = 'ALREADY WATCHED';
@@ -141,23 +148,23 @@ function renderItems(items) {
       Notify.success('Movie successfully added to watched.');
       localStorage.setItem('addMovie', JSON.stringify(addMovie));
     } else {
-      addMovie.splice(addMovie.indexOf(movieId), 1); 
+      addMovie.splice(addMovie.indexOf(movieId), 1);
       btnWatch.classList.add('button-addEffect');
       btnWatch.textContent = 'REMOVED FROM WATCHED';
-      setTimeout(function() {
+      setTimeout(function () {
         btnWatch.classList.remove('button-addEffect');
         btnWatch.textContent = 'ADD TO WATCHED';
-    }, 300);
-    Notify.warning('Movie removed from watched!');
-    localStorage.setItem('addMovie', JSON.stringify(addMovie));
-  }
+      }, 300);
+      Notify.warning('Movie removed from watched!');
+      localStorage.setItem('addMovie', JSON.stringify(addMovie));
+    }
   });
 
   btnQueue.addEventListener('click', () => {
     if (!queueMovie.includes(movieId)) {
       queueMovie.push(movieId);
       btnQueue.classList.add('button-addEffect');
-      setTimeout(function() {
+      setTimeout(function () {
         btnQueue.classList.remove('button-addEffect');
         btnQueue.textContent = 'REMOVE FROM QUEUE';
       }, 300);
@@ -166,7 +173,7 @@ function renderItems(items) {
     } else {
       queueMovie.splice(queueMovie.indexOf(movieId), 1);
       btnQueue.classList.add('button-addEffect');
-      setTimeout(function(){
+      setTimeout(function () {
         btnQueue.classList.remove('button-addEffect');
         btnQueue.textContent = 'ADD TO QUEUE';
       }, 300);
@@ -188,6 +195,4 @@ function renderItems(items) {
   };
 
   document.addEventListener('keyup', escModal);
-
 }
-
