@@ -119,9 +119,9 @@ const getNumbers = number => {
 const getPagination = (page, pageCount) => {
   paginationNumbers.innerHTML = '';
   if (window.innerWidth < 768) {
-    if (pageCount >= 5) {
+    if (pageCount >= 3) {
       if (page <= 3) {
-        for (let i = 1; i <= 4; i++) {
+        for (let i = 1; i <= 3; i++) {
           getNumbers(i);
         }
         getDots();
@@ -129,7 +129,7 @@ const getPagination = (page, pageCount) => {
       } else if (page >= pageCount - 5) {
         getNumbers(1);
         getDots();
-        for (let i = pageCount - 6; i <= pageCount; i++) {
+        for (let i = pageCount - 2; i <= pageCount; i++) {
           getNumbers(i);
         }
       } else {
