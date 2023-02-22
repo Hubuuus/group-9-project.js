@@ -146,6 +146,9 @@ const getPagination = (page, pageCount) => {
         getNumbers(i);
       }
     }
+
+
+
   } else {
     if (pageCount >= 9) {
       if (page <= 5) {
@@ -154,13 +157,17 @@ const getPagination = (page, pageCount) => {
         }
         getDots();
         getNumbers(pageCount);
-      } else if (page >= pageCount - 5) {
+      } 
+      else if 
+      (page > pageCount - 5) {
         getNumbers(1);
         getDots();
         for (let i = pageCount - 6; i <= pageCount; i++) {
           getNumbers(i);
         }
-      } else {
+      }
+       else 
+       {
         getNumbers(1);
         getDots();
         for (let i = page - 2; i <= page + 2; i++) {
@@ -169,7 +176,7 @@ const getPagination = (page, pageCount) => {
         getDots();
         getNumbers(pageCount);
       }
-    } else if (pageCount < 9) {
+    } else if (pageCount < 7) {
       for (let i = 1; i <= pageCount; i++) {
         getNumbers(i);
       }

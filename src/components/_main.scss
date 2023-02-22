@@ -277,9 +277,9 @@ img {
   font-size: 12px;
   line-height: 1.33em;
   background-color: $btn-basic;
-  &__Dots {
-    width: 20px;
-  }
+  // &__Dots {
+  //   width: 20px;
+  // }
   &:hover {
     cursor: pointer;
     background-color: $btn-page;
